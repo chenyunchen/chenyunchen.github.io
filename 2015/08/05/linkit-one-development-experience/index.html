@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Linkit One 開發心得 | Yun Chen Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="LinkitOne" />
+    
+    <meta name="description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試
+這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~
+因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!
+希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~
+如果有任何問題或指教歡迎來信: yunchen@nisra.net
+本篇心得
+優點 
+
+定位 
+
+問題">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linkit One 開發心得">
+<meta property="og:url" content="https://blog.yunchen.tw/2015/08/05/linkit-one-development-experience/index.html">
+<meta property="og:site_name" content="Yun Chen Blog">
+<meta property="og:description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試
+這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~
+因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!
+希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~
+如果有任何問題或指教歡迎來信: yunchen@nisra.net
+本篇心得
+優點 
+
+定位 
+
+問題">
+<meta property="og:image" content="http://user-image.logdown.io/user/6608/blog/6585/post/289221/kQ2OexxiSMa0kmtVs8BE_11402357_673406076122602_6614117976044936312_o.jpg">
+<meta property="og:updated_time" content="2017-04-05T15:02:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linkit One 開發心得">
+<meta name="twitter:description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試
+這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~
+因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!
+希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~
+如果有任何問題或指教歡迎來信: yunchen@nisra.net
+本篇心得
+優點 
+
+定位 
+
+問題">
+<meta name="twitter:image" content="http://user-image.logdown.io/user/6608/blog/6585/post/289221/kQ2OexxiSMa0kmtVs8BE_11402357_673406076122602_6614117976044936312_o.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98386220-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">A log about a developer.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首頁</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://about.me/chenyunchen">關於</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字(休息,食記...)" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分類
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post.html-linkit-one-development-experience" class="article article-single article-type-post.html" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Linkit One 開發心得
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2015/08/05/linkit-one-development-experience/" class="article-date">
+            <time datetime="2015-08-04T16:00:00.000Z" itemprop="datePublished">2015-08-05</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/LinkitOne/">LinkitOne</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試</p>
+<p>這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~</p>
+<p>因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!</p>
+<p>希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~</p>
+<p>如果有任何問題或指教歡迎來信: yunchen@nisra.net</p>
+<h2 id="本篇心得"><a href="#本篇心得" class="headerlink" title="本篇心得"></a>本篇心得</h2><ul>
+<li><p>優點 </p>
+</li>
+<li><p>定位 </p>
+</li>
+<li><p>問題 </p>
+</li>
+<li><p>LinkitOne &amp; Socket </p>
+</li>
+<li><p>總結</p>
+</li>
+</ul>
+<p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/kQ2OexxiSMa0kmtVs8BE_11402357_673406076122602_6614117976044936312_o.jpg" alt="11402357_673406076122602_6614117976044936312_o.jpg"></p>
+<pre><code>&gt; Linkit One
+</code></pre><p>過去有玩過Arduino Uno所以當發現Linkit One時，有種很親切的感覺</p>
+<p>可以說是衝著廣大Arduino族群來的，能否獲得青睞還有待觀查</p>
+<p>絕大多數能在Arduino執行的範例都能相容到Linkit One執行</p>
+<p>少數專案只需要小量修改(部分library)便可以無痛轉移~ 甚至連IDE都可以相容~</p>
+<p>Code可能只微調25%左右 然而底層的實作可能大不相同 (這句話最近有點耳熟…? 錯覺吧?)</p>
+<p>不過Linkit One核心因為涉及商業機密所以沒辦法完全 Open Source 這點要知道一下~</p>
+<h1 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h1><p>上述提到大多數的code與IDE相容之外</p>
+<p>Linkit One有的還提供一些進階lib讓你可以做更細膩的操作</p>
+<p>以呼吸燈會用到的analogWrite為例: </p>
+<pre><code>analogWrite        只提供 0~255的調整
+
+**analogWriteAdvance** 可以   0~1023
+</code></pre><p>目前正式支援了Windows &amp; OSX已有人實際hack出Linux的開發環境(非官方)</p>
+<p>不過相信不需要太長的時間三大平台就都能夠加入Linkit One的開發</p>
+<p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/hxQhFEyBQnCptBHZIHcR_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%20%E4%B8%8A%E5%8D%881.53.48.png" alt="螢幕快照 2015-08-05 上午1.53.48.png"></p>
+<pre><code>&gt; Linkit One 支援OSX開發環境
+</code></pre><p>使用Linkit One的好處之一就是，大部分在開發的情況下我可能會使用到的模組</p>
+<p>已經在開發版上，所以開發版一到手上，接上感測元件就可以進行資料傳輸~ 這相當方便</p>
+<p>有點像是<strong>All in One</strong>的感覺，列出一些玩過後比較有印象的部分~</p>
+<pre><code>- GSM: 發簡訊、行動上網、打電話
+
+- Wifi上網
+
+- 藍芽傳輸
+
+- GPS
+
+- SD卡
+</code></pre><p>上述提到的部分都是已經附帶在Linkit One之中(附贈模組要接上)</p>
+<p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/HyUPTyKfSdCs1iElOybI_IMG_20150805_022225.jpg" alt="IMG_20150805_022225.jpg"></p>
+<pre><code>&gt; 背面: 可供SIM卡、SD卡插入
+</code></pre><p>另外也是MTK一直想強調的點XD 就是記憶體比較大，連<strong>SSL加密傳輸</strong>都可以支援!</p>
+<h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>開發者們往往容易忽略了硬體實際產品化的問題及難度，所以MTK推廣Linkit One最主要的目的</p>
+<p>並不是要打造MTKLab的自我品牌，而是希望能夠透過聯發科的資源協助開發者們尋找廠商，</p>
+<p>能夠做到小量的產品化並進行創業，讓實際問題的解決方案變的可行</p>
+<p>這也是為什麼在Linkit One上，像是把電流壓低至手環能接受的程度等等的做法</p>
+<p>可是對開發者來說呢?</p>
+<p>Linkit One的一些設計可能不見得是部分開發人員想要的 </p>
+<p>就像有人會覺得電流太小 需要外接電源，而非是以手環為準，可能是其它物聯網裝置</p>
+<p>通訊功能是MTK的強力主打，雖然人手一機，但現階段需要有多的SIM卡來插在物聯網裝置上，可能不是使用者樂見</p>
+<p>不過能藉機把玩一下通訊功能也是一個不錯的經驗啦XD</p>
+<p>說到這個倒讓我想到大二曾經在Server端或APP上用Python玩過發送電話及簡訊</p>
+<p><a href="https://github.com/chenyunchen/Python-Kivy-Example" target="_blank" rel="external">Python-Kivy-Nexmo</a></p>
+<p>下面有兩家比較有名的服務商:</p>
+<p><strong>Nexmo</strong>: <a href="https://www.nexmo.com/pricing/" target="_blank" rel="external">https://www.nexmo.com/pricing/</a></p>
+<p><strong>Twilio</strong>: <a href="https://www.twilio.com" target="_blank" rel="external">https://www.twilio.com</a></p>
+<p>申請後可以拿到約200封免費的簡訊扣打，不過一封頂多換算約台幣0.3~0.5 所以也不太痛～</p>
+<p>這頂多算是我預想得到要用上通訊的硬幹玩法XD 應該不太可能真的這樣搞…</p>
+<p>Linkit One可能被擺在天邊某一角又沒網路不過電信服務剛好有訊號 需要透過Server跟它溝通去觸發某件事</p>
+<p>或許最終手段就是發簡訊來讓它收到XD 當然是少量間隔長適用…不然簡訊送太多心會痛</p>
+<p>期待也許有人有其它惡趣味的玩法也說不定 哈</p>
+<p>Linkit One的CP值很高，主打Arduino相容，但對於廣大的Arduino族群或不少Maker來說</p>
+<p>目前Linkit One許多的功能要在Arduino上做到也不算太難，再加上價格相對高些，</p>
+<p>反而使得Linkit One處在一個相當尷尬的狀況下，這就得看未來MTK是否能讓Linkit One的定位有所區別</p>
+<p>當然相容於Arduino也會伴隨著開發環境問題跟包袱存在，好不好就看人了</p>
+<p>或許將Linkit One最小化到極致是個不錯的選擇，我妄想著開發可能超級麻煩，開發時什麼都要外接，</p>
+<p>麻煩歸麻煩，開發者只要不是bug就不是問題，可能3D列印外殼然後直接將Linkit One包裏至其中</p>
+<p>就直接當作成品來向大家穿戴展示，一般DEMO其實也都這麼做，也許可能與最終產品有所出入、看起來稍為大點，</p>
+<p>但是至少在穿戴展示不會那麼大一塊，”看起來”似乎那麼可行，或許DEMO就更有說服力</p>
+<p>不過這都只是癡人說夢XD 可能都有考量過跟其它難度在，總之MTK加油吧!</p>
+<h1 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h1><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>一般接觸新的技術與事物我習慣直接去看Document與Tutorial</p>
+<p>然而Linkit One的Developer Guide仍然停在相當舊的版本，這也使得我最初碰上相當多的問題…快更新啦T_T</p>
+<p>我目前的環境是 <strong><em>OSX Yosemite 10.10 Arduino IDE 1.6.4 LinkIt SDK 1.1.09 Beta</em></strong></p>
+<p>下述狀況皆以OSX環境為例</p>
+<p>那最初參照Developer Guide在OSX上裝Linkit SDK及驅動 都有狀況發生，後來才在MTK討論區找到可行解法</p>
+<p>建議新加入的朋友對Linkit One有任何問題或者第一次使用，不如就直接到這裡去找最新的解決辦法</p>
+<p>任何的最新進度或者還是測試階段的SDK都會在置頂文章</p>
+<p><a href="https://labs.mediatek.com/forums/posts/list/559.page" target="_blank" rel="external">https://labs.mediatek.com/forums/posts/list/559.page</a></p>
+<p>不過一段時間後其它OSX使用者在安裝上發生了 因為產生302跳轉導致讀不到而驅動裝不起來Orz</p>
+<p>我相信之後會陸續修正這些狀況，希望MTK能夠盡處理及穏定開發環境</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/atL1ifjtQRamG4E8OhuE_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%20%E4%B8%8A%E5%8D%884.19.38.png" alt="螢幕快照 2015-08-05 上午4.19.38.png"></p>
+<pre><code>&gt; code:9600, console:19200
+</code></pre><p>鮑率不管是設多少 第一次打開資源監控預設狀況下都看得到…就算不一樣也ok(好貼心XD) </p>
+<p>除非監控去做切換才回復正常，不過如果記得沒錯，切換到當初的debug port就沒有這個問題</p>
+<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/tmdBUKUuR1CsL98W4JjV_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%20%E4%B8%8A%E5%8D%884.20.50.png" alt="螢幕快照 2015-08-05 上午4.20.50.png"></p>
+<pre><code>&gt; 最早有分 Debug &amp; USB Modem Port 現在只要選(Linkit One) 即可
+</code></pre><p>不過既然不需要了 可以的話拿掉比較好…XD 應該也不會有點錯或混淆的問題(?</p>
+<h1 id="Linkit-One-amp-Socket"><a href="#Linkit-One-amp-Socket" class="headerlink" title="Linkit One &amp; Socket"></a>Linkit One &amp; Socket</h1><p>不曉得Linkit One或Arduino資料傳輸上大家會選用何種方式、協議來實作</p>
+<p>最基本的當然就是https、httpsS，也許你也有其它方式(Like:mqtt)，不過我在這邊選擇用socket的方式來處理~ </p>
+<p>畢竟socket對我來說比較熟悉，而Websocket協定也已經趨近成熟~ 動手玩看看吧</p>
+<p>這邊<strong>Casear Chu</strong>已經fork了原Arduino-Websocket的專案，並已經修改成LinkitOne-Websocket</p>
+<p>可以讓我們直接使用! 以OSX為例，只要到 ~/Documents/Arduino/libraries</p>
+<p>用git將專案複製下來就搞定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git clone git@github.com:Casear/LinkitOne-Websocket.git</div></pre></td></tr></table></figure>
+<p>如果是Windows的用戶 直進點選右邊的Download ZIP 解壓縮到你的library資料夾就ok</p>
+<p><a href="">https://github.com/Casear/LinkitOne-Websocket</a></p>
+<p>不過範例code還尚未修改，其實只要將WiFly的library換成Linkit One的就可以了</p>
+<p>以下面簡單的範例來玩玩~ 這邊要注意的是Linkit One Wifi只支援2.4Ghz並不支援5Ghz</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LWiFi.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LWiFiClient.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;WebSocketClient.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Server_IP <span class="meta-string">"Host_OR_IP"</span> <span class="comment">//Host or IP</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> WIFI_AP <span class="meta-string">"AP_Name"</span> <span class="comment">//所要連的名稱</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> WIFI_PWD <span class="meta-string">"AP_Password"</span> <span class="comment">// 密碼</span></span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">LWiFiClient client;</div><div class="line"></div><div class="line">WebSocketClient webSocketClient;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"> Serial.begin(<span class="number">9600</span>);</div><div class="line"></div><div class="line"> LWiFi.begin();</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"> Serial.println();</div><div class="line"></div><div class="line"> Serial.print(<span class="string">"Connecting to AP..."</span>);</div><div class="line"></div><div class="line"> <span class="keyword">if</span>(LWiFi.connectWPA(WIFI_AP, WIFI_PWD) &lt; <span class="number">0</span>)</div><div class="line"></div><div class="line"> &#123;</div><div class="line"></div><div class="line">   Serial.println(<span class="string">"FAIL!"</span>);</div><div class="line"></div><div class="line">   <span class="keyword">return</span>;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> Serial.println(<span class="string">"ok"</span>);</div><div class="line"></div><div class="line"> Serial.print(<span class="string">"Connecting to websocket server..."</span>);</div><div class="line"></div><div class="line"> <span class="keyword">if</span>(!client.connect(Server_IP, <span class="number">8124</span>))</div><div class="line"></div><div class="line"> &#123;</div><div class="line"></div><div class="line">   Serial.println(<span class="string">"FAIL!"</span>);</div><div class="line"></div><div class="line">   <span class="keyword">return</span>;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line"> webSocketClient.path = <span class="string">"/"</span>;</div><div class="line"></div><div class="line"> webSocketClient.host = Server_IP;</div><div class="line"></div><div class="line"> <span class="keyword">if</span> (webSocketClient.handshake(client)) &#123;</div><div class="line"></div><div class="line">   Serial.println(<span class="string">"Handshake successful"</span>);</div><div class="line"></div><div class="line"> &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">   Serial.println(<span class="string">"Handshake failed."</span>);</div><div class="line"></div><div class="line">   <span class="keyword">while</span>(<span class="number">1</span>)&#123;</div><div class="line"></div><div class="line">   &#125;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (client.connected()) &#123;</div><div class="line"></div><div class="line">    webSocketClient.sendData(String(random(<span class="number">1000</span>)));</div><div class="line"></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">    Serial.println(<span class="string">"Client disconnected."</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">      <span class="comment">// Hang on disconnect.</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可以將隨機數替換成感測模組將所得的數據送出</p>
+<p>不過如果剛好你的Linkit One與電腦是在同一個區網下，透過ipconfig,ifconfig查詢內網ip</p>
+<p>就可以透過socket將資料送到你的電腦上~ 等到要正式發佈再丟到遠端Server就好</p>
+<p>既然Linkit One的部分搞定了 再來你就可以使用自己喜愛的語言、framework來撰寫</p>
+<p>Websocket Server的code對送來的資料做處理囉~~ 這邊我以Node.js為例</p>
+<p>ws: <a href="">https://github.com/websockets/ws</a></p>
+<p>WebSocket-Node: <a href="">https://github.com/theturtle32/WebSocket-Node</a></p>
+<p>上述兩種module或framework已經自帶websocket 就隨你處理囉</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server</div><div class="line"></div><div class="line">  , wss = <span class="keyword">new</span> WebSocketServer(&#123; port: <span class="number">8124</span> &#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> <span class="title">connection</span>(<span class="params">ws</span>) </span>&#123;</div><div class="line"></div><div class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> <span class="title">incoming</span>(<span class="params">message</span>) </span>&#123;</div><div class="line"></div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'received: %s'</span>, message);</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>結果大概會長的像這樣~</p>
+<p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/VdwTpK8SmeD5RKXRcygb_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%20%E4%B8%8B%E5%8D%889.37.07.png" alt="螢幕快照 2015-08-05 下午9.37.07.png"></p>
+<p>而接收到的資料看是要存到mongodb，或像是rethinkdb這類的real time db也都是不錯的選擇</p>
+<p>回到了平常開發網站或是寫原生APP的環境之後，再來就可以來大顯身手料理這些資料了 (所以我說那個醬油呢 逃~</p>
+<p>看是要透過圖表的方式，用Web或著APP來呈現還是資料處理分析，就看愛怎麼做就怎麼玩囉~</p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>物聯網、穿戴裝置其實給我的感覺一直相當的微妙</p>
+<p>在人人都有智慧型手機的情況下，現階段我們真的需要有穿戴裝置嗎?</p>
+<p>至於物聯網，家裡家電舉凡像冰箱、電燈、冷氣連上網又要做什麼呢? 還是這些東西會淪為駭客的跳台設備呢?</p>
+<p>可以期待Maker們要如何去創造需求，並能在這過程中做見證的我們還真是幸福</p>
+<p>MTK或許想再未來嘗試更多可能性，並希望從中掌握市場動向才誕生了Linkit One</p>
+<p>早期MTK給人有種封閉的感覺，透過Lab的成立希望能跟社群與眾多Maker交流</p>
+<p>雖然說目前還有許多需要加強的地方，不過既然踏出了第一步，除了給予肯定還希望他們能持續走下去</p>
+<p>過去一年之中不僅只是在Maker的社群，連同開發者者忘年會或SITCON等等的學生社群 都有看見Linkit One的影子</p>
+<p>就學習及懶人的角度而言，我認為Linkit One算是相當不錯的平台了</p>
+<p>而MTK也希望能透過這個平台來幫助人們一圓創業夢，這或許就是去讓人使用它且後續問題處理的最大誘因</p>
+<p>所以除了繼續推坑之外，做好穩定的開發環境讓人們能更容易接受，相信會有越來越多人願意使用 :)</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://blog.yunchen.tw/2015/08/05/linkit-one-development-experience/" data-id="cj5e1njvh00265itvm2tdm4d4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追隨 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/chen_yunchen" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/Alex.YunChen" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/104114386123716562935" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/chenyunchen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin" href="https://www.linkedin.com/in/chenyunchen" target="_blank">
+                        <i class="icon fa fa-linkedin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/10/06/jsdc2015-student-awards-experience/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            JSDC2015 學生獎勵計畫心得
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/05/20/modernweb/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Modern Web 2015 學生獎勵計畫心得</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/20/search-a-2D-matrix-II/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Search a 2D Matrix II" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/20/search-a-2D-matrix-II/" class="title">Search a 2D Matrix II</a></p>
+                            <p class="item-date"><time datetime="2017-07-19T16:00:00.000Z" itemprop="datePublished">2017-07-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/18/product-of-array-except-self/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Product of Array Except Self" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/18/product-of-array-except-self/" class="title">Product of Array Except Self</a></p>
+                            <p class="item-date"><time datetime="2017-07-17T16:00:00.000Z" itemprop="datePublished">2017-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/17/Kth-smallest-element-in-a-BST/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Kth Smallest Element in a BST" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/17/Kth-smallest-element-in-a-BST/" class="title">Kth Smallest Element in a BST</a></p>
+                            <p class="item-date"><time datetime="2017-07-16T16:00:00.000Z" itemprop="datePublished">2017-07-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/16/majority-element-II/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Majority Element II" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/16/majority-element-II/" class="title">Majority Element II</a></p>
+                            <p class="item-date"><time datetime="2017-07-15T16:00:00.000Z" itemprop="datePublished">2017-07-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/15/summary-ranges/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Summary Ranges" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/15/summary-ranges/" class="title">Summary Ranges</a></p>
+                            <p class="item-date"><time datetime="2017-07-14T16:00:00.000Z" itemprop="datePublished">2017-07-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">記錄</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">六月 2013</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearch/">BinarySearch</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearchTree/">BinarySearchTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitManipulation/">BitManipulation</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainteaser/">Brainteaser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BreadthFirstSearch/">BreadthFirstSearch</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/COSCUP/">COSCUP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DepthFirstSearch/">DepthFirstSearch</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DivideAndConquer/">DivideAndConquer</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DynamicProgramming/">DynamicProgramming</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">200</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy/">Greedy</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON/">HITCON</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a><span class="tag-list-count">200</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkitOne/">LinkitOne</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Modify/">Modify</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NISRA/">NISRA</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSDC/">OSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSSFProject/">OSSFProject</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPConf/">PHPConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pointer/">Pointer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SITCON/">SITCON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schedule/">Schedule</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Secure/">Secure</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopologicalSort/">TopologicalSort</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TwoPointers/">TwoPointers</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UnionFind/">UnionFind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsdc/">jsdc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/modernweb/">modernweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Array/" style="font-size: 19.44px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 16.11px;">Backtracking</a> <a href="/tags/BinarySearch/" style="font-size: 16.11px;">BinarySearch</a> <a href="/tags/BinarySearchTree/" style="font-size: 10px;">BinarySearchTree</a> <a href="/tags/BitManipulation/" style="font-size: 14.44px;">BitManipulation</a> <a href="/tags/Brainteaser/" style="font-size: 10px;">Brainteaser</a> <a href="/tags/BreadthFirstSearch/" style="font-size: 13.33px;">BreadthFirstSearch</a> <a href="/tags/COSCUP/" style="font-size: 10px;">COSCUP</a> <a href="/tags/DepthFirstSearch/" style="font-size: 16.67px;">DepthFirstSearch</a> <a href="/tags/Design/" style="font-size: 12.22px;">Design</a> <a href="/tags/DivideAndConquer/" style="font-size: 11.67px;">DivideAndConquer</a> <a href="/tags/DynamicProgramming/" style="font-size: 15px;">DynamicProgramming</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Graph/" style="font-size: 10.56px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 11.67px;">Greedy</a> <a href="/tags/HITCON/" style="font-size: 10.56px;">HITCON</a> <a href="/tags/HashTable/" style="font-size: 17.22px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 15.56px;">LinkedList</a> <a href="/tags/LinkitOne/" style="font-size: 10px;">LinkitOne</a> <a href="/tags/Math/" style="font-size: 18.89px;">Math</a> <a href="/tags/Modify/" style="font-size: 12.22px;">Modify</a> <a href="/tags/NISRA/" style="font-size: 11.11px;">NISRA</a> <a href="/tags/OSDC/" style="font-size: 10px;">OSDC</a> <a href="/tags/OSSFProject/" style="font-size: 10.56px;">OSSFProject</a> <a href="/tags/PHPConf/" style="font-size: 10px;">PHPConf</a> <a href="/tags/Pointer/" style="font-size: 10px;">Pointer</a> <a href="/tags/Project/" style="font-size: 10.56px;">Project</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/SITCON/" style="font-size: 10px;">SITCON</a> <a href="/tags/Schedule/" style="font-size: 10px;">Schedule</a> <a href="/tags/Secure/" style="font-size: 11.67px;">Secure</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Sort/" style="font-size: 12.78px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.89px;">Stack</a> <a href="/tags/String/" style="font-size: 18.33px;">String</a> <a href="/tags/TopologicalSort/" style="font-size: 10.56px;">TopologicalSort</a> <a href="/tags/Tree/" style="font-size: 18.33px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.56px;">Trie</a> <a href="/tags/TwoPointers/" style="font-size: 17.78px;">TwoPointers</a> <a href="/tags/UnionFind/" style="font-size: 10px;">UnionFind</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/jsdc/" style="font-size: 10px;">jsdc</a> <a href="/tags/modernweb/" style="font-size: 10px;">modernweb</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">連結</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://speakerdeck.com/chenyunchen">Speaker Deck</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Yun Chen</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'chenyunchen';
+    
+    
+    var disqus_url = 'https://blog.yunchen.tw/2015/08/05/linkit-one-development-experience/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

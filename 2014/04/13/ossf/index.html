@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>實戰中大型專案開發II | Yun Chen Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="OSSFProject" />
+    
+    <meta name="description" content="此文章僅做為基本入門參考 :)
+這次是第二次專案開發的課程
+不過可以確信的是我的工程數學應該完蛋了Orz
+因為這篇網誌是考完之後才寫的，所以是真的確定完蛋了…
+專案報告 某學長還臨陣脫逃艸 最後我們這組就他沒來 被酸爆了XD
+為什麼要有編輯風格的標準? 主要是為了能讓Programmer的程式架構盡量保持一致
+方便閱讀，也能提升對Code的維護 尤其是在多人合作的時候
+
+我們這組報告的是Pytho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="實戰中大型專案開發II">
+<meta property="og:url" content="https://blog.yunchen.tw/2014/04/13/ossf/index.html">
+<meta property="og:site_name" content="Yun Chen Blog">
+<meta property="og:description" content="此文章僅做為基本入門參考 :)
+這次是第二次專案開發的課程
+不過可以確信的是我的工程數學應該完蛋了Orz
+因為這篇網誌是考完之後才寫的，所以是真的確定完蛋了…
+專案報告 某學長還臨陣脫逃艸 最後我們這組就他沒來 被酸爆了XD
+為什麼要有編輯風格的標準? 主要是為了能讓Programmer的程式架構盡量保持一致
+方便閱讀，也能提升對Code的維護 尤其是在多人合作的時候
+
+我們這組報告的是Pytho">
+<meta property="og:image" content="https://i.imgur.com/QXZ2K1h.jpg">
+<meta property="og:updated_time" content="2017-04-05T15:00:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="實戰中大型專案開發II">
+<meta name="twitter:description" content="此文章僅做為基本入門參考 :)
+這次是第二次專案開發的課程
+不過可以確信的是我的工程數學應該完蛋了Orz
+因為這篇網誌是考完之後才寫的，所以是真的確定完蛋了…
+專案報告 某學長還臨陣脫逃艸 最後我們這組就他沒來 被酸爆了XD
+為什麼要有編輯風格的標準? 主要是為了能讓Programmer的程式架構盡量保持一致
+方便閱讀，也能提升對Code的維護 尤其是在多人合作的時候
+
+我們這組報告的是Pytho">
+<meta name="twitter:image" content="https://i.imgur.com/QXZ2K1h.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98386220-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">A log about a developer.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首頁</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://about.me/chenyunchen">關於</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字(休息,食記...)" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分類
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post.html-ossf" class="article article-single article-type-post.html" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        實戰中大型專案開發II
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2014/04/13/ossf/" class="article-date">
+            <time datetime="2014-04-12T16:00:00.000Z" itemprop="datePublished">2014-04-13</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/OSSFProject/">OSSFProject</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><em>此文章僅做為基本入門參考 :)</em></p>
+<p>這次是第二次專案開發的課程</p>
+<p>不過可以確信的是我的工程數學應該完蛋了Orz</p>
+<p>因為這篇網誌是考完之後才寫的，所以是真的確定完蛋了…</p>
+<p>專案報告 某學長還臨陣脫逃艸 最後我們這組就他沒來 被酸爆了XD</p>
+<p>為什麼要有編輯風格的標準? 主要是為了能讓Programmer的程式架構盡量保持一致</p>
+<p>方便閱讀，也能提升對Code的維護 尤其是在多人合作的時候</p>
+<p><img src="https://i.imgur.com/QXZ2K1h.jpg" width="800" height="600"></p>
+<p>我們這組報告的是Python風格編寫標準，每組都針對不同的語言做報告</p>
+<p>而這也是此次課程的重點，藉以分析不同語言的特性及是否認同他的寫作風格</p>
+<p>不過再開始了解這些的Standard之前，專案、公司共同的編寫風格是 &gt; Standard</p>
+<p>主要是為了一致性的問題，為了追求這些Standard反而破壞與大家編寫code的一致性</p>
+<p>這反而不太妥當，這也是我們在場聽到很多業界人士參與討論的聲音</p>
+<p>當然你也可以完全不理會這些標準 開開心心的寫程式碼~不過有些標準不是沒有道理</p>
+<p>有空當然還是希望可以參考一下囉!</p>
+<p>PEP 8 – Style Guide for Python Code (本篇以官方為主)<br><a href="https://legacy.python.org/dev/peps/pep-0008/" target="_blank" rel="external">https://legacy.python.org/dev/peps/pep-0008/</a></p>
+<p>Google Python Style Guide<br><a href="https://google-styleguide.googlecode.com/svn/trunk/pyguide.html" target="_blank" rel="external">https://google-styleguide.googlecode.com/svn/trunk/pyguide.html</a></p>
+<p>我大約整理了一些常見的類型&amp;專案開發課程的討論&amp;心得</p>
+<p>想看完整點的可以看看上面這兩篇</p>
+<p>#Python 特性</p>
+<pre><code>try:
+    for port in range(1,1025):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex((remoteServerIP, port))
+        if result == 0:
+            print &quot;Port {}: \t Open&quot;.format(port)
+            sock.close()
+
+except KeyboardInterrupt:
+      print &quot;You pressed Ctrl+C&quot;
+      sys.exit()
+</code></pre><p>從上面我們可以看到Python並沒有以{}做區塊的分別</p>
+<p>而是嚴格採用空白來做區分(註: 空白和TAB不可混用 建議全空白) 這類的特性(Ruby也是如此)</p>
+<p>可以稱他是竹竿曬衣!XD 長長一隻竹竿，下面整齊掛一排衣服</p>
+<p>讓整體Code具高可讀性，也大大減少了新手容易搞不清區塊的問題</p>
+<p>這也是為什麼Python對新手非常有善的地方之一 區塊都是以 “視覺化” 為主</p>
+<p>像是因為{}之中 所以{x=1;for(int i=1;i&lt;10;i++)x++;System.out.print(x);}</p>
+<p>不小心都擠在一行也是ok的…It’s work!等等 (當然Python真有心這樣做也可以啦Orz)</p>
+<p>##Code lay-out</p>
+<pre><code>foo = {
+    long_dictionary_key:
+        long_dictionary_value,
+    ...
+}
+
+foo = long_function_name(var_one, var_two,
+                         var_three, var_four)
+
+my_list = [
+    1, 2, 3,
+    4, 5, 6,
+]
+</code></pre><p>不論在PEP8 或 Google 都會希望以四格空白來做區塊的分辦</p>
+<p>參數的話如果太長則是能夠以上一行的開頭為對照</p>
+<p>如此一來比較能夠一眼就曉得這些區塊的位置在，但並非所有的語言都建議以四格</p>
+<p>例: JavaScript 會比較希望是以二格來做排版</p>
+<p>不過像我碰到要接手的案子，有的人就是習慣用二格，為了確保一致性…還是照對方所做的吧</p>
+<p>##Maximum Line Length</p>
+<pre><code>with open(&apos;/path/to/some/file/you/want/to/read&apos;) as file_1, \
+        open(&apos;/path/to/some/file/being/written&apos;, &apos;w&apos;) as file_2:
+    file_2.write(file_1.read())
+</code></pre><p>超過80字元長就以 \ 換行吧~</p>
+<p>傳統的終端機terminal，最大一行的顯示字元約80字，所以一般會規定一行不要超過80字</p>
+<p>不過現在的編輯器很方便當然可以超過這個範圍，但還是建議以這個值為主</p>
+<p>一來是比較容易閱讀 此外如果今天換成是開發前端的網頁呢…?</p>
+<p>不像Python、C、Ruby…等等，執行的環境不是在這些編譯器中，而是在各種不同的瀏覽器</p>
+<p>以直譯的方式來執行，更不用說有的還有非主流的瀏覽器存在，對於超過該行而跳到下一行</p>
+<p>的原始碼會不會如其執行? 所以能避開不必要的問題就儘量吧!</p>
+<pre><code>url=&quot;https://www.example.com/developer/documentation/csv_file_name_extension_full_specification.html&quot;
+</code></pre><p>在Google的標準中有提到網址就最好不要這樣做了 這點我超同意!XD 尤其是要複製的時候!! 會多 “\” </p>
+<p>##Blank Lines</p>
+<p>區塊是不是該用單、雙行空行做區塊 好比method(function)之間、class之間 等等</p>
+<p>不同關連性的以兩行來分，有相關的則是一行做區隔</p>
+<p>在Google的標準中甚至有嚴格規定class開頭與第一個method需要空兩行 其餘則空一行</p>
+<p>而巢狀class(class裡頭包含class) 有此類別也是以雙行來做區隔</p>
+<p>這點我想就見人見智了吧~現在得知的都是公司沒有這類規定 大多都以一行空行(也許是懶XD)</p>
+<p>##Source File Encoding</p>
+<p>在Python2中預設編碼是ASCII 建議都改成UTF-8</p>
+<p>可以在程式的第一行打上</p>
+<pre><code>#-*- coding: utf8 -*-
+</code></pre><p>這也幾乎是我開始寫的第一個動作，原因無他…你只要一打個非英文的特殊字元或中文</p>
+<p>程式馬上就噴個無法辨識ASCII的Error給你看</p>
+<p>在Python3已經將預設編碼改成UTF-8 就比較沒有這類的問題</p>
+<p>……問題是大多數用Python的人都是停在2 XD 太多好用library都在2還沒跟上Orz</p>
+<p>##Imports</p>
+<pre><code>import os
+import sys
+</code></pre><p>建議在載入packages時能夠分開，不同的package在不同行</p>
+<p>比較清楚可以知道用上了哪些package，最好不要一次就一行全數載入</p>
+<p>此外在python中不見得要載入整個package，你可以只載入你需要的module即可</p>
+<pre><code>from subprocess import Popen
+</code></pre><p>在Google範例中你也能把不同的module 分別放在不同行</p>
+<pre><code>from foo.bar import baz
+from foo.bar import Quux
+</code></pre><p>這我倒是比較不喜歡 通常我會這樣做</p>
+<pre><code>from subprocess import Popen, PIPE
+</code></pre><p>不過看每個人的做法~沒有對或錯</p>
+<p>##Whitespace in Expressions and Statements</p>
+<pre><code>Yes: spam(ham[1], {eggs: 2})
+No:  spam( ham[ 1 ], { eggs: 2 } )
+
+Yes: if x == 4: print x, y; x, y = y, x
+No:  if x == 4 : print x , y ; x , y = y , x
+
+Yes: spam(1)
+No:  spam (1)
+
+Yes: dict[&apos;key&apos;] = list[index]
+No:  dict [&apos;key&apos;] = list [index]
+</code></pre><p>這邊對照就會清楚很多，雖然空格很好，可是有時候太多也不好</p>
+<p>一般在做參數的時候通常只有參數與參數之間或參數與值之間才有必要</p>
+<p>有沒有發現這些空白的地方有點眼熟? 沒錯，如果觀察夠敏銳就會發現到這些規則</p>
+<p>和英文寫作的規則非常的相識，逗號、冒號、句號都是要再後頭空格</p>
+<p>所以可能有些人有因為英文文章沒有在標點符號空兩格而被老師念吧?</p>
+<p>另外像上述的if如果只有一行 Google標準會建議就連同要做的動作寫成一行</p>
+<p>但是在JavaScript中就會建議你這麼做</p>
+<pre><code>if (a&gt;b){
+  print a; 
+}
+</code></pre><p>同樣的沒有對或錯，出發點在於如果需要再加上其它的行為在if下會方便很多~</p>
+<p>此外有一點超級無敵重要!! 千萬不要這麼做!!</p>
+<pre><code>x             = 1
+y             = 2
+long_variable = 3
+</code></pre><p>龍哥(高見龍大大) 稱其為 “程式碼潔癖” XD</p>
+<p>雖然我在python沒遇過 … 不過目前在接的CASE…CSS天殺的有!! 我貼過來</p>
+<pre><code>#title
+{
+    border:                                2px solid #7EB2DB;
+    color:                                 #FFFFFF;
+    background-color:                     #7EB2DB;
+    height:                                20px;
+    padding-left:                         10px;
+
+    -webkit-border-top-left-radius:        10px;
+    -webkit-border-top-right-radius:     10px;
+    -moz-border-radius-topleft:         10px;
+    -moz-border-radius-topright:         10px;
+}
+</code></pre><p>而且還是長達一百多行都這樣搞，自己要新加的style和其它元素</p>
+<p>要跟他保持漂亮的版面 可是空白按到死也不是…</p>
+<p>不跟他學，最後一個CSS檔有兩種編寫風格也不是…</p>
+<p>最後我是屈服於自己的懶惰 要排你自己以後在慢慢排XD (逃)</p>
+<p>##Comments</p>
+<p>在編寫註解的時候最好可以緊黏你要註解的區塊</p>
+<pre><code>#Comments Here~A function
+def function:
+    pass
+</code></pre><p>中間如果空行 容易讓接手的人產生這註解應該是上一塊的 </p>
+<p>而就順手直接在空行處加入新的程式碼</p>
+<p>導致Comments和程式碼對不起來，這便會產生一個非常大的問題</p>
+<p>又一個新人來接手，在讀程式碼發現這一塊和Comments對不上</p>
+<p>通常第一個反應都是 「是不是我理解有錯?」 而花非常多時間再重讀、理解</p>
+<p>最後才發現是Comments標錯地方 不管何種標準都稱其為 “最糟糕的後果”</p>
+<p>此外如果是單行最好不要附在code的後面</p>
+<pre><code>x = x + 1                 # Increment x
+</code></pre><p>為什麼? 課本、教科書明明都這樣做!</p>
+<p>課本和教科書會這麼做是因為印刷的問題，如果都單行註解，一段程式碼可能就會多出好幾頁</p>
+<p>最主要是因為容易造成閱讀者會分心，當我們眼睛在左邊專心讀code了解邏輯時</p>
+<p>容易因為右邊有字而造成分心 (通常你會強迫你自己要去讀他XD)</p>
+<p>##Programming Recommendations</p>
+<pre><code>try:
+    value = collection[key]
+except KeyError:
+    return key_not_found(key)
+else:
+    return handle_value(value)
+</code></pre><p>在我沒特別注意前也會忘了加</p>
+<p>try、except(catch)完之後 就直接將程式往下寫了 少了else(finally)</p>
+<p>記得加上去減少bug產生，也讓你的例外處理多了邏輯</p>
+<pre><code>Yes: if foo.startswith(&apos;bar&apos;):
+No:  if foo[:3] == &apos;bar&apos;:
+</code></pre><p>如果有字串的function可以使用就千萬不要客氣</p>
+<p>不要自己去硬幹，除了非常不好讀之外，萬一像bar改成chen 這樣四個字就錯了</p>
+<p>此外硬幹有時還會比較沒有效率喔~ Taipei.py社群有實驗過XD</p>
+<pre><code>Yes:   if greeting:
+No:    if greeting == True:
+Worse: if greeting is True:
+</code></pre><p>如果greeting回傳已經是True或False了 就不需要在多此一舉了</p>
+<pre><code>1 == &apos;1&apos; True!!
+1 == True True!!
+
+1 === &apos;1&apos; False!!
+1 === 1 True!!
+</code></pre><p>附帶一提在JavaScript中 有 == 和 === 之分</p>
+<pre><code>with open(&quot;hello.txt&quot;) as hello_file:
+    for line in hello_file:
+        print line
+</code></pre><p>之前在社群也有討論到 在Python中最好的讀檔方式是什麼?</p>
+<p>就是不要用read()!!</p>
+<p>這當然是用上了for loop的特性才能這樣做~XD</p>
+<p>程式碼會變的很好讀，一看就知道要做什麼而且也很方便</p>
+<p>不需要在特別呼叫一個function來讀取</p>
+<p>當然還有很多Python漂亮的寫法 除了可以參考上述兩份文件PEP8、Google之外</p>
+<p>有人整理了一些不錯的寫法 我也老早把它加到我的最愛之中 :) 在此分享</p>
+<p>30 Python Language Features and Tricks You May Not Know About<br><a href="https://sahandsaba.com/thirty-python-language-features-and-tricks-you-may-not-know.html" target="_blank" rel="external">https://sahandsaba.com/thirty-python-language-features-and-tricks-you-may-not-know.html</a></p>
+<p>##Naming</p>
+<p>PEP8 (Python官方的標準) 還尚未有對名字的定義標準</p>
+<p>不過Google倒是有給一些規則，這些在其它的程式語言之中也常常見到</p>
+<p><img src="https://i.imgur.com/IMhsSTf.png" width="800"></p>
+<p>一些像是全部大小表示常數、Class的開頭單字都要是大寫</p>
+<p>不過有些變數或者function則看是全部小寫或是getMoving()</p>
+<p>受Java影響像講師-依瑪貓會習慣在有行為的function前面加個get</p>
+<p>這也許也是個不錯的建議! 總之不管風格是什麼，</p>
+<p>在遵循一些標準時，不要妨礙到自己寫程式的心情最重要XD</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://blog.yunchen.tw/2014/04/13/ossf/" data-id="cj5e1njv3001t5itvf4y47xzw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追隨 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/chen_yunchen" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/Alex.YunChen" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/104114386123716562935" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/chenyunchen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin" href="https://www.linkedin.com/in/chenyunchen" target="_blank">
+                        <i class="icon fa fa-linkedin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2014/04/19/nodejs/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            node.js 基礎技術研習營
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2014/04/12/osdc/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">OSDC TW 2014</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/20/search-a-2D-matrix-II/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Search a 2D Matrix II" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/20/search-a-2D-matrix-II/" class="title">Search a 2D Matrix II</a></p>
+                            <p class="item-date"><time datetime="2017-07-19T16:00:00.000Z" itemprop="datePublished">2017-07-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/18/product-of-array-except-self/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Product of Array Except Self" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/18/product-of-array-except-self/" class="title">Product of Array Except Self</a></p>
+                            <p class="item-date"><time datetime="2017-07-17T16:00:00.000Z" itemprop="datePublished">2017-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/17/Kth-smallest-element-in-a-BST/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Kth Smallest Element in a BST" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/17/Kth-smallest-element-in-a-BST/" class="title">Kth Smallest Element in a BST</a></p>
+                            <p class="item-date"><time datetime="2017-07-16T16:00:00.000Z" itemprop="datePublished">2017-07-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/16/majority-element-II/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Majority Element II" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/16/majority-element-II/" class="title">Majority Element II</a></p>
+                            <p class="item-date"><time datetime="2017-07-15T16:00:00.000Z" itemprop="datePublished">2017-07-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/15/summary-ranges/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Summary Ranges" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/07/15/summary-ranges/" class="title">Summary Ranges</a></p>
+                            <p class="item-date"><time datetime="2017-07-14T16:00:00.000Z" itemprop="datePublished">2017-07-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">記錄</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">六月 2013</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">57</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearch/">BinarySearch</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearchTree/">BinarySearchTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitManipulation/">BitManipulation</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainteaser/">Brainteaser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BreadthFirstSearch/">BreadthFirstSearch</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/COSCUP/">COSCUP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DepthFirstSearch/">DepthFirstSearch</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DivideAndConquer/">DivideAndConquer</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DynamicProgramming/">DynamicProgramming</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">200</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy/">Greedy</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON/">HITCON</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a><span class="tag-list-count">200</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkitOne/">LinkitOne</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Modify/">Modify</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NISRA/">NISRA</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSDC/">OSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSSFProject/">OSSFProject</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPConf/">PHPConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pointer/">Pointer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SITCON/">SITCON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schedule/">Schedule</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Secure/">Secure</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopologicalSort/">TopologicalSort</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TwoPointers/">TwoPointers</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UnionFind/">UnionFind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsdc/">jsdc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/modernweb/">modernweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Array/" style="font-size: 19.44px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 16.11px;">Backtracking</a> <a href="/tags/BinarySearch/" style="font-size: 16.11px;">BinarySearch</a> <a href="/tags/BinarySearchTree/" style="font-size: 10px;">BinarySearchTree</a> <a href="/tags/BitManipulation/" style="font-size: 14.44px;">BitManipulation</a> <a href="/tags/Brainteaser/" style="font-size: 10px;">Brainteaser</a> <a href="/tags/BreadthFirstSearch/" style="font-size: 13.33px;">BreadthFirstSearch</a> <a href="/tags/COSCUP/" style="font-size: 10px;">COSCUP</a> <a href="/tags/DepthFirstSearch/" style="font-size: 16.67px;">DepthFirstSearch</a> <a href="/tags/Design/" style="font-size: 12.22px;">Design</a> <a href="/tags/DivideAndConquer/" style="font-size: 11.67px;">DivideAndConquer</a> <a href="/tags/DynamicProgramming/" style="font-size: 15px;">DynamicProgramming</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Graph/" style="font-size: 10.56px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 11.67px;">Greedy</a> <a href="/tags/HITCON/" style="font-size: 10.56px;">HITCON</a> <a href="/tags/HashTable/" style="font-size: 17.22px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 15.56px;">LinkedList</a> <a href="/tags/LinkitOne/" style="font-size: 10px;">LinkitOne</a> <a href="/tags/Math/" style="font-size: 18.89px;">Math</a> <a href="/tags/Modify/" style="font-size: 12.22px;">Modify</a> <a href="/tags/NISRA/" style="font-size: 11.11px;">NISRA</a> <a href="/tags/OSDC/" style="font-size: 10px;">OSDC</a> <a href="/tags/OSSFProject/" style="font-size: 10.56px;">OSSFProject</a> <a href="/tags/PHPConf/" style="font-size: 10px;">PHPConf</a> <a href="/tags/Pointer/" style="font-size: 10px;">Pointer</a> <a href="/tags/Project/" style="font-size: 10.56px;">Project</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/SITCON/" style="font-size: 10px;">SITCON</a> <a href="/tags/Schedule/" style="font-size: 10px;">Schedule</a> <a href="/tags/Secure/" style="font-size: 11.67px;">Secure</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Sort/" style="font-size: 12.78px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.89px;">Stack</a> <a href="/tags/String/" style="font-size: 18.33px;">String</a> <a href="/tags/TopologicalSort/" style="font-size: 10.56px;">TopologicalSort</a> <a href="/tags/Tree/" style="font-size: 18.33px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.56px;">Trie</a> <a href="/tags/TwoPointers/" style="font-size: 17.78px;">TwoPointers</a> <a href="/tags/UnionFind/" style="font-size: 10px;">UnionFind</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/jsdc/" style="font-size: 10px;">jsdc</a> <a href="/tags/modernweb/" style="font-size: 10px;">modernweb</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">連結</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://speakerdeck.com/chenyunchen">Speaker Deck</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Yun Chen</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'chenyunchen';
+    
+    
+    var disqus_url = 'https://blog.yunchen.tw/2014/04/13/ossf/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
