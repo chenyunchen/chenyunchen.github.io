@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.yunchen.tw/"/>
-  <updated>2017-07-23T16:52:30.000Z</updated>
+  <updated>2017-07-26T06:09:13.000Z</updated>
   <id>https://blog.yunchen.tw/</id>
   
   <author>
@@ -14,6 +14,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>H-Index</title>
+    <link href="https://blog.yunchen.tw/2017/07/25/H-index/"/>
+    <id>https://blog.yunchen.tw/2017/07/25/H-index/</id>
+    <published>2017-07-24T16:00:00.000Z</published>
+    <updated>2017-07-26T06:09:13.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;H-Index&quot;&gt;&lt;a href=&quot;#H-Index&quot; class=&quot;headerlink&quot; title=&quot;H-Index&quot;&gt;&lt;/a&gt;H-Index&lt;/h1&gt;&lt;p&gt;Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index.&lt;/p&gt;
+&lt;p&gt;According to the &lt;a href=&quot;https://en.wikipedia.org/wiki/H-index&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;definition of h-index on Wikipedia&lt;/a&gt;: “A scientist has index h if h of his/her N papers have at least h citations each, and the other N − h papers have no more than h citations each.”&lt;/p&gt;
+&lt;p&gt;For example, given citations = [3, 0, 6, 1, 5], which means the researcher has 5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively. Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, his h-index is 3.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If there are several possible values for h, the maximum one is taken as the h-index.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;提示&lt;/th&gt;
+&lt;th&gt;解題應用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Sort&lt;/td&gt;
+&lt;td&gt;規律觀查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hIndex&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(citations []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;首先要先知道H-Index的定義是什麼，找維基百科來描述的話:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;H-Index為：一個人在其所有學術文章中有N篇論文分別被引用了至少N次，他的H指數就是N。如美國耶魯大學免疫學家理察·弗來沃發表的900篇文章中，有107篇被引用了107次以上，他的H指數是107。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;應該不難發現要找出H-Index就要有對應的文章數量與數量相符的引用次數，現在有一陣列紀錄著每篇文章引用的次數，要找出大部分文章最少都有某篇文章的引用次數，並統計符合條件的文章數來得出結果，那麼一開始就先將整個陣列做排序，如此一來每當取出一篇文章就可以確保後頭其它文章的引用次數最少都有與該文相等或更多，再來就只要確認該文的引用次數是否比後頭所有的文章數量相等或更多，如果是的話其後頭文章數量(包含取出的該篇文章)就會是H-Index，而如果後頭的文章數量比該文的引用次數要大的多，就再取下一遍文章找出更大引用次數(意思等同於找出更大的H-Index)，最後直到全數都取出完畢如果還是沒有找到H-Index就表示所有文章的引用次數全為0(寫一堆廢文的意思)。&lt;/p&gt;
+&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;如思路所述一開始就先將整個陣列做排序，接著就可以開始一一取出文章的引用次數，如果該文的引用次數比後頭所有的文章數量相等或更多，其後頭文章數量(包含取出的該篇文章)就會是H-Index(數量:文章總數-該文的index)，而如果後頭的文章數量比該文的引用次數要大的多，就再取下一遍文章找出更大引用次數(意思等同於找出更大的H-Index)，最後直到全數都取出完畢如果還是沒有找到H-Index就表示所有文章的引用次數全為0便向上回傳0。&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sort.Ints(citations)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i, v := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; citations &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; v &amp;gt;= &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations)-i &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations) - i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hIndex&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(citations []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	sort.Ints(citations)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i, v := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; citations &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; v &amp;gt;= &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations)-i &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations) - i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;現在有一陣列紀錄著每篇文章引用的次數，要找出H-Index就要有對應的文章數量與數量相符的引用次數，那麼一開始就先將整個陣列做排序，如此一來每當取出一篇文章就可以確保後頭其它文章的引用次數最少都有與該文相等或更多，再來就只要確認該文的引用次數是否比後頭所有的文章數量相等或更多，如果是的話其後頭文章數量(包含取出的該篇文章)就會是H-Index，而如果後頭的文章數量比該文的引用次數要大的多，就再取下一遍文章找出更大引用次數(意思等同於找出更大的H-Index)，最後直到全數都取出完畢如果還是沒有找到H-Index就表示所有文章的引用次數全為0。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;H-Index&quot;&gt;&lt;a href=&quot;#H-Index&quot; class=&quot;headerlink&quot; title=&quot;H-Index&quot;&gt;&lt;/a&gt;H-Index&lt;/h1&gt;&lt;p
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
+    
+      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
+    
+      <category term="HashTable" scheme="https://blog.yunchen.tw/tags/HashTable/"/>
+    
+      <category term="Sort" scheme="https://blog.yunchen.tw/tags/Sort/"/>
+    
+  </entry>
   
   <entry>
     <title>Ugly Number II</title>
@@ -1024,61 +1081,6 @@
       <category term="Graph" scheme="https://blog.yunchen.tw/tags/Graph/"/>
     
       <category term="TopologicalSort" scheme="https://blog.yunchen.tw/tags/TopologicalSort/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bitwise AND of Numbers Range</title>
-    <link href="https://blog.yunchen.tw/2017/07/02/bitwise-AND-of-numbers-range/"/>
-    <id>https://blog.yunchen.tw/2017/07/02/bitwise-AND-of-numbers-range/</id>
-    <published>2017-07-01T16:00:00.000Z</published>
-    <updated>2017-07-01T07:36:58.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Bitwise-AND-of-Numbers-Range&quot;&gt;&lt;a href=&quot;#Bitwise-AND-of-Numbers-Range&quot; class=&quot;headerlink&quot; title=&quot;Bitwise AND of Numbers Range&quot;&gt;&lt;/a&gt;Bitwise AND of Numbers Range&lt;/h1&gt;&lt;p&gt;Given a range [m, n] where 0 &amp;lt;= m &amp;lt;= n &amp;lt;= 2147483647, return the bitwise AND of all numbers in this range, inclusive.&lt;/p&gt;
-&lt;p&gt;For example, given the range [5, 7], you should return 4.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;提示&lt;/th&gt;
-&lt;th&gt;解題應用&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;BitManipulation&lt;/td&gt;
-&lt;td&gt;AND&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;rangeBitwiseAnd&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(m &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;, n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;仔細觀查一數序做AND的話會發現存在一種規律，從範圍中最後一個數字往前做AND的時候，每往前做一次AND其二進位值最右側的1就會歸0，例如範圍[4, 7]:&lt;/p&gt;
-&lt;p&gt;7先與6做AND，7從111變為110最右側的1歸0&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;7 111&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6 110&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;amp; 110&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;再繼續與5做AND，110變為100最右側的1歸0&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;7&amp;amp;6 110&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5   101&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;amp;   100&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;最後到範圍的第一個數字時，到目前為止的值剛好就與4相同，因此沒辦法將最右側的1歸0，但此時的值就會是我們要的結果&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;7&amp;amp;6&amp;amp;5 100&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4     100&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;amp;     100&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;因此只要以範圍最後一個值為主不斷的將最右側的1歸0，直到該值小於等於範圍第一個值為止，意思就等同是整個範圍都做AND的結果。&lt;/p&gt;
-&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;既然知道要以範圍的最後一個值為主不斷的將最右側的1歸0，其做法就只是將”該數”與”該數-1”做&amp;amp;(AND)即可，這個技巧也可以用來判斷二進位有多少個1或判斷是否為2的n次方，最後就只是不斷重覆上述動作直到該值小於等於範圍的第一個值為止，此時剩餘的值就等同是整個範圍都做AND的結果&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; m &amp;lt; n &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	n = n &amp;amp; (n - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; n&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;rangeBitwiseAnd&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(m &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;, n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; m &amp;lt; n &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		n = n &amp;amp; (n - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; n&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;給一數序要將其範圍內的所有值做&amp;amp;(AND)並回傳結果，只要以範圍最後一個值為主不斷的將二進位表示的最右側1歸0，直到該值小於等於範圍第一個值為止，意思就等同是整個範圍都做AND的結果，至於每次要如何將該數二進位的最右側1歸0只要將”該數”與”該數-1”做&amp;amp;(AND)即可。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Bitwise-AND-of-Numbers-Range&quot;&gt;&lt;a href=&quot;#Bitwise-AND-of-Numbers-Range&quot; class=&quot;head
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
-    
-      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
-    
-      <category term="BitManipulation" scheme="https://blog.yunchen.tw/tags/BitManipulation/"/>
     
   </entry>
   
