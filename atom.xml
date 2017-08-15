@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.yunchen.tw/"/>
-  <updated>2017-08-14T17:09:41.000Z</updated>
+  <updated>2017-08-15T15:23:50.000Z</updated>
   <id>https://blog.yunchen.tw/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bulb Switcher</title>
+    <link href="https://blog.yunchen.tw/2017/08/16/bulb-switcher/"/>
+    <id>https://blog.yunchen.tw/2017/08/16/bulb-switcher/</id>
+    <published>2017-08-15T16:00:00.000Z</published>
+    <updated>2017-08-15T15:23:50.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Bulb-Switcher&quot;&gt;&lt;a href=&quot;#Bulb-Switcher&quot; class=&quot;headerlink&quot; title=&quot;Bulb Switcher&quot;&gt;&lt;/a&gt;Bulb Switcher&lt;/h1&gt;&lt;p&gt;There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it’s off or turning off if it’s on). For the ith round, you toggle every i bulb. For the nth round, you only toggle the last bulb. Find how many bulbs are on after n rounds.&lt;/p&gt;
+&lt;h3 id=&quot;For-example&quot;&gt;&lt;a href=&quot;#For-example&quot; class=&quot;headerlink&quot; title=&quot;For example:&quot;&gt;&lt;/a&gt;For example:&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Given n = 3. &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;At first, the three bulbs are [off, off, off].&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;After first round, the three bulbs are [on, on, on].&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;After second round, the three bulbs are [on, off, on].&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;After third round, the three bulbs are [on, off, off]. &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;So you should return 1, because there is only one bulb is on.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;提示&lt;/th&gt;
+&lt;th&gt;解題應用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Math&lt;/td&gt;
+&lt;td&gt;規律觀查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bulbSwitch&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;一開始是直接照規則用暴力法的方式一輪一輪修正，最後再統計開關打開的數量，而當然不出所以然超過時間，透過規律觀查我們發現到最後開關打開的情況都剛好是燈泡落在平方數編號的位置，因式分解之後就不難發現原因，如編號36來說:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;36 = 1 x 36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     2 x 18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     3 x 12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     4 x  9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     6 x  6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果燈泡的開關是打開的表示一共使用了奇數次才有可能，而每個因數正好代表每次使用其開關的時機，而唯有平方數才會讓因數個數為奇數個(重覆的數字只算一次)，也就是說1~n個燈泡最終有多少個開關是打開的取決於這個範圍之間有多少個平方數，所以將n做開根號就可以得知有多少個平方數，同時也是我們要找的結果。&lt;/p&gt;
+&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;這邊就只是單純使用內建數學函式庫的開根號函數來將n做開根號&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bulbSwitch&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;(math.Sqrt(&lt;span class=&quot;keyword&quot;&gt;float64&lt;/span&gt;(n)))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;bulbSwitch&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;(math.Sqrt(&lt;span class=&quot;keyword&quot;&gt;float64&lt;/span&gt;(n)))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;有1~n個燈泡(並且都賦予1~n的編號)，一開始開關皆為關閉的狀態，並遵循下列規則:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;共需要做n輪&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第1輪:     開起全數燈泡的開關&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第2輪:     關閉編號為2k的開關&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第3~n-1輪: 切換編號3k~(n-1)k的開關(若原本開關為開便將其關閉，反之開關為關便將其打開)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第n輪:     僅切換最後一個開關&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;透過規律觀查我們發現到最後開關打開的情況都剛好是燈泡落在平方數編號的位置(因為因數個數為奇數個，等同於使用了開關奇數次)，也就是說1~n個燈泡最終有多少個開關是打開的取決於這個範圍之間有多少個平方數，所以將n做開根號就可以得知有多少個平方數，同時也是我們要找的結果。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Bulb-Switcher&quot;&gt;&lt;a href=&quot;#Bulb-Switcher&quot; class=&quot;headerlink&quot; title=&quot;Bulb Switcher&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
+    
+      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
+    
+      <category term="Math" scheme="https://blog.yunchen.tw/tags/Math/"/>
+    
+      <category term="Brainteaser" scheme="https://blog.yunchen.tw/tags/Brainteaser/"/>
+    
+  </entry>
   
   <entry>
     <title>Maximum Product of Word Lengths</title>
@@ -1007,61 +1061,6 @@
       <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
     
       <category term="Array" scheme="https://blog.yunchen.tw/tags/Array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kth Smallest Element in a BST</title>
-    <link href="https://blog.yunchen.tw/2017/07/17/Kth-smallest-element-in-a-BST/"/>
-    <id>https://blog.yunchen.tw/2017/07/17/Kth-smallest-element-in-a-BST/</id>
-    <published>2017-07-16T16:00:00.000Z</published>
-    <updated>2017-07-19T13:53:45.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Kth-Smallest-Element-in-a-BST&quot;&gt;&lt;a href=&quot;#Kth-Smallest-Element-in-a-BST&quot; class=&quot;headerlink&quot; title=&quot;Kth Smallest Element in a BST&quot;&gt;&lt;/a&gt;Kth Smallest Element in a BST&lt;/h1&gt;&lt;p&gt;Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;You may assume k is always valid, 1 ? k ? BST’s total elements.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Follow up:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;提示&lt;/th&gt;
-&lt;th&gt;解題應用&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Tree&lt;/td&gt;
-&lt;td&gt;InorderTravel&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * Definition for a binary tree node.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * type TreeNode struct &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; *     Val int&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; *     Left *TreeNode&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; *     Right *TreeNode&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; * &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; */&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;kthSmallest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(root *TreeNode, k &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;如果有一棵二元搜尋樹要找出第k個大的元素，基本上就只要透過中序遍歷就會得到一個由小排序至大的數列，此時再根據題目所需找出第k個大的目標，數列所對應到的第k個位置就會是我們要的結果。&lt;/p&gt;
-&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;如思路所述，一開始便透過中序遍歷(由遞回函數實作，第一個參數為節點的位置，而第二個參數則是目前已排序的數列)來從二元搜尋樹取得所有節點值由小排序至大的數列，有了排序數列的話，最後再根據所需目標找出對應數列中的第k個位置就會是我們要的結果&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;kthSmallest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(root *TreeNode, k &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	sortList := inOrderTravel(root, []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;#123;&amp;#125;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; sortList[k&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;至於實作中序遍歷的遞回函數細節，先檢查帶入的節點是否為nil，如果是便直接向上回傳原本所帶入的排序數列，否則繼續向下做中序遍歷，將左子節點與數列帶入遞回函數得到新的數列之後，再對目前的節點做處理(將節點值放入數列後頭)，接著才是將右子節點與數列帶入遞回函數，最後如果節點與其左右子樹的值都處理完畢，便向上回傳整個排序數列&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;inOrderTravel&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(node *TreeNode, list []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; []&lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; node == &lt;span class=&quot;literal&quot;&gt;nil&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	list = inOrderTravel(node.Left, list)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	list = &lt;span class=&quot;built_in&quot;&gt;append&lt;/span&gt;(list, node.Val)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	list = inOrderTravel(node.Right, list)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;kthSmallest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(root *TreeNode, k &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	sortList := inOrderTravel(root, []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;#123;&amp;#125;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; sortList[k&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;inOrderTravel&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(node *TreeNode, list []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; []&lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; node == &lt;span class=&quot;literal&quot;&gt;nil&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	list = inOrderTravel(node.Left, list)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	list = &lt;span class=&quot;built_in&quot;&gt;append&lt;/span&gt;(list, node.Val)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	list = inOrderTravel(node.Right, list)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;若二元搜尋樹要找出第k個大的元素，基本上就只要透過中序遍歷就會得到一個由小排序至大的數列，此時再根據題目所需找出第k個大的目標，數列所對應到的第k個位置就會是我們要的結果。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Kth-Smallest-Element-in-a-BST&quot;&gt;&lt;a href=&quot;#Kth-Smallest-Element-in-a-BST&quot; class=&quot;he
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
-    
-      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
-    
-      <category term="Tree" scheme="https://blog.yunchen.tw/tags/Tree/"/>
-    
-      <category term="BinarySearch" scheme="https://blog.yunchen.tw/tags/BinarySearch/"/>
     
   </entry>
   
