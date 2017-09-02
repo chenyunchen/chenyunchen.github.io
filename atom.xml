@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.yunchen.tw/"/>
-  <updated>2017-08-29T14:39:21.000Z</updated>
+  <updated>2017-09-02T15:05:31.000Z</updated>
   <id>https://blog.yunchen.tw/</id>
   
   <author>
@@ -14,6 +14,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Counting Bits</title>
+    <link href="https://blog.yunchen.tw/2017/09/02/counting-bits/"/>
+    <id>https://blog.yunchen.tw/2017/09/02/counting-bits/</id>
+    <published>2017-09-01T16:00:00.000Z</published>
+    <updated>2017-09-02T15:05:31.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Counting-Bits&quot;&gt;&lt;a href=&quot;#Counting-Bits&quot; class=&quot;headerlink&quot; title=&quot;Counting Bits&quot;&gt;&lt;/a&gt;Counting Bits&lt;/h1&gt;&lt;p&gt;Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1’s in their binary representation and return them as an array.&lt;/p&gt;
+&lt;h3 id=&quot;For-example&quot;&gt;&lt;a href=&quot;#For-example&quot; class=&quot;headerlink&quot; title=&quot;For example:&quot;&gt;&lt;/a&gt;For example:&lt;/h3&gt;&lt;p&gt;For num = 5 you should return [0,1,1,2,1,2].&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Follow up:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is very easy to come up with a solution with run time O(n*sizeof(integer)). But can you do it in linear time O(n) /possibly in a single pass?&lt;/li&gt;
+&lt;li&gt;Space complexity should be O(n).&lt;/li&gt;
+&lt;li&gt;Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;提示&lt;/th&gt;
+&lt;th&gt;解題應用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;BitManipulation&lt;/td&gt;
+&lt;td&gt;AND&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;countBits&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(num &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; []&lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;要計算某數的二進制有多少個1出現，有一個小技巧是不斷的將”該數”與”該數-1”做AND直到0為止共做了多少次就會是有多少個1，而這次要求的是0~某數的二進制分別有多少個1出現，當然就是利用一迴圈取出0~某數來分別做計算，如下:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;var n int&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;var count int&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;result := make([]int, num+1)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;for i := 0; i &amp;lt;= num; i++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	n = i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	count = 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	for n != 0 &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		n = n &amp;amp; (n - 1)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		count++&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	result[i] = count&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;return result&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;而這樣的時間複雜度會是O(n*[Number of 1’s])，不過題目希望我們能在O(n)之內，既然有一路記下先前數字的二進制有多少個1，那麼當然就要好好重覆使用，每次求某數i的二進制有多少個1時，陣列中取出index為i&amp;amp;(i-1)的值再+1就會是我們要的結果，如此一來便能在規定的時間內找出0~某數的所有個數。&lt;/p&gt;
+&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;一開始先初始化一個n+1的陣列用來儲存0~n的結果，接著就是利用迴圈分別取出1~n(0的個數為0不需計算)，每次求某數i的二進制有多少個1時，陣列中取出index為i&amp;amp;(i-1)的值再+1就會是我們要的結果，最後個數全數找出後便能向上回傳整個陣列&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;result := &lt;span class=&quot;built_in&quot;&gt;make&lt;/span&gt;([]&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;, num+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= num; i++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	result[i] = result[i&amp;amp;(i&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; result&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;countBits&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(num &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; []&lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	result := &lt;span class=&quot;built_in&quot;&gt;make&lt;/span&gt;([]&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;, num+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= num; i++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		result[i] = result[i&amp;amp;(i&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; result&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;要求出0~n的二進制分別有多少個1出現，則要先計算某數的二進制有多少個1出現，有一個小技巧是不斷的將”該數”與”該數-1”做AND直到0為止共做了多少次就會是有多少個1，至於0~n當然就是利用一迴圈取出來分別做計算，而這樣的時間複雜度會是O(n*[Number of 1’s])，如果要在O(n)之內，既然有一路記下先前數字的二進制有多少個1，那麼當然就要好好重覆使用，每次求某數i的二進制有多少個1時，陣列中取出index為i&amp;amp;(i-1)的值再+1就會是我們要的結果，如此一來便能在規定的時間內找出0~某數的所有個數。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Counting-Bits&quot;&gt;&lt;a href=&quot;#Counting-Bits&quot; class=&quot;headerlink&quot; title=&quot;Counting Bits&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
+    
+      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
+    
+      <category term="DynamicProgramming" scheme="https://blog.yunchen.tw/tags/DynamicProgramming/"/>
+    
+      <category term="BitManipulation" scheme="https://blog.yunchen.tw/tags/BitManipulation/"/>
+    
+  </entry>
   
   <entry>
     <title>House Robber III</title>
@@ -1052,43 +1110,9 @@
     
       <category term="Math" scheme="https://blog.yunchen.tw/tags/Math/"/>
     
-      <category term="DynamicProgramming" scheme="https://blog.yunchen.tw/tags/DynamicProgramming/"/>
-    
       <category term="BreadthFirstSearch" scheme="https://blog.yunchen.tw/tags/BreadthFirstSearch/"/>
     
-  </entry>
-  
-  <entry>
-    <title>H-Index II</title>
-    <link href="https://blog.yunchen.tw/2017/07/26/H-index-II/"/>
-    <id>https://blog.yunchen.tw/2017/07/26/H-index-II/</id>
-    <published>2017-07-25T16:00:00.000Z</published>
-    <updated>2017-07-26T16:32:13.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;H-Index-II&quot;&gt;&lt;a href=&quot;#H-Index-II&quot; class=&quot;headerlink&quot; title=&quot;H-Index II&quot;&gt;&lt;/a&gt;H-Index II&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Follow up&lt;/strong&gt; for &lt;a href=&quot;https://leetcode.com/problems/h-index/#/description&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;H-Index&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;What if the citations array is sorted in ascending order? Could you optimize your algorithm?&lt;/p&gt;
-&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hIndex&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(citations []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;建議可以先參考先前&lt;a href=&quot;/2017/07/25/H-index/&quot;&gt;H-Index&lt;/a&gt;的解法，解說較為詳細，概念上完全一樣，先前題目的程式碼甚至不需要修改，而且還已經先將整個引用次數做排序了，所以剩下的做法就和之前一模一樣沒有什麼大問題。&lt;/p&gt;
-&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;一開始便一一取出文章的引用次數，如果該文的引用次數比後頭所有的文章數量相等或更多，其後頭文章數量(包含取出的該篇文章)就會是H-Index(數量:文章總數-該文的index)，而如果後頭的文章數量比該文的引用次數要大的多，就再取下一遍文章找出更大引用次數(意思等同於找出更大的H-Index)，最後直到全數都取出完畢如果還是沒有找到H-Index就表示所有文章的引用次數全為0便向上回傳0。&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i, v := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; citations &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; v &amp;gt;= &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations)-i &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations) - i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hIndex&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(citations []&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i, v := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; citations &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; v &amp;gt;= &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations)-i &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;len&lt;/span&gt;(citations) - i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;建議可以先參考先前&lt;a href=&quot;/2017/07/25/H-index/&quot;&gt;H-Index&lt;/a&gt;的解法，解說較為詳細，概念上完全一樣，甚至這次還已經先將整個引用次數做排序了，所以剩下的做法就和之前一模一樣沒有什麼大問題。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;H-Index-II&quot;&gt;&lt;a href=&quot;#H-Index-II&quot; class=&quot;headerlink&quot; title=&quot;H-Index II&quot;&gt;&lt;/a&gt;H-Ind
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
-    
-      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
-    
-      <category term="BinarySearch" scheme="https://blog.yunchen.tw/tags/BinarySearch/"/>
+      <category term="DynamicProgramming" scheme="https://blog.yunchen.tw/tags/DynamicProgramming/"/>
     
   </entry>
   
