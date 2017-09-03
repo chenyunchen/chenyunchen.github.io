@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.yunchen.tw/"/>
-  <updated>2017-09-02T15:05:31.000Z</updated>
+  <updated>2017-09-03T17:22:16.000Z</updated>
   <id>https://blog.yunchen.tw/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Integer Break</title>
+    <link href="https://blog.yunchen.tw/2017/09/03/integer-break/"/>
+    <id>https://blog.yunchen.tw/2017/09/03/integer-break/</id>
+    <published>2017-09-02T16:00:00.000Z</published>
+    <updated>2017-09-03T17:22:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Integer-Break&quot;&gt;&lt;a href=&quot;#Integer-Break&quot; class=&quot;headerlink&quot; title=&quot;Integer Break&quot;&gt;&lt;/a&gt;Integer Break&lt;/h1&gt;&lt;p&gt;Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.&lt;/p&gt;
+&lt;h3 id=&quot;For-example&quot;&gt;&lt;a href=&quot;#For-example&quot; class=&quot;headerlink&quot; title=&quot;For example:&quot;&gt;&lt;/a&gt;For example:&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You may assume that n is not less than 2 and not larger than 58.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;提示&lt;/th&gt;
+&lt;th&gt;解題應用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Math&lt;/td&gt;
+&lt;td&gt;規律觀查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;integerBreak&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;這題有關解法主要有兩個結論:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;最大值的因數必是由2與3所組成&lt;/li&gt;
+&lt;li&gt;3 &lt;em&gt; 3 &amp;gt; 2 &lt;/em&gt; 2 * 2 同樣是6的情況下，3的乘積會比2大，因此以找出最多3的因數為主 (n&amp;gt;4)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;至於這個結論是怎麼來的可以參考該題討論有相關的舉例與證明，唯一要注意上述第二點的情況是n需要大於4，因為4是例外而且最大值的因數也不會包含1: 2 &lt;em&gt; 2 &amp;gt; 1 &lt;/em&gt; 3 &lt;/p&gt;
+&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;一開始先初始化暫存值為1以用來儲存乘積的最大值，接著判斷如果n為2就回傳1(1+1)，n為3就回傳2(1+2)，而如果n大於4則利用一迴圈找出該數最多能有多少個3來做為乘積的因數，並同時記得每次都要將n減去3直到n小於等於4為止，最後乘積的暫存值與剩餘的n相乘就會是我們要的結果&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;tmp := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; n == &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; n == &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; n &amp;gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	tmp *= &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	n -= &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; tmp * n&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;integerBreak&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	tmp := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; n == &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; n == &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; n &amp;gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		tmp *= &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		n -= &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; tmp * n&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;某數由數個數字加總而來，要找出這些數字乘積的最大值，其解法最主要有兩個結論:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;最大值的因數必是由2與3所組成&lt;/li&gt;
+&lt;li&gt;3 &lt;em&gt; 3 &amp;gt; 2 &lt;/em&gt; 2 * 2 同樣是6的情況下，3的乘積會比2大，因此以找出最多3的因數為主 (n&amp;gt;4)&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Integer-Break&quot;&gt;&lt;a href=&quot;#Integer-Break&quot; class=&quot;headerlink&quot; title=&quot;Integer Break&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
+    
+      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
+    
+      <category term="Math" scheme="https://blog.yunchen.tw/tags/Math/"/>
+    
+      <category term="DynamicProgramming" scheme="https://blog.yunchen.tw/tags/DynamicProgramming/"/>
+    
+  </entry>
   
   <entry>
     <title>Counting Bits</title>
@@ -1059,60 +1120,6 @@
       <category term="TwoPointers" scheme="https://blog.yunchen.tw/tags/TwoPointers/"/>
     
       <category term="BinarySearch" scheme="https://blog.yunchen.tw/tags/BinarySearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Perfect Squares</title>
-    <link href="https://blog.yunchen.tw/2017/07/27/perfect-squares/"/>
-    <id>https://blog.yunchen.tw/2017/07/27/perfect-squares/</id>
-    <published>2017-07-26T16:00:00.000Z</published>
-    <updated>2017-07-27T20:37:57.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Perfect-Squares&quot;&gt;&lt;a href=&quot;#Perfect-Squares&quot; class=&quot;headerlink&quot; title=&quot;Perfect Squares&quot;&gt;&lt;/a&gt;Perfect Squares&lt;/h1&gt;&lt;p&gt;Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, …) which sum to n.&lt;/p&gt;
-&lt;h3 id=&quot;For-example&quot;&gt;&lt;a href=&quot;#For-example&quot; class=&quot;headerlink&quot; title=&quot;For example:&quot;&gt;&lt;/a&gt;For example:&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Given n = 12, return 3 because 12 = 4 + 4 + 4;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Given n = 13, return 2 because 13 = 4 + 9.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;提示&lt;/th&gt;
-&lt;th&gt;解題應用&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;DynamicProgramming&lt;/td&gt;
-&lt;td&gt;規律觀查&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;Default&quot;&gt;&lt;a href=&quot;#Default&quot; class=&quot;headerlink&quot; title=&quot;Default:&quot;&gt;&lt;/a&gt;Default:&lt;/h3&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;numSquares&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;解答思路&quot;&gt;&lt;a href=&quot;#解答思路&quot; class=&quot;headerlink&quot; title=&quot;解答思路:&quot;&gt;&lt;/a&gt;解答思路:&lt;/h4&gt;&lt;p&gt;最初的想法本來是要先透過列出1~k的2次方，再來來做排列組合以找出總合n，不過這樣子不管怎麼改都太耗時間了，所以倒不如從1開始一路到n找最少有幾個平方數組成，最大的好處就是在找後面的數字像n時，由於已經知道1~n-1的結果了，因此在計算時好比n=12如下:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;n=12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12 = 1x1 + 11 (1種組合+n=11的組合數)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   = 2x2 + 8  (1種組合+n=8的組合數)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   = 3x3 + 3  (1種組合+n=3的組合數)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此時就只要將每種組合(1)+先前所計算剩餘值的組合數(n減去該種組合的值)，最後找出何種組合的組合數最小就會是n的組合數。&lt;/p&gt;
-&lt;h4 id=&quot;程式碼解說&quot;&gt;&lt;a href=&quot;#程式碼解說&quot; class=&quot;headerlink&quot; title=&quot;程式碼解說:&quot;&gt;&lt;/a&gt;程式碼解說:&lt;/h4&gt;&lt;p&gt;一開始就初始化一個長度為n+1的陣列用來儲存1~n每個最少有幾個平方數組成，長度多1是因為之後可能會出現值為0的情況，因此該組合數就同樣也為0，接著便從1開始一路到n分別找出最少有幾個平方數組成，每次都先計算每種組合(1x1,2x2…)+先前所計算剩餘值的組合數(n減去該種組合的值)，再來找出何種組合的組合數最小(初始值為n表示由最多的平方數組成=全部都為1)就會是n的組合數，最後回傳陣列的最後一個值就會是我們要的結果&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; tmp &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; min &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;nums := &lt;span class=&quot;built_in&quot;&gt;make&lt;/span&gt;([]&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;, n+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;nums[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= n; i++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	min = i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; j := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; j*j &amp;lt;= i; j++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		tmp = nums[i-j*j] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; tmp &amp;lt; min &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			min = tmp&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	nums[i] = min&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; nums[n]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;完整程式碼&quot;&gt;&lt;a href=&quot;#完整程式碼&quot; class=&quot;headerlink&quot; title=&quot;完整程式碼:&quot;&gt;&lt;/a&gt;完整程式碼:&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;numSquares&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;int&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; tmp &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; min &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	nums := &lt;span class=&quot;built_in&quot;&gt;make&lt;/span&gt;([]&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;, n+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	nums[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= n; i++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		min = i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; j := &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; j*j &amp;lt;= i; j++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			tmp = nums[i-j*j] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; tmp &amp;lt; min &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;				min = tmp&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		nums[i] = min&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; nums[n]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;總結&quot;&gt;&lt;a href=&quot;#總結&quot; class=&quot;headerlink&quot; title=&quot;總結:&quot;&gt;&lt;/a&gt;總結:&lt;/h4&gt;&lt;p&gt;要找n最少是由幾個平方數組成，倒不如從1開始一路到n找最少有幾個平方數組成，最大的好處就是在找後面的數字像n時，由於已經知道1~n-1的結果了，此時就只要將每種組合(1)+先前所計算剩餘值的組合數(n減去該種組合的值)，最後找出何種組合的組合數最小就會是n的組合數。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0rW38gs.jpg&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Perfect-Squares&quot;&gt;&lt;a href=&quot;#Perfect-Squares&quot; class=&quot;headerlink&quot; title=&quot;Perfect Squ
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="https://blog.yunchen.tw/tags/LeetCode/"/>
-    
-      <category term="Go" scheme="https://blog.yunchen.tw/tags/Go/"/>
-    
-      <category term="Math" scheme="https://blog.yunchen.tw/tags/Math/"/>
-    
-      <category term="BreadthFirstSearch" scheme="https://blog.yunchen.tw/tags/BreadthFirstSearch/"/>
-    
-      <category term="DynamicProgramming" scheme="https://blog.yunchen.tw/tags/DynamicProgramming/"/>
     
   </entry>
   
