@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Design Twitter | Yun Chen Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="LeetCode,Go,HashTable,Design,Heap" />
+    
+    <meta name="description" content="Design TwitterDesign a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Design Twitter">
+<meta property="og:url" content="https://blog.yunchen.tw/2017/09/09/design-twitter/index.html">
+<meta property="og:site_name" content="Yun Chen Blog">
+<meta property="og:description" content="Design TwitterDesign a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should">
+<meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
+<meta property="og:updated_time" content="2017-09-09T13:21:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Design Twitter">
+<meta name="twitter:description" content="Design TwitterDesign a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should">
+<meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98386220-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">A log about a developer.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首頁</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://about.me/chenyunchen">關於</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字(休息,食記...)" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分類
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post.html-design-twitter" class="article article-single article-type-post.html" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Design Twitter
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/09/design-twitter/" class="article-date">
+            <time datetime="2017-09-08T16:00:00.000Z" itemprop="datePublished">2017-09-09</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Design/">Design</a>, <a class="tag-link" href="/tags/Go/">Go</a>, <a class="tag-link" href="/tags/HashTable/">HashTable</a>, <a class="tag-link" href="/tags/Heap/">Heap</a>, <a class="tag-link" href="/tags/LeetCode/">LeetCode</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="https://i.imgur.com/0rW38gs.jpg"></p>
+<h1 id="Design-Twitter"><a href="#Design-Twitter" class="headerlink" title="Design Twitter"></a>Design Twitter</h1><p>Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should support the following methods:</p>
+<ol>
+<li>postTweet(userId, tweetId): Compose a new tweet.</li>
+<li>getNewsFeed(userId): Retrieve the 10 most recent tweet ids in the user’s news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.</li>
+<li>follow(followerId, followeeId): Follower follows a followee.</li>
+<li>unfollow(followerId, followeeId): Follower unfollows a followee.</li>
+</ol>
+<h3 id="For-example"><a href="#For-example" class="headerlink" title="For example:"></a>For example:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Twitter twitter = new Twitter();</div><div class="line"></div><div class="line">// User 1 posts a new tweet (id = 5).</div><div class="line">twitter.postTweet(1, 5);</div><div class="line"></div><div class="line">// User 1&apos;s news feed should return a list with 1 tweet id -&gt; [5].</div><div class="line">twitter.getNewsFeed(1);</div><div class="line"></div><div class="line">// User 1 follows user 2.</div><div class="line">twitter.follow(1, 2);</div><div class="line"></div><div class="line">// User 2 posts a new tweet (id = 6).</div><div class="line">twitter.postTweet(2, 6);</div><div class="line"></div><div class="line">// User 1&apos;s news feed should return a list with 2 tweet ids -&gt; [6, 5].</div><div class="line">// Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.</div><div class="line">twitter.getNewsFeed(1);</div><div class="line"></div><div class="line">// User 1 unfollows user 2.</div><div class="line">twitter.unfollow(1, 2);</div><div class="line"></div><div class="line">// User 1&apos;s news feed should return a list with 1 tweet id -&gt; [5],</div><div class="line">// since user 1 is no longer following user 2.</div><div class="line">twitter.getNewsFeed(1);</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>提示</th>
+<th>解題應用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HashTable</td>
+<td>HashMap</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Twitter <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Initialize your data structure here. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">Twitter</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Compose a new tweet. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">PostTweet</span><span class="params">(userId <span class="keyword">int</span>, tweetId <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">GetNewsFeed</span><span class="params">(userId <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Follower follows a followee. If the operation is invalid, it should be a no-op. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">Follow</span><span class="params">(followerId <span class="keyword">int</span>, followeeId <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">Unfollow</span><span class="params">(followerId <span class="keyword">int</span>, followeeId <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your Twitter object will be instantiated and called as such:</div><div class="line"> * obj := Constructor();</div><div class="line"> * obj.PostTweet(userId,tweetId);</div><div class="line"> * param_2 := obj.GetNewsFeed(userId);</div><div class="line"> * obj.Follow(followerId,followeeId);</div><div class="line"> * obj.Unfollow(followerId,followeeId);</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>因為曾經在產品開發上實作過類似的東西，所以很快就有了想法，總而言之就是利用兩個hashmap來分別儲存各自的文章與追隨的對象，並記得文章在發送出去之前要包含時間戳記(這邊以發文編號替代)，當需要取出個人的動態時報時，就從所有追隨的對象(包含自己)取出文章在依時間戳記做排序，最後只要取出最新的前十篇文章做回傳即可。</p>
+<h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>因為最後要在個人的動態時顯示最新的前十篇文章(包含有追隨對象的文章)，因此需要將每則tweet依時間戳記(這邊以發文編號替代)做排序，這邊就自行定義了tweet的結構陣列所要排序的規則</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Tweet <span class="keyword">struct</span> &#123;</div><div class="line">	TweetId <span class="keyword">int</span></div><div class="line">	Num     <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> TweetList []Tweet</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t TweetList)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>           &#123; <span class="keyword">return</span> <span class="built_in">len</span>(t) &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t TweetList)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123; <span class="keyword">return</span> t[i].Num &lt; t[j].Num &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t TweetList)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span>      &#123; t[i], t[j] = t[j], t[i] &#125;</div></pre></td></tr></table></figure>
+<p>接著Twitter的結構則是要包含兩個hashmap來分別儲存各自的文章與追隨的對象，與一個計數器以作為每篇文章發表的時間戳記，並在建構函數上初始化分配這三個變數的儲存空間</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Twitter <span class="keyword">struct</span> &#123;</div><div class="line">	Count      <span class="keyword">int</span></div><div class="line">	NewsFeed   <span class="keyword">map</span>[<span class="keyword">int</span>][]Tweet</div><div class="line">	FollowList <span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">Twitter</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> Twitter&#123;<span class="number">0</span>, <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][]Tweet), <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">int</span>)&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>當需要發表文章的時候記得先將Twitter物件的計數器+1，並將記數器的值連同tweetId作為tweet一起儲存到自己id在hashmap所對應到的陣列之中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">PostTweet</span><span class="params">(userId <span class="keyword">int</span>, tweetId <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	this.Count++</div><div class="line">	count := this.Count</div><div class="line">	this.NewsFeed[userId] = <span class="built_in">append</span>(this.NewsFeed[userId], Tweet&#123;tweetId, count&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如思路所述當需要取出個人的動態時報時，就先從所有追隨的對象(包含自己)取出文章，這邊是先取出自己的文章，才將追隨對象的文章放在後頭再依時間戳記做排序，最後只要取出最新的前十篇文章的的TweetId放到結果陣列做回傳即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">GetNewsFeed</span><span class="params">(userId <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> list []Tweet</div><div class="line">	<span class="keyword">var</span> result []<span class="keyword">int</span></div><div class="line">	list = <span class="built_in">append</span>(list, this.NewsFeed[userId]...)</div><div class="line">	<span class="keyword">for</span> _, followee := <span class="keyword">range</span> this.FollowList[userId] &#123;</div><div class="line">		<span class="keyword">for</span> _, tweet := <span class="keyword">range</span> this.NewsFeed[followee] &#123;</div><div class="line">			list = <span class="built_in">append</span>(list, tweet)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	sort.Sort(sort.Reverse(TweetList(list)))</div><div class="line">	<span class="keyword">for</span> _, tweet := <span class="keyword">range</span> list &#123;</div><div class="line">		result = <span class="built_in">append</span>(result, tweet.TweetId)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(result) &gt; <span class="number">10</span> &#123;</div><div class="line">		<span class="keyword">return</span> result[:<span class="number">10</span>]</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果想要追隨特定的對象，要先過濾掉自己追隨自己的情況，接著檢查自己已追隨的名單，確定此人是否已經有追隨，如果沒有追隨才將其加入自己的追隨清單之中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">Follow</span><span class="params">(followerId <span class="keyword">int</span>, followeeId <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> exist <span class="keyword">bool</span></div><div class="line">	<span class="keyword">if</span> followerId != followeeId &#123;</div><div class="line">		<span class="keyword">for</span> _, followee := <span class="keyword">range</span> this.FollowList[followerId] &#123;</div><div class="line">			<span class="keyword">if</span> followee == followeeId &#123;</div><div class="line">				exist = <span class="literal">true</span></div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> !exist &#123;</div><div class="line">			this.FollowList[followerId] = <span class="built_in">append</span>(this.FollowList[followerId], followeeId)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而如果不想要再追隨特定的對象，就從自己已追隨名單中找出對象的index位置，接著在重新組合追隨清單的陣列即可(跳過該元素)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">Unfollow</span><span class="params">(followerId <span class="keyword">int</span>, followeeId <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">for</span> index, followee := <span class="keyword">range</span> this.FollowList[followerId] &#123;</div><div class="line">		<span class="keyword">if</span> followee == followeeId &#123;</div><div class="line">			this.FollowList[followerId] = <span class="built_in">append</span>(this.FollowList[followerId][:index], this.FollowList[followerId][index+<span class="number">1</span>:]...)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼:"></a>完整程式碼:</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Tweet <span class="keyword">struct</span> &#123;</div><div class="line">	TweetId <span class="keyword">int</span></div><div class="line">	Num     <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> TweetList []Tweet</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t TweetList)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>           &#123; <span class="keyword">return</span> <span class="built_in">len</span>(t) &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t TweetList)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123; <span class="keyword">return</span> t[i].Num &lt; t[j].Num &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t TweetList)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span>      &#123; t[i], t[j] = t[j], t[i] &#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> Twitter <span class="keyword">struct</span> &#123;</div><div class="line">	Count      <span class="keyword">int</span></div><div class="line">	NewsFeed   <span class="keyword">map</span>[<span class="keyword">int</span>][]Tweet</div><div class="line">	FollowList <span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">Twitter</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> Twitter&#123;<span class="number">0</span>, <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][]Tweet), <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">int</span>)&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">PostTweet</span><span class="params">(userId <span class="keyword">int</span>, tweetId <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	this.Count++</div><div class="line">	count := this.Count</div><div class="line">	this.NewsFeed[userId] = <span class="built_in">append</span>(this.NewsFeed[userId], Tweet&#123;tweetId, count&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">GetNewsFeed</span><span class="params">(userId <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> list []Tweet</div><div class="line">	<span class="keyword">var</span> result []<span class="keyword">int</span></div><div class="line">	list = <span class="built_in">append</span>(list, this.NewsFeed[userId]...)</div><div class="line">	<span class="keyword">for</span> _, followee := <span class="keyword">range</span> this.FollowList[userId] &#123;</div><div class="line">		<span class="keyword">for</span> _, tweet := <span class="keyword">range</span> this.NewsFeed[followee] &#123;</div><div class="line">			list = <span class="built_in">append</span>(list, tweet)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	sort.Sort(sort.Reverse(TweetList(list)))</div><div class="line">	<span class="keyword">for</span> _, tweet := <span class="keyword">range</span> list &#123;</div><div class="line">		result = <span class="built_in">append</span>(result, tweet.TweetId)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(result) &gt; <span class="number">10</span> &#123;</div><div class="line">		<span class="keyword">return</span> result[:<span class="number">10</span>]</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">Follow</span><span class="params">(followerId <span class="keyword">int</span>, followeeId <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> exist <span class="keyword">bool</span></div><div class="line">	<span class="keyword">if</span> followerId != followeeId &#123;</div><div class="line">		<span class="keyword">for</span> _, followee := <span class="keyword">range</span> this.FollowList[followerId] &#123;</div><div class="line">			<span class="keyword">if</span> followee == followeeId &#123;</div><div class="line">				exist = <span class="literal">true</span></div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> !exist &#123;</div><div class="line">			this.FollowList[followerId] = <span class="built_in">append</span>(this.FollowList[followerId], followeeId)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Twitter)</span> <span class="title">Unfollow</span><span class="params">(followerId <span class="keyword">int</span>, followeeId <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">for</span> index, followee := <span class="keyword">range</span> this.FollowList[followerId] &#123;</div><div class="line">		<span class="keyword">if</span> followee == followeeId &#123;</div><div class="line">			this.FollowList[followerId] = <span class="built_in">append</span>(this.FollowList[followerId][:index], this.FollowList[followerId][index+<span class="number">1</span>:]...)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="總結"><a href="#總結" class="headerlink" title="總結:"></a>總結:</h4><p>要簡單實作twitter所包含的功能(發表文章、追隨陌生人並使其文章出現在自己的動態時報上)，做法就是利用兩個hashmap來分別儲存各自的文章與追隨的對象，並記得文章在發送出去之前要包含時間戳記(這邊以發文編號替代)，當需要取出個人的動態時報時，就從所有追隨的對象(包含自己)取出文章在依時間戳記做排序，最後只要取出最新的前十篇文章做回傳即可。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://blog.yunchen.tw/2017/09/09/design-twitter/" data-id="cj7dcb83n00jvwrtvuuwh6dtr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追隨 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/chen_yunchen" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/Alex.YunChen" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/104114386123716562935" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/chenyunchen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin" href="https://www.linkedin.com/in/chenyunchen" target="_blank">
+                        <i class="icon fa fa-linkedin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/04/top-K-frequent-elements/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Top K Frequent Elements</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/09/design-twitter/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Design Twitter" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/09/design-twitter/" class="title">Design Twitter</a></p>
+                            <p class="item-date"><time datetime="2017-09-08T16:00:00.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/top-K-frequent-elements/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Top K Frequent Elements" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/04/top-K-frequent-elements/" class="title">Top K Frequent Elements</a></p>
+                            <p class="item-date"><time datetime="2017-09-03T16:00:00.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/03/integer-break/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Integer Break" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/03/integer-break/" class="title">Integer Break</a></p>
+                            <p class="item-date"><time datetime="2017-09-02T16:00:00.000Z" itemprop="datePublished">2017-09-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/02/counting-bits/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Counting Bits" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/02/counting-bits/" class="title">Counting Bits</a></p>
+                            <p class="item-date"><time datetime="2017-09-01T16:00:00.000Z" itemprop="datePublished">2017-09-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/29/house-robber-III/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="House Robber III" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/08/29/house-robber-III/" class="title">House Robber III</a></p>
+                            <p class="item-date"><time datetime="2017-08-28T16:00:00.000Z" itemprop="datePublished">2017-08-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">記錄</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">六月 2013</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">59</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinaryIndexedTree/">BinaryIndexedTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearch/">BinarySearch</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearchTree/">BinarySearchTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitManipulation/">BitManipulation</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainteaser/">Brainteaser</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BreadthFirstSearch/">BreadthFirstSearch</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/COSCUP/">COSCUP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DepthFirstSearch/">DepthFirstSearch</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DivideAndConquer/">DivideAndConquer</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DynamicProgramming/">DynamicProgramming</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">228</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy/">Greedy</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON/">HITCON</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a><span class="tag-list-count">228</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkitOne/">LinkitOne</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LongestIncreasingSubsequence/">LongestIncreasingSubsequence</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Modify/">Modify</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NISRA/">NISRA</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSDC/">OSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSSFProject/">OSSFProject</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPConf/">PHPConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pointer/">Pointer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SITCON/">SITCON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schedule/">Schedule</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Secure/">Secure</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SegmentTree/">SegmentTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopologicalSort/">TopologicalSort</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TwoPointers/">TwoPointers</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UnionFind/">UnionFind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsdc/">jsdc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/modernweb/">modernweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Array/" style="font-size: 19.47px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 14.74px;">Backtracking</a> <a href="/tags/BinaryIndexedTree/" style="font-size: 10px;">BinaryIndexedTree</a> <a href="/tags/BinarySearch/" style="font-size: 15.26px;">BinarySearch</a> <a href="/tags/BinarySearchTree/" style="font-size: 10px;">BinarySearchTree</a> <a href="/tags/BitManipulation/" style="font-size: 14.21px;">BitManipulation</a> <a href="/tags/Brainteaser/" style="font-size: 10.53px;">Brainteaser</a> <a href="/tags/BreadthFirstSearch/" style="font-size: 13.68px;">BreadthFirstSearch</a> <a href="/tags/COSCUP/" style="font-size: 10px;">COSCUP</a> <a href="/tags/DepthFirstSearch/" style="font-size: 15.79px;">DepthFirstSearch</a> <a href="/tags/Design/" style="font-size: 12.63px;">Design</a> <a href="/tags/DivideAndConquer/" style="font-size: 12.11px;">DivideAndConquer</a> <a href="/tags/DynamicProgramming/" style="font-size: 16.32px;">DynamicProgramming</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Graph/" style="font-size: 11.58px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 11.58px;">Greedy</a> <a href="/tags/HITCON/" style="font-size: 10.53px;">HITCON</a> <a href="/tags/HashTable/" style="font-size: 17.37px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.11px;">Heap</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 14.74px;">LinkedList</a> <a href="/tags/LinkitOne/" style="font-size: 10px;">LinkitOne</a> <a href="/tags/LongestIncreasingSubsequence/" style="font-size: 10px;">LongestIncreasingSubsequence</a> <a href="/tags/Math/" style="font-size: 18.95px;">Math</a> <a href="/tags/Modify/" style="font-size: 12.11px;">Modify</a> <a href="/tags/NISRA/" style="font-size: 11.05px;">NISRA</a> <a href="/tags/OSDC/" style="font-size: 10px;">OSDC</a> <a href="/tags/OSSFProject/" style="font-size: 10.53px;">OSSFProject</a> <a href="/tags/PHPConf/" style="font-size: 10px;">PHPConf</a> <a href="/tags/Pointer/" style="font-size: 10px;">Pointer</a> <a href="/tags/Project/" style="font-size: 10.53px;">Project</a> <a href="/tags/Python/" style="font-size: 13.16px;">Python</a> <a href="/tags/SITCON/" style="font-size: 10px;">SITCON</a> <a href="/tags/Schedule/" style="font-size: 10px;">Schedule</a> <a href="/tags/Secure/" style="font-size: 11.58px;">Secure</a> <a href="/tags/SegmentTree/" style="font-size: 10px;">SegmentTree</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Sort/" style="font-size: 13.16px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.68px;">Stack</a> <a href="/tags/String/" style="font-size: 17.89px;">String</a> <a href="/tags/TopologicalSort/" style="font-size: 10.53px;">TopologicalSort</a> <a href="/tags/Tree/" style="font-size: 18.42px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.53px;">Trie</a> <a href="/tags/TwoPointers/" style="font-size: 16.84px;">TwoPointers</a> <a href="/tags/UnionFind/" style="font-size: 10px;">UnionFind</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/jsdc/" style="font-size: 10px;">jsdc</a> <a href="/tags/modernweb/" style="font-size: 10px;">modernweb</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">連結</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://speakerdeck.com/chenyunchen">Speaker Deck</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Yun Chen</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'chenyunchen';
+    
+    
+    var disqus_url = 'https://blog.yunchen.tw/2017/09/09/design-twitter/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
