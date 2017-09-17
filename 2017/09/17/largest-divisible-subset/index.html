@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Largest Divisible Subset | Yun Chen Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="LeetCode,Go,Math,DynamicProgramming" />
+    
+    <meta name="description" content="Largest Divisible SubsetGiven a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+If there are">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Largest Divisible Subset">
+<meta property="og:url" content="https://blog.yunchen.tw/2017/09/17/largest-divisible-subset/index.html">
+<meta property="og:site_name" content="Yun Chen Blog">
+<meta property="og:description" content="Largest Divisible SubsetGiven a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+If there are">
+<meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
+<meta property="og:updated_time" content="2017-09-17T13:32:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Largest Divisible Subset">
+<meta name="twitter:description" content="Largest Divisible SubsetGiven a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+If there are">
+<meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98386220-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">A log about a developer.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首頁</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://about.me/chenyunchen">關於</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字(休息,食記...)" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分類
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post.html-largest-divisible-subset" class="article article-single article-type-post.html" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Largest Divisible Subset
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/17/largest-divisible-subset/" class="article-date">
+            <time datetime="2017-09-16T16:00:00.000Z" itemprop="datePublished">2017-09-17</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/DynamicProgramming/">DynamicProgramming</a>, <a class="tag-link" href="/tags/Go/">Go</a>, <a class="tag-link" href="/tags/LeetCode/">LeetCode</a>, <a class="tag-link" href="/tags/Math/">Math</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="https://i.imgur.com/0rW38gs.jpg"></p>
+<h1 id="Largest-Divisible-Subset"><a href="#Largest-Divisible-Subset" class="headerlink" title="Largest Divisible Subset"></a>Largest Divisible Subset</h1><p>Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.</p>
+<p>If there are multiple solutions, return any subset is fine.</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums: [1,2,3]</div><div class="line"></div><div class="line">Result: [1,2] (of course, [1,3] will also be ok)</div></pre></td></tr></table></figure>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums: [1,2,4,8]</div><div class="line"></div><div class="line">Result: [1,2,4,8]</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>提示</th>
+<th>解題應用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Math</td>
+<td>規律觀查</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">largestDivisibleSubset</span><span class="params">(nums []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這題最主要是要先知道一個觀念，數組之間的數字存在互相整除的狀況下，如果有一較大的值要判斷是否能放入數組之中，確定該值能整除目前數組中的最大值即可，反之如果有一較小的值要判斷，確定目前數組中的最小值能整除該值即可，所以只要先將整個數列做排序，接著遍歷已排序後的數列，每次將取出的數字作為中心，往左(更小的值)右(更大的值)兩側尋找可以放入數組的目標，並且記得放入時要更新目前的最大、最小值，如此一來在遍歷結束後就可以在數列裡頭找出最大且數字間存在能互相整除的數組。</p>
+<h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>如思路所述一開始便將整個數列做排序，每次將取出的數字作為中心(最大、最小的初始值皆為取出的數字)，往左(更小的值)右(更大的值)兩側尋找可以放入數組的目標(存在互相整除的狀況)，並且記得放入時要更新目前的最大、最小值，接著比較暫存的數組大小是否比要回傳的結果數組大，如果比較大就將其做取代，最後待遍歷結束後就可以直接回傳結果陣列</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sj <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> small <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> big <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> tmp []<span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> result []<span class="keyword">int</span></div><div class="line">sort.Ints(nums)</div><div class="line"><span class="keyword">for</span> i, si := <span class="keyword">range</span> nums &#123;</div><div class="line">	tmp = []<span class="keyword">int</span>&#123;&#125;</div><div class="line">	small = si</div><div class="line">	big = si</div><div class="line">	<span class="keyword">for</span> j := <span class="built_in">len</span>(nums[:i]) - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j-- &#123;</div><div class="line">		sj = nums[j]</div><div class="line">		<span class="keyword">if</span> small%sj == <span class="number">0</span> &#123;</div><div class="line">			small = sj</div><div class="line">			tmp = <span class="built_in">append</span>([]<span class="keyword">int</span>&#123;sj&#125;, tmp...)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> _, sj := <span class="keyword">range</span> nums[i:] &#123;</div><div class="line">		<span class="keyword">if</span> sj%big == <span class="number">0</span> &#123;</div><div class="line">			big = sj</div><div class="line">			tmp = <span class="built_in">append</span>(tmp, sj)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(tmp) &gt; <span class="built_in">len</span>(result) &#123;</div><div class="line">		result = tmp</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> result</div></pre></td></tr></table></figure>
+<h4 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼:"></a>完整程式碼:</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">largestDivisibleSubset</span><span class="params">(nums []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> sj <span class="keyword">int</span></div><div class="line">	<span class="keyword">var</span> small <span class="keyword">int</span></div><div class="line">	<span class="keyword">var</span> big <span class="keyword">int</span></div><div class="line">	<span class="keyword">var</span> tmp []<span class="keyword">int</span></div><div class="line">	<span class="keyword">var</span> result []<span class="keyword">int</span></div><div class="line">	sort.Ints(nums)</div><div class="line">	<span class="keyword">for</span> i, si := <span class="keyword">range</span> nums &#123;</div><div class="line">		tmp = []<span class="keyword">int</span>&#123;&#125;</div><div class="line">		small = si</div><div class="line">		big = si</div><div class="line">		<span class="keyword">for</span> j := <span class="built_in">len</span>(nums[:i]) - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j-- &#123;</div><div class="line">			sj = nums[j]</div><div class="line">			<span class="keyword">if</span> small%sj == <span class="number">0</span> &#123;</div><div class="line">				small = sj</div><div class="line">				tmp = <span class="built_in">append</span>([]<span class="keyword">int</span>&#123;sj&#125;, tmp...)</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> _, sj := <span class="keyword">range</span> nums[i:] &#123;</div><div class="line">			<span class="keyword">if</span> sj%big == <span class="number">0</span> &#123;</div><div class="line">				big = sj</div><div class="line">				tmp = <span class="built_in">append</span>(tmp, sj)</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(tmp) &gt; <span class="built_in">len</span>(result) &#123;</div><div class="line">			result = tmp</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="總結"><a href="#總結" class="headerlink" title="總結:"></a>總結:</h4><p>如果要在數列裡頭找出最大且數字間存在能互相整除的數組，最主要是要先知道一個觀念，如果有一較大的值要判斷是否能放入數組之中，確定該值能整除目前數組中的最大值即可，反之如果有一較小的值要判斷，確定目前數組中的最小值能整除該值即可，所以只要先將整個數列做排序，接著遍歷已排序後的數列，每次將取出的數字作為中心，往左(更小的值)右(更大的值)兩側尋找可以放入數組的目標，並且記得放入時要更新目前的最大、最小值，如此一來在遍歷結束後就能找出最大的數組。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://blog.yunchen.tw/2017/09/17/largest-divisible-subset/" data-id="cj7os8xwx00hglxtvckup14bd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追隨 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/chen_yunchen" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/Alex.YunChen" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/104114386123716562935" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/chenyunchen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin" href="https://www.linkedin.com/in/chenyunchen" target="_blank">
+                        <i class="icon fa fa-linkedin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/11/water-and-jug-problem/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Water and Jug Problem</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/17/largest-divisible-subset/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Largest Divisible Subset" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/17/largest-divisible-subset/" class="title">Largest Divisible Subset</a></p>
+                            <p class="item-date"><time datetime="2017-09-16T16:00:00.000Z" itemprop="datePublished">2017-09-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/11/water-and-jug-problem/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Water and Jug Problem" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/11/water-and-jug-problem/" class="title">Water and Jug Problem</a></p>
+                            <p class="item-date"><time datetime="2017-09-10T16:00:00.000Z" itemprop="datePublished">2017-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/10/count-numbers-with-unique-digits/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Count Numbers with Unique Digits" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/10/count-numbers-with-unique-digits/" class="title">Count Numbers with Unique Digits</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T16:00:00.000Z" itemprop="datePublished">2017-09-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/09/design-twitter/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Design Twitter" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/09/design-twitter/" class="title">Design Twitter</a></p>
+                            <p class="item-date"><time datetime="2017-09-08T16:00:00.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/top-K-frequent-elements/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Top K Frequent Elements" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/04/top-K-frequent-elements/" class="title">Top K Frequent Elements</a></p>
+                            <p class="item-date"><time datetime="2017-09-03T16:00:00.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">記錄</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">六月 2013</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">59</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinaryIndexedTree/">BinaryIndexedTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearch/">BinarySearch</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearchTree/">BinarySearchTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitManipulation/">BitManipulation</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainteaser/">Brainteaser</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BreadthFirstSearch/">BreadthFirstSearch</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/COSCUP/">COSCUP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DepthFirstSearch/">DepthFirstSearch</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DivideAndConquer/">DivideAndConquer</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DynamicProgramming/">DynamicProgramming</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">231</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy/">Greedy</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON/">HITCON</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a><span class="tag-list-count">231</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkitOne/">LinkitOne</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LongestIncreasingSubsequence/">LongestIncreasingSubsequence</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Modify/">Modify</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NISRA/">NISRA</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSDC/">OSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSSFProject/">OSSFProject</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPConf/">PHPConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pointer/">Pointer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SITCON/">SITCON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schedule/">Schedule</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Secure/">Secure</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SegmentTree/">SegmentTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopologicalSort/">TopologicalSort</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TwoPointers/">TwoPointers</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UnionFind/">UnionFind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsdc/">jsdc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/modernweb/">modernweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Array/" style="font-size: 19.5px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 15px;">Backtracking</a> <a href="/tags/BinaryIndexedTree/" style="font-size: 10px;">BinaryIndexedTree</a> <a href="/tags/BinarySearch/" style="font-size: 15.5px;">BinarySearch</a> <a href="/tags/BinarySearchTree/" style="font-size: 10px;">BinarySearchTree</a> <a href="/tags/BitManipulation/" style="font-size: 14px;">BitManipulation</a> <a href="/tags/Brainteaser/" style="font-size: 10.5px;">Brainteaser</a> <a href="/tags/BreadthFirstSearch/" style="font-size: 13.5px;">BreadthFirstSearch</a> <a href="/tags/COSCUP/" style="font-size: 10px;">COSCUP</a> <a href="/tags/DepthFirstSearch/" style="font-size: 16px;">DepthFirstSearch</a> <a href="/tags/Design/" style="font-size: 12.5px;">Design</a> <a href="/tags/DivideAndConquer/" style="font-size: 12px;">DivideAndConquer</a> <a href="/tags/DynamicProgramming/" style="font-size: 17px;">DynamicProgramming</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Graph/" style="font-size: 11.5px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 11.5px;">Greedy</a> <a href="/tags/HITCON/" style="font-size: 10.5px;">HITCON</a> <a href="/tags/HashTable/" style="font-size: 17.5px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12px;">Heap</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 14.5px;">LinkedList</a> <a href="/tags/LinkitOne/" style="font-size: 10px;">LinkitOne</a> <a href="/tags/LongestIncreasingSubsequence/" style="font-size: 10px;">LongestIncreasingSubsequence</a> <a href="/tags/Math/" style="font-size: 19px;">Math</a> <a href="/tags/Modify/" style="font-size: 12px;">Modify</a> <a href="/tags/NISRA/" style="font-size: 11px;">NISRA</a> <a href="/tags/OSDC/" style="font-size: 10px;">OSDC</a> <a href="/tags/OSSFProject/" style="font-size: 10.5px;">OSSFProject</a> <a href="/tags/PHPConf/" style="font-size: 10px;">PHPConf</a> <a href="/tags/Pointer/" style="font-size: 10px;">Pointer</a> <a href="/tags/Project/" style="font-size: 10.5px;">Project</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/SITCON/" style="font-size: 10px;">SITCON</a> <a href="/tags/Schedule/" style="font-size: 10px;">Schedule</a> <a href="/tags/Secure/" style="font-size: 11.5px;">Secure</a> <a href="/tags/SegmentTree/" style="font-size: 10px;">SegmentTree</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Sort/" style="font-size: 13px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.5px;">Stack</a> <a href="/tags/String/" style="font-size: 18px;">String</a> <a href="/tags/TopologicalSort/" style="font-size: 10.5px;">TopologicalSort</a> <a href="/tags/Tree/" style="font-size: 18.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.5px;">Trie</a> <a href="/tags/TwoPointers/" style="font-size: 16.5px;">TwoPointers</a> <a href="/tags/UnionFind/" style="font-size: 10px;">UnionFind</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/jsdc/" style="font-size: 10px;">jsdc</a> <a href="/tags/modernweb/" style="font-size: 10px;">modernweb</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">連結</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://speakerdeck.com/chenyunchen">Speaker Deck</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Yun Chen</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'chenyunchen';
+    
+    
+    var disqus_url = 'https://blog.yunchen.tw/2017/09/17/largest-divisible-subset/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
