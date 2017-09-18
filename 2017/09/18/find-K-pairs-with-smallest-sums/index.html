@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Find K Pairs with Smallest Sums | Yun Chen Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="LeetCode,Go,Heap" />
+    
+    <meta name="description" content="Find K Pairs with Smallest SumsYou are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+Define a pair (u,v) which consists of one element from the first array and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Find K Pairs with Smallest Sums">
+<meta property="og:url" content="https://blog.yunchen.tw/2017/09/18/find-K-pairs-with-smallest-sums/index.html">
+<meta property="og:site_name" content="Yun Chen Blog">
+<meta property="og:description" content="Find K Pairs with Smallest SumsYou are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+Define a pair (u,v) which consists of one element from the first array and">
+<meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
+<meta property="og:updated_time" content="2017-09-18T15:36:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Find K Pairs with Smallest Sums">
+<meta name="twitter:description" content="Find K Pairs with Smallest SumsYou are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+Define a pair (u,v) which consists of one element from the first array and">
+<meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98386220-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">A log about a developer.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首頁</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="https://about.me/chenyunchen">關於</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="輸入關鍵字(休息,食記...)" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    未分類
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post.html-find-K-pairs-with-smallest-sums" class="article article-single article-type-post.html" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Find K Pairs with Smallest Sums
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/09/18/find-K-pairs-with-smallest-sums/" class="article-date">
+            <time datetime="2017-09-17T16:00:00.000Z" itemprop="datePublished">2017-09-18</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Go/">Go</a>, <a class="tag-link" href="/tags/Heap/">Heap</a>, <a class="tag-link" href="/tags/LeetCode/">LeetCode</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="https://i.imgur.com/0rW38gs.jpg"></p>
+<h1 id="Find-K-Pairs-with-Smallest-Sums"><a href="#Find-K-Pairs-with-Smallest-Sums" class="headerlink" title="Find K Pairs with Smallest Sums"></a>Find K Pairs with Smallest Sums</h1><p>You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.</p>
+<p>Define a pair (u,v) which consists of one element from the first array and one element from the second array.</p>
+<p>Find the k pairs (u1,v1),(u2,v2) …(uk,vk) with the smallest sums.</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Given nums1 = [1,7,11], nums2 = [2,4,6],  k = 3</div><div class="line"></div><div class="line">Return: [1,2],[1,4],[1,6]</div><div class="line"></div><div class="line">The first 3 pairs are returned from the sequence:</div><div class="line">[1,2],[1,4],[1,6],[7,2],[7,4],[11,2],[7,6],[11,4],[11,6]</div></pre></td></tr></table></figure>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Given nums1 = [1,1,2], nums2 = [1,2,3],  k = 2</div><div class="line"></div><div class="line">Return: [1,1],[1,1]</div><div class="line"></div><div class="line">The first 2 pairs are returned from the sequence:</div><div class="line">[1,1],[1,1],[1,2],[2,1],[1,2],[2,2],[1,3],[1,3],[2,3]</div></pre></td></tr></table></figure>
+<h3 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3:"></a>Example 3:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Given nums1 = [1,2], nums2 = [3],  k = 3 </div><div class="line"></div><div class="line">Return: [1,3],[2,3]</div><div class="line"></div><div class="line">All possible pairs are returned from the sequence:</div><div class="line">[1,3],[2,3]</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kSmallestPairs</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>看到題目很自然的就用巢狀迴圈列出所有數對的組合，並自行定義排序規則將上述組合做排序(數對總合比大小)，最後只要回傳前k個小的數對即可，不過題目給的數據已經有排序過了，所以相信可以再優化至更佳的結果，目前暫時先做保留。</p>
+<h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這部分為自行定義的排序規則，最主要是以數對的總合來比大小，其中Len(),Swap(),Less()三個function前面兩個與一般排序規則並無差別，而複寫的便是Less()的比較，取出數對中的兩個值做加總才與另一對總合做比較</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> sortPair [][]<span class="keyword">int</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p sortPair)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>           &#123; <span class="keyword">return</span> <span class="built_in">len</span>(p) &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p sortPair)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span>      &#123; p[i], p[j] = p[j], p[i] &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p sortPair)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123; <span class="keyword">return</span> p[i][<span class="number">0</span>]+p[i][<span class="number">1</span>] &lt; p[j][<span class="number">0</span>]+p[j][<span class="number">1</span>] &#125;</div></pre></td></tr></table></figure>
+<p>有了自訂的排序規則之後，再來就只要用巢狀迴圈列出所有數對的組合，將其做排序之後便能回傳前k個小的數對，不過如果是整個數對的組合數小於等於k就只要回傳整個排序的組合即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kSmallestPairs</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> result [][]<span class="keyword">int</span></div><div class="line">	<span class="keyword">for</span> _, n1 := <span class="keyword">range</span> nums1 &#123;</div><div class="line">		<span class="keyword">for</span> _, n2 := <span class="keyword">range</span> nums2 &#123;</div><div class="line">			result = <span class="built_in">append</span>(result, []<span class="keyword">int</span>&#123;n1, n2&#125;)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	sort.Sort(sortPair(result))</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(result) &lt;= k &#123;</div><div class="line">		<span class="keyword">return</span> result</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result[:k]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼:"></a>完整程式碼:</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> sortPair [][]<span class="keyword">int</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p sortPair)</span> <span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>           &#123; <span class="keyword">return</span> <span class="built_in">len</span>(p) &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p sortPair)</span> <span class="title">Swap</span><span class="params">(i, j <span class="keyword">int</span>)</span></span>      &#123; p[i], p[j] = p[j], p[i] &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p sortPair)</span> <span class="title">Less</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123; <span class="keyword">return</span> p[i][<span class="number">0</span>]+p[i][<span class="number">1</span>] &lt; p[j][<span class="number">0</span>]+p[j][<span class="number">1</span>] &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kSmallestPairs</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> result [][]<span class="keyword">int</span></div><div class="line">	<span class="keyword">for</span> _, n1 := <span class="keyword">range</span> nums1 &#123;</div><div class="line">		<span class="keyword">for</span> _, n2 := <span class="keyword">range</span> nums2 &#123;</div><div class="line">			result = <span class="built_in">append</span>(result, []<span class="keyword">int</span>&#123;n1, n2&#125;)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	sort.Sort(sortPair(result))</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(result) &lt;= k &#123;</div><div class="line">		<span class="keyword">return</span> result</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result[:k]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="總結"><a href="#總結" class="headerlink" title="總結:"></a>總結:</h4><p>給兩個已排序陣列要找出最小的k個總合數對(兩陣列各別取一個值作為數對)，最直覺的做法是利用巢狀迴圈列出所有數對的組合，並自行定義排序規則將上述組合做排序(數對總合比大小)，最後只要回傳前k個小的數對即可。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://blog.yunchen.tw/2017/09/18/find-K-pairs-with-smallest-sums/" data-id="cj7qc4j7d00hhldtv1zgs189w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>追隨 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/chen_yunchen" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/Alex.YunChen" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/104114386123716562935" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/chenyunchen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin" href="https://www.linkedin.com/in/chenyunchen" target="_blank">
+                        <i class="icon fa fa-linkedin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/17/largest-divisible-subset/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Largest Divisible Subset</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/18/find-K-pairs-with-smallest-sums/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Find K Pairs with Smallest Sums" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/18/find-K-pairs-with-smallest-sums/" class="title">Find K Pairs with Smallest Sums</a></p>
+                            <p class="item-date"><time datetime="2017-09-17T16:00:00.000Z" itemprop="datePublished">2017-09-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/17/largest-divisible-subset/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Largest Divisible Subset" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/17/largest-divisible-subset/" class="title">Largest Divisible Subset</a></p>
+                            <p class="item-date"><time datetime="2017-09-16T16:00:00.000Z" itemprop="datePublished">2017-09-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/11/water-and-jug-problem/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Water and Jug Problem" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/11/water-and-jug-problem/" class="title">Water and Jug Problem</a></p>
+                            <p class="item-date"><time datetime="2017-09-10T16:00:00.000Z" itemprop="datePublished">2017-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/10/count-numbers-with-unique-digits/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Count Numbers with Unique Digits" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/10/count-numbers-with-unique-digits/" class="title">Count Numbers with Unique Digits</a></p>
+                            <p class="item-date"><time datetime="2017-09-09T16:00:00.000Z" itemprop="datePublished">2017-09-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/09/design-twitter/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.imgur.com/0rW38gs.jpg)" alt="Design Twitter" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/09/design-twitter/" class="title">Design Twitter</a></p>
+                            <p class="item-date"><time datetime="2017-09-08T16:00:00.000Z" itemprop="datePublished">2017-09-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">記錄</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">六月 2013</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">標籤</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a><span class="tag-list-count">59</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/">Backtracking</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinaryIndexedTree/">BinaryIndexedTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearch/">BinarySearch</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BinarySearchTree/">BinarySearchTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitManipulation/">BitManipulation</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainteaser/">Brainteaser</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BreadthFirstSearch/">BreadthFirstSearch</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/COSCUP/">COSCUP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DepthFirstSearch/">DepthFirstSearch</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DivideAndConquer/">DivideAndConquer</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DynamicProgramming/">DynamicProgramming</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">232</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy/">Greedy</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HITCON/">HITCON</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a><span class="tag-list-count">232</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkitOne/">LinkitOne</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LongestIncreasingSubsequence/">LongestIncreasingSubsequence</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Modify/">Modify</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NISRA/">NISRA</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSDC/">OSDC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSSFProject/">OSSFProject</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPConf/">PHPConf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pointer/">Pointer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/">Project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SITCON/">SITCON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schedule/">Schedule</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Secure/">Secure</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SegmentTree/">SegmentTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/">Shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopologicalSort/">TopologicalSort</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TwoPointers/">TwoPointers</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UnionFind/">UnionFind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsdc/">jsdc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/modernweb/">modernweb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">標籤雲</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Array/" style="font-size: 19.5px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 15px;">Backtracking</a> <a href="/tags/BinaryIndexedTree/" style="font-size: 10px;">BinaryIndexedTree</a> <a href="/tags/BinarySearch/" style="font-size: 15.5px;">BinarySearch</a> <a href="/tags/BinarySearchTree/" style="font-size: 10px;">BinarySearchTree</a> <a href="/tags/BitManipulation/" style="font-size: 14px;">BitManipulation</a> <a href="/tags/Brainteaser/" style="font-size: 10.5px;">Brainteaser</a> <a href="/tags/BreadthFirstSearch/" style="font-size: 13.5px;">BreadthFirstSearch</a> <a href="/tags/COSCUP/" style="font-size: 10px;">COSCUP</a> <a href="/tags/DepthFirstSearch/" style="font-size: 16px;">DepthFirstSearch</a> <a href="/tags/Design/" style="font-size: 12.5px;">Design</a> <a href="/tags/DivideAndConquer/" style="font-size: 12px;">DivideAndConquer</a> <a href="/tags/DynamicProgramming/" style="font-size: 17px;">DynamicProgramming</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/Graph/" style="font-size: 11.5px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 11.5px;">Greedy</a> <a href="/tags/HITCON/" style="font-size: 10.5px;">HITCON</a> <a href="/tags/HashTable/" style="font-size: 17.5px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.5px;">Heap</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 14.5px;">LinkedList</a> <a href="/tags/LinkitOne/" style="font-size: 10px;">LinkitOne</a> <a href="/tags/LongestIncreasingSubsequence/" style="font-size: 10px;">LongestIncreasingSubsequence</a> <a href="/tags/Math/" style="font-size: 19px;">Math</a> <a href="/tags/Modify/" style="font-size: 12px;">Modify</a> <a href="/tags/NISRA/" style="font-size: 11px;">NISRA</a> <a href="/tags/OSDC/" style="font-size: 10px;">OSDC</a> <a href="/tags/OSSFProject/" style="font-size: 10.5px;">OSSFProject</a> <a href="/tags/PHPConf/" style="font-size: 10px;">PHPConf</a> <a href="/tags/Pointer/" style="font-size: 10px;">Pointer</a> <a href="/tags/Project/" style="font-size: 10.5px;">Project</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/SITCON/" style="font-size: 10px;">SITCON</a> <a href="/tags/Schedule/" style="font-size: 10px;">Schedule</a> <a href="/tags/Secure/" style="font-size: 11.5px;">Secure</a> <a href="/tags/SegmentTree/" style="font-size: 10px;">SegmentTree</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Sort/" style="font-size: 13px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.5px;">Stack</a> <a href="/tags/String/" style="font-size: 18px;">String</a> <a href="/tags/TopologicalSort/" style="font-size: 10.5px;">TopologicalSort</a> <a href="/tags/Tree/" style="font-size: 18.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.5px;">Trie</a> <a href="/tags/TwoPointers/" style="font-size: 16.5px;">TwoPointers</a> <a href="/tags/UnionFind/" style="font-size: 10px;">UnionFind</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/jsdc/" style="font-size: 10px;">jsdc</a> <a href="/tags/modernweb/" style="font-size: 10px;">modernweb</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">連結</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://speakerdeck.com/chenyunchen">Speaker Deck</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Yun Chen</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'chenyunchen';
+    
+    
+    var disqus_url = 'https://blog.yunchen.tw/2017/09/18/find-K-pairs-with-smallest-sums/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
