@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,TwoPointers" />
     
-    <meta name="description" content="Rotate ListGiven a list, rotate the list to the right by k places, where k is non-negative.
-For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.">
+    <meta name="description" content="Rotate ListGiven a list, rotate the list to the right by k places, where k is non-negative. For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.">
+<meta name="keywords" content="LeetCode,Go,LinkedList,TwoPointers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rotate List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/04/30/rotate-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Rotate ListGiven a list, rotate the list to the right by k places, where k is non-negative.
-For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.">
+<meta property="og:description" content="Rotate ListGiven a list, rotate the list to the right by k places, where k is non-negative. For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-23T09:07:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rotate List">
-<meta name="twitter:description" content="Rotate ListGiven a list, rotate the list to the right by k places, where k is non-negative.
-For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.">
+<meta name="twitter:description" content="Rotate ListGiven a list, rotate the list to the right by k places, where k is non-negative. For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k = 2,return 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL.">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:12Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -200,7 +201,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rotateRight</span><span class="params">(head *ListNode, k <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rotateRight</span><span class="params">(head *ListNode, k <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>因為向右移1格時從最後一個節點就會先跳躍至開頭，而右移k格時則倒數k個節點移動到開頭，因此只要知道倒數第k+1個節點的位置(與最後一個節點位置差k)，便能直接將後頭整串至底移動到開頭做嫁接，可以一口氣完成右移k格的旋轉，所以一開始就用兩變數指向頭的位置，先移動一指向變數遍歷LinkedList，待兩變數距離超過k時另一個指向變數才跟著向後遍歷，如此一來待後頭的指向變數到底時，前頭指向變數指到的位置就會是倒數第k+1個節點的位置，嫁接完就是我們要的結果了。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先初始化兩個變數指向頭的位置，而count則表示後頭的變數位置(已經遍歷了多少個節點)，接下來就是開始尋找倒數第k個節點的位置，如果在後頭的變數本身指向的位置不為空且下一個要遍歷的位置也不為空才繼續向下遍歷同時將count+1，當後頭遍歷的節點數大於k時，前頭變數指向的位置才要跟著向後移動</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> tmp *ListNode</div><div class="line">count := <span class="number">1</span></div><div class="line">front := head</div><div class="line">rear := head</div><div class="line"><span class="keyword">for</span> rear != <span class="literal">nil</span> &amp;&amp; rear.Next != <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">if</span> count &gt; k &#123;</div><div class="line">		front = front.Next</div><div class="line">	&#125;</div><div class="line">	rear = rear.Next</div><div class="line">	count++</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -217,7 +218,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/04/30/rotate-list/" data-id="cj891nupi00m44dtvnel6zy84" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/04/30/rotate-list/" data-id="cj9mwqq7300aur9tvtlmcq9uj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

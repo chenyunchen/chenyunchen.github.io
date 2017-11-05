@@ -10,11 +10,13 @@
         <meta name="keywords" content="LeetCode,Go,Math,LinkedList" />
     
     <meta name="description" content="Add Two NumbersYou are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numb">
+<meta name="keywords" content="LeetCode,Go,Math,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Add Two Numbers">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/03/31/add-two-numbers/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
 <meta property="og:description" content="Add Two NumbersYou are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numb">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:21:53.000Z">
 <meta name="twitter:card" content="summary">
@@ -27,6 +29,8 @@
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -198,7 +202,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">addTwoNumbers</span><span class="params">(l1 *ListNode, l2 *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">addTwoNumbers</span><span class="params">(l1 *ListNode, l2 *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>一開始本來是分別遍歷兩個LinkedList，在各別算出兩個數字做總合，最後才生成新的LinkedList做回傳，不過因為LinkedList會極長就沒辦法這樣搞，而且這樣也太浪費時間，所以就是同時一起對兩個LinkedList做遍歷，並將結果取代其一LinkedList的值，如果兩節點做總合時有進位的情況，就將進位的數字加到下一組做節點總合，又如果有其中一方的LinkedList較短先結束，這時就將另一方尚未遍歷完成的LinkedList接在其後頭，此時只要繼續判斷是否要進位到下一個節點即可，沒有的話就可以直接回傳整個合併的LinkedList，有的話才進到下一個節點並+1再次做判斷，最後若已經遍歷結果了，然而仍需進位的情況發生，這時就要在最後自行新增一個新的節點在LinkedList的最後頭，而其值當然必為1。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>因為我們是將總合的結果值取代原本的節點值，而且也是回傳原本的LinkedList回去，所以一開始我們就以第一個LinkedList為主，並記錄其第一個節點的位置用以結果回傳，接下來就開始同時遍歷兩個LinkedList的節點，其中任一LinkedList先為nil才停止遍歷，一邊遍歷兩LinkedList的同時，一邊將分別將兩個節點值做總合，並將總合的結果除以10取於餘數並取代第一個LinkedList節點的值，至先前除完的商如果大於0(有進位)自然就會繼續往下一組節點的總合做累加，完成之後才又同時將兩LinkedList遍歷的節點下移，不過在此之前要先暫存第一個LinkedList遍歷完的位置，因為如果是該LinkedList先結束而稍後就需要將另一尚未遍歷過LinkedList的後半部給嫁接在後頭，此時就需要知道先前遍歷完的最後一個節點位置才有辦法進行嫁接</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sum <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> tmp *ListNode</div><div class="line">result := l1</div><div class="line"><span class="keyword">for</span> l1 != <span class="literal">nil</span> &amp;&amp; l2 != <span class="literal">nil</span> &#123;</div><div class="line">	sum += l1.Val + l2.Val</div><div class="line">	l1.Val = sum % <span class="number">10</span></div><div class="line">	sum /= <span class="number">10</span></div><div class="line">	tmp = l1</div><div class="line">	l1 = l1.Next</div><div class="line">	l2 = l2.Next</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -215,7 +219,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/03/31/add-two-numbers/" data-id="cj891nuj1008q4dtvxb5apbn2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/03/31/add-two-numbers/" data-id="cj9mwqq5h008rr9tvxvrt57r2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

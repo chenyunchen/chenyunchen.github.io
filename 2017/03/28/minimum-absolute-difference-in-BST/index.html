@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,BinarySearchTree" />
     
-    <meta name="description" content="Minimum Absolute Difference in BSTGiven a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
-For Example:12345678910111213Input:   1">
+    <meta name="description" content="Minimum Absolute Difference in BSTGiven a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes. For Example:12345678910111213Input:   1">
+<meta name="keywords" content="LeetCode,Go,BinarySearchTree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minimum Absolute Difference in BST">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/03/28/minimum-absolute-difference-in-BST/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Minimum Absolute Difference in BSTGiven a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
-For Example:12345678910111213Input:   1">
+<meta property="og:description" content="Minimum Absolute Difference in BSTGiven a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes. For Example:12345678910111213Input:   1">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:21:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Minimum Absolute Difference in BST">
-<meta name="twitter:description" content="Minimum Absolute Difference in BSTGiven a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
-For Example:12345678910111213Input:   1">
+<meta name="twitter:description" content="Minimum Absolute Difference in BSTGiven a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes. For Example:12345678910111213Input:   1">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For Example:12345678910111213Input:   1">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -198,7 +199,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMinimumDifference</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMinimumDifference</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>一開始思索著是否可以透過二元樹的關係找出值之間的最小距離，但是如果對於那些極端的狀況或參數是不適用的，所以就直接一邊前序遍歷所有的樹節點，一邊將該節點的值與先前遍歷的所有節點值找最小距離，如此一來在結束遍歷後也就能找出我們要的結果。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先判斷根節點是否為nil，如果是就直接回傳0，接著便開始前序遍歷帶入根節點與用來儲存目前遍歷過所有節點的值及目前找到的最小值(這邊一開始放int的32位元極大值)</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMinimumDifference</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> valList []<span class="keyword">int</span></div><div class="line">	<span class="keyword">return</span> preOrderTravel(root, valList, math.MaxInt32)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -215,7 +216,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/03/28/minimum-absolute-difference-in-BST/" data-id="cj891nuiw008g4dtvduf93of3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/03/28/minimum-absolute-difference-in-BST/" data-id="cj9mwqq5d008jr9tvog5t7wj9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

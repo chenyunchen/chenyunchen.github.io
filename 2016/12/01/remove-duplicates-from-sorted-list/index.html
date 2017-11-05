@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList" />
     
-    <meta name="description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once.
-For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;">
+    <meta name="description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once. For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;">
+<meta name="keywords" content="LeetCode,Go,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remove Duplicates from Sorted List">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/12/01/remove-duplicates-from-sorted-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once.
-For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;">
+<meta property="og:description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once. For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-05-12T13:36:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Remove Duplicates from Sorted List">
-<meta name="twitter:description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once.
-For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;">
+<meta name="twitter:description" content="Remove Duplicates from Sorted ListGiven a sorted linked list, delete all duplicates such that each element appear only once. For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:12Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -196,7 +197,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">deleteDuplicates</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">deleteDuplicates</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>也是相當單純的Linked List應用，基本上只要注意有相同值時，該節點只需改變下一個指向的點就好，本身的位置先不需改變，因為有可能下下個的節點值還是一樣的，例如: ‘1’-&gt;1-&gt;1-&gt;2，第一個1的位置仍不動，只需把指向改到第三個1再繼續做判斷 ‘1’-&gt;1-&gt;2 其它的就沒什麼大問題了。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這邊一開始先用了flag暫存第一個節點的位置，節點往下走處理完後，最後用於回傳最初的節點，而暫存值是用來儲存前一個節點的值來判斷是否相同，這邊預設就先塞了int32位元的最大值來以防重覆，因為一定不會對第一個節點做操作，就算值重覆也是砍掉後頭的節點，所以這次也不需要有新的頭節點來確保操作一致性，之後就是利用一迴圈來不斷的遍歷整個Linked List，如果值不相同就把當前節點(連同暫存前一節點的位置)往下移動，直到回傳nil才跳開回圈，但如果相同就需要做嫁接了，這時就需要前一個節點的位置，並在前一節點的下一個直接指向當前節點的下一個，大致上來說只有前一節點的位置會因為值相同與否才做更動，另外沒有釋放節點的記憶體，所以如果你想做這個動作就不妨再多加個一行去處理</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> flag *ListNode</div><div class="line"><span class="keyword">var</span> preNode *ListNode</div><div class="line">tmp := math.MaxInt32</div><div class="line">flag = head</div><div class="line"><span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">if</span> tmp != head.Val &#123;</div><div class="line">		tmp = head.Val</div><div class="line">		preNode = head</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		preNode.Next = head.Next</div><div class="line">	&#125;</div><div class="line">	head = head.Next</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -209,7 +210,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/12/01/remove-duplicates-from-sorted-list/" data-id="cj891nue200324dtv3vwp8cka" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/12/01/remove-duplicates-from-sorted-list/" data-id="cj9mwqq1l0036r9tvxdkrnaqn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

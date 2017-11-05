@@ -9,68 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Design,Trie" />
     
-    <meta name="description" content="Implement Trie (Prefix Tree)Implement a trie with insert, search, and startsWith methods.
-Note:
-You may assume that all inputs are consist of lowercase letters a-z.
-
-
-
-提示
-解題應用
-
-
-
-
-Trie
-Tree
-
-
-
-Defaul">
+    <meta name="description" content="Implement Trie (Prefix Tree)Implement a trie with insert, search, and startsWith methods. Note: You may assume that all inputs are consist of lowercase letters a-z.    提示 解題應用     Trie Tree    Defaul">
+<meta name="keywords" content="LeetCode,Go,Design,Trie">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Implement Trie (Prefix Tree)">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/07/04/implement-trie-prefix-tree/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Implement Trie (Prefix Tree)Implement a trie with insert, search, and startsWith methods.
-Note:
-You may assume that all inputs are consist of lowercase letters a-z.
-
-
-
-提示
-解題應用
-
-
-
-
-Trie
-Tree
-
-
-
-Defaul">
+<meta property="og:description" content="Implement Trie (Prefix Tree)Implement a trie with insert, search, and startsWith methods. Note: You may assume that all inputs are consist of lowercase letters a-z.    提示 解題應用     Trie Tree    Defaul">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-07-05T16:14:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Implement Trie (Prefix Tree)">
-<meta name="twitter:description" content="Implement Trie (Prefix Tree)Implement a trie with insert, search, and startsWith methods.
-Note:
-You may assume that all inputs are consist of lowercase letters a-z.
-
-
-
-提示
-解題應用
-
-
-
-
-Trie
-Tree
-
-
-
-Defaul">
+<meta name="twitter:description" content="Implement Trie (Prefix Tree)Implement a trie with insert, search, and startsWith methods. Note: You may assume that all inputs are consist of lowercase letters a-z.    提示 解題應用     Trie Tree    Defaul">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -78,6 +29,8 @@ Defaul">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -245,7 +198,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Trie <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Initialize your data structure here. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">Trie</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Inserts a word into the trie. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Trie)</span> <span class="title">Insert</span><span class="params">(word <span class="keyword">string</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Returns if the word is in the trie. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Trie)</span> <span class="title">Search</span><span class="params">(word <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Returns if there is any word in the trie that starts with the given prefix. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Trie)</span> <span class="title">StartsWith</span><span class="params">(prefix <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your Trie object will be instantiated and called as such:</div><div class="line"> * obj := Constructor();</div><div class="line"> * obj.Insert(word);</div><div class="line"> * param_2 := obj.Search(word);</div><div class="line"> * param_3 := obj.StartsWith(prefix);</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Trie <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Initialize your data structure here. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">Trie</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Inserts a word into the trie. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Trie)</span> <span class="title">Insert</span><span class="params">(word <span class="keyword">string</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Returns if the word is in the trie. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Trie)</span> <span class="title">Search</span><span class="params">(word <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** Returns if there is any word in the trie that starts with the given prefix. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Trie)</span> <span class="title">StartsWith</span><span class="params">(prefix <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Your Trie object will be instantiated and called as such:</span></div><div class="line"><span class="comment"> * obj := Constructor();</span></div><div class="line"><span class="comment"> * obj.Insert(word);</span></div><div class="line"><span class="comment"> * param_2 := obj.Search(word);</span></div><div class="line"><span class="comment"> * param_3 := obj.StartsWith(prefix);</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這次要用Tree實作字典檔或稱前綴樹，大致如下圖所示:</p>
 <p><img src="https://i.imgur.com/TRw2Bpx.png" alt=""></p>
 <blockquote>
@@ -269,7 +222,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/07/04/implement-trie-prefix-tree/" data-id="cj891nuuu00p24dtvlbe32v3h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/07/04/implement-trie-prefix-tree/" data-id="cj9mwqq9u00eir9tvhhi39yxu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

@@ -9,23 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,Pointer" />
     
-    <meta name="description" content="Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head.
-Example:
-123Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2.After removing t">
+    <meta name="description" content="Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head. Example: 123Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2.After removing t">
+<meta name="keywords" content="LeetCode,Go,LinkedList,Pointer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remove Nth Node From End of List">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/10/25/remove-nth-node-from-end-of-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head.
-Example:
-123Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2.After removing t">
+<meta property="og:description" content="Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head. Example: 123Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2.After removing t">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:04:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Remove Nth Node From End of List">
-<meta name="twitter:description" content="Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head.
-Example:
-123Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2.After removing t">
+<meta name="twitter:description" content="Remove Nth Node From End of ListGiven a linked list, remove the nth node from the end of list and return its head. Example: 123Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2.After removing t">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -33,6 +29,8 @@ Example:
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -202,7 +200,7 @@ ga('send', 'pageview');
 </table>
 <p><strong>Note:</strong></p>
 <p>Given n will always be valid.<br>Try to do this in one pass.</p>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"></div><div class="line"> * Definition for singly-linked list.</div><div class="line"></div><div class="line"> * type ListNode struct &#123;</div><div class="line"></div><div class="line"> *     Val int</div><div class="line"></div><div class="line"> *     Next *ListNode</div><div class="line"></div><div class="line"> * &#125;</div><div class="line"></div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeNthFromEnd</span><span class="params">(head *ListNode, n <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> */</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeNthFromEnd</span><span class="params">(head *ListNode, n <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>非常典型的LinkedList題目，如果以前有碰過指標的話，那麼一定會接觸到這類題型，而這邊要你移除倒數第n個的節點，以 <em>A B C D E</em> 為例，如果給的 <em>n=2</em> 那我們要移除D的點，可惜此LinkedList僅是由頭往下做銜接，所以沒有辦法從尾走回頭，倒不如去想由頭來算是第幾個，以上述來說 <em>5(總數)-2(從尾算)+1=4(從頭算)</em> 不過我們一開始並不知道總數是多數，所以這邊我先遍歷一次整個List之後才真正去移除我們想要的節點。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>有寫過LinkedList的應該都知道，一開始我們先在原本的List開頭插入一個自己建立的頭節點，主要是為了確保開頭節點能與後續節點操作能一致，插好新的頭節點之後塞回原本的head變數中</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">preHead := &amp;ListNode&#123;&#125;</div><div class="line"></div><div class="line">preHead.Next = head</div><div class="line"></div><div class="line">head = preHead</div></pre></td></tr></table></figure>
@@ -220,7 +218,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/10/25/remove-nth-node-from-end-of-list/" data-id="cj891nude002h4dtvt8h100ha" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/10/25/remove-nth-node-from-end-of-list/" data-id="cj9mwqq0z002jr9tvtgrfdx5k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

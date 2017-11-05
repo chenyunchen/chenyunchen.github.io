@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList" />
     
-    <meta name="description" content="Reverse Linked List IIReverse a linked list from position m to n. Do it in-place and in one-pass.
-For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;">
+    <meta name="description" content="Reverse Linked List IIReverse a linked list from position m to n. Do it in-place and in one-pass. For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;">
+<meta name="keywords" content="LeetCode,Go,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reverse Linked List II">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/05/25/reverse-linked-list-II/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Reverse Linked List IIReverse a linked list from position m to n. Do it in-place and in one-pass.
-For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;">
+<meta property="og:description" content="Reverse Linked List IIReverse a linked list from position m to n. Do it in-place and in one-pass. For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-05-25T14:03:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reverse Linked List II">
-<meta name="twitter:description" content="Reverse Linked List IIReverse a linked list from position m to n. Do it in-place and in one-pass.
-For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;">
+<meta name="twitter:description" content="Reverse Linked List IIReverse a linked list from position m to n. Do it in-place and in one-pass. For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:123Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m =
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -199,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseBetween</span><span class="params">(head *ListNode, m <span class="keyword">int</span>, n <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseBetween</span><span class="params">(head *ListNode, m <span class="keyword">int</span>, n <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>很早之前曾寫過<a href="/2017/01/26/reverse-linked-list/">Reverse Linked List</a>，當初只是要將整個LinkedList做翻轉，所以難度不會太高，這次雖然與先前一樣可以只遍歷一遍就完成部分區塊的翻轉，但要考慮的事情就會稍為多一點，好比說整個LinkedList翻轉最後只要將原本最後一個節點的位置做回傳即可(因為翻轉後會變到第一個)，可是部分區塊的翻轉就不一定了，有可能還是原本是節點位置或是LinkedList上的任一點，端看要翻轉的區塊落在哪裡，所以就需要再自行新增一個頭節點，用以回傳在該節點後頭翻轉完新LinkedList的第一個節點位置，最後就是部分區塊的翻轉還要稍為思考要如何與未翻轉的區塊做連結，大致流程如下:</p>
 <p>原本的LinkedList:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1 → 3 → 5 → 7 → 9</div></pre></td></tr></table></figure>
@@ -218,7 +219,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/05/25/reverse-linked-list-II/" data-id="cj891nurj00n84dtv1vc3su77" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/05/25/reverse-linked-list-II/" data-id="cj9mwqq8100c3r9tvtmvktgve" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

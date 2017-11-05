@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList" />
     
-    <meta name="description" content="Odd Even Linked ListGiven a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
-You shou">
+    <meta name="description" content="Odd Even Linked ListGiven a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes. You shou">
+<meta name="keywords" content="LeetCode,Go,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Odd Even Linked List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/08/20/odd-even-linked-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Odd Even Linked ListGiven a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
-You shou">
+<meta property="og:description" content="Odd Even Linked ListGiven a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes. You shou">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-08-20T16:16:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Odd Even Linked List">
-<meta name="twitter:description" content="Odd Even Linked ListGiven a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
-You shou">
+<meta name="twitter:description" content="Odd Even Linked ListGiven a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes. You shou">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ You shou">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -200,7 +201,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">oddEvenList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">oddEvenList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>非常單純的一題，只要以兩個指標分別儲存奇數與偶數的LinkedList，在遍歷原LinkedList的同時一邊將節點作分配，最後待遍歷結束後將偶數的LinkedList接上奇數的LinkedList後頭即可。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先初始化用來分別儲存奇數與偶數LinkedList的頭節點，再以兩個指標指向兩串LinkedList的結尾以利後續新增節點，另外也需要一個計數器來分辨節點是奇數還是偶數，接下來就可以用迴圈來將原LinkedList節點一一取出，同時一邊將節點作分配(計數器為奇數的節點接到儲存奇數LinkedList的後頭，反之偶數也是如此)，待遍歷結束後將偶數的LinkedList接上奇數的LinkedList後頭，並記得將偶數LinkedList結尾的下一個節點改為nil以防產生環(cycle)，最後回傳整串LinkedList的開頭，也就是奇數頭節點的下一個節點(原LinkedList的第一個節點)</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">odd := &amp;ListNode&#123;&#125;</div><div class="line">oddRear := odd</div><div class="line">even := &amp;ListNode&#123;&#125;</div><div class="line">evenRear := even</div><div class="line">count := <span class="number">1</span></div><div class="line"><span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">if</span> count%<span class="number">2</span> != <span class="number">0</span> &#123;</div><div class="line">		oddRear.Next = head</div><div class="line">		oddRear = head</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		evenRear.Next = head</div><div class="line">		evenRear = head</div><div class="line">	&#125;</div><div class="line">	head = head.Next</div><div class="line">	count++</div><div class="line">&#125;</div><div class="line">oddRear.Next = even.Next</div><div class="line">evenRear.Next = <span class="literal">nil</span></div><div class="line"><span class="keyword">return</span> odd.Next</div></pre></td></tr></table></figure>
@@ -213,7 +214,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/08/20/odd-even-linked-list/" data-id="cj891nuye00r74dtvnj3hmjsu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/08/20/odd-even-linked-list/" data-id="cj9mwqqbe00gur9tvnpkeouw5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

@@ -9,23 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree" />
     
-    <meta name="description" content="Path Sum IIIYou are given a binary tree in which each node contains an integer value.
-Find the number of paths that sum to a given value.
-The path does not need to start or end at the root or a leaf,">
+    <meta name="description" content="Path Sum IIIYou are given a binary tree in which each node contains an integer value. Find the number of paths that sum to a given value. The path does not need to start or end at the root or a leaf,">
+<meta name="keywords" content="LeetCode,Go,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Path Sum III">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/03/09/path-sum-III/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Path Sum IIIYou are given a binary tree in which each node contains an integer value.
-Find the number of paths that sum to a given value.
-The path does not need to start or end at the root or a leaf,">
+<meta property="og:description" content="Path Sum IIIYou are given a binary tree in which each node contains an integer value. Find the number of paths that sum to a given value. The path does not need to start or end at the root or a leaf,">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:17:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Path Sum III">
-<meta name="twitter:description" content="Path Sum IIIYou are given a binary tree in which each node contains an integer value.
-Find the number of paths that sum to a given value.
-The path does not need to start or end at the root or a leaf,">
+<meta name="twitter:description" content="Path Sum IIIYou are given a binary tree in which each node contains an integer value. Find the number of paths that sum to a given value. The path does not need to start or end at the root or a leaf,">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -33,6 +29,8 @@ The path does not need to start or end at the root or a leaf,">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -202,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這題最大的麻煩在於任一個點都可以成為起始點，此外若有某條路徑已經達到目標總合，仍需繼續往下做判斷，因為還是有可能再次達到目標總合，這時又算是另外符合條件的路徑，既然不曉得哪些點為起始時能達到目標總合，只好將所有的點都當作起始點來尋找，也就是每個節點與其以下的子節點都再當作一顆獨立的樹來遍歷，再找出以該節點為根節點開始路徑的所有可能，因此總共需要兩次遍歷，一次遍歷所有的節點，另一次則是遍歷以該節點為根節點的樹並從其開始的所有路徑，最後再將每個獨立樹找出的所有路徑再全部做總合就是我們的結果。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先檢查樹的根節點是否存在，若不存在則回傳0，接著才開始遍歷所有節點</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> preOrderTravel(root, sum, <span class="number">0</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -219,7 +217,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/03/09/path-sum-III/" data-id="cj891nuhr00754dtv5h0iwybv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/03/09/path-sum-III/" data-id="cj9mwqq4n0078r9tvzvfjqewd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

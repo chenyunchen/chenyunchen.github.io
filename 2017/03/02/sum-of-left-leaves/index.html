@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree" />
     
-    <meta name="description" content="Sum of Left LeavesFind the sum of all left leaves in a given binary tree.
-For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves in the binary tree, with values 9 and 15 resp">
+    <meta name="description" content="Sum of Left LeavesFind the sum of all left leaves in a given binary tree. For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves in the binary tree, with values 9 and 15 resp">
+<meta name="keywords" content="LeetCode,Go,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sum of Left Leaves">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/03/02/sum-of-left-leaves/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Sum of Left LeavesFind the sum of all left leaves in a given binary tree.
-For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves in the binary tree, with values 9 and 15 resp">
+<meta property="og:description" content="Sum of Left LeavesFind the sum of all left leaves in a given binary tree. For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves in the binary tree, with values 9 and 15 resp">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:15:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sum of Left Leaves">
-<meta name="twitter:description" content="Sum of Left LeavesFind the sum of all left leaves in a given binary tree.
-For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves in the binary tree, with values 9 and 15 resp">
+<meta name="twitter:description" content="Sum of Left LeavesFind the sum of all left leaves in a given binary tree. For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves in the binary tree, with values 9 and 15 resp">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For Example:1234567    3   / \  9  20    /  \   15   7There are two left leaves 
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -196,7 +197,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOfLeftLeaves</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOfLeftLeaves</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>非常容易的一題，基本上先寫出前序遍歷所有葉子節點的總合值之後，剩下的只要在多一個判斷來知道該”葉子”是否是右子節點，如果是就回傳0，否則就回傳節點原本的值，如此一來當”葉子”左右子節點都存在的時候，因為右子節點回傳值是0，總合相加的結果就會是只有”葉子”左子節點的值，之所以會強調葉子是因為若非葉子節點，不能直接將右子節點直接歸0，因為右邊可能還包含一顆子樹，所以最後判斷回傳值只能在確定為葉子節點的情況下做。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先確認根節點是否為nil，如果是就回傳0，否則才開始前序遍歷</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOfLeftLeaves</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> preOrderTravel(root, <span class="literal">false</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -211,7 +212,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/03/02/sum-of-left-leaves/" data-id="cj891nuh7006j4dtv75hn3l39" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/03/02/sum-of-left-leaves/" data-id="cj9mwqq46006qr9tvi15n0qco" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

@@ -9,26 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree" />
     
-    <meta name="description" content="Find Mode in Binary Search TreeGiven a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
-Assume a BST is defined as follows:
-
-The">
+    <meta name="description" content="Find Mode in Binary Search TreeGiven a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST. Assume a BST is defined as follows:  The">
+<meta name="keywords" content="LeetCode,Go,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Find Mode in Binary Search Tree">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/03/24/find-mode-in-binary-search-tree/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Find Mode in Binary Search TreeGiven a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
-Assume a BST is defined as follows:
-
-The">
+<meta property="og:description" content="Find Mode in Binary Search TreeGiven a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST. Assume a BST is defined as follows:  The">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:20:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Find Mode in Binary Search Tree">
-<meta name="twitter:description" content="Find Mode in Binary Search TreeGiven a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
-Assume a BST is defined as follows:
-
-The">
+<meta name="twitter:description" content="Find Mode in Binary Search TreeGiven a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST. Assume a BST is defined as follows:  The">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -36,6 +29,8 @@ The">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -214,7 +209,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMode</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMode</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>最簡單的方式就是使用hashmap來儲存，接著再檢查hashmap便能得知出現最多次是哪些元素了，不過Follow up希望我們能不使用額外的空間複雜度，一開始是用前序遍歷來看並做檢查，結果走了不少冤望路，因為除非相同的元素是連在一起，否則很難找出結果，例如下列的二元樹:</p>
 <p><img src="https://i.imgur.com/1VpF6KW.png" alt=""></p>
 <p>因為相同的元素可能分散的情況下就非常難做統計，所以看得出來使用前序遍歷是錯的選擇，而中序遍歷就會是最佳做法，因為中序遍歷二元樹出來的結果會是從小至大排序好的結果，如此一來便能很輕易的去做統計，附帶一提雖然採用遞回的方式不被認為算是使用額外的空間，但如果需要只用O(1)的空間來進行樹的遍歷可以使用: Morris Traversal演算法。</p>
@@ -231,7 +226,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/03/24/find-mode-in-binary-search-tree/" data-id="cj891nuie00844dtvbnt76xec" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/03/24/find-mode-in-binary-search-tree/" data-id="cj9mwqq580089r9tvacbp9k0g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

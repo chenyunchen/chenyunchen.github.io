@@ -9,26 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,BinarySearch" />
     
-    <meta name="description" content="Kth Smallest Element in a BSTGiven a binary search tree, write a function kthSmallest to find the kth smallest element in it.
-Note:
-You may assume k is always valid, 1 ? k ? BST’s total elements.
-Fol">
+    <meta name="description" content="Kth Smallest Element in a BSTGiven a binary search tree, write a function kthSmallest to find the kth smallest element in it. Note: You may assume k is always valid, 1 ? k ? BST’s total elements. Fol">
+<meta name="keywords" content="LeetCode,Go,Tree,BinarySearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kth Smallest Element in a BST">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/07/17/Kth-smallest-element-in-a-BST/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Kth Smallest Element in a BSTGiven a binary search tree, write a function kthSmallest to find the kth smallest element in it.
-Note:
-You may assume k is always valid, 1 ? k ? BST’s total elements.
-Fol">
+<meta property="og:description" content="Kth Smallest Element in a BSTGiven a binary search tree, write a function kthSmallest to find the kth smallest element in it. Note: You may assume k is always valid, 1 ? k ? BST’s total elements. Fol">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-07-19T13:53:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kth Smallest Element in a BST">
-<meta name="twitter:description" content="Kth Smallest Element in a BSTGiven a binary search tree, write a function kthSmallest to find the kth smallest element in it.
-Note:
-You may assume k is always valid, 1 ? k ? BST’s total elements.
-Fol">
+<meta name="twitter:description" content="Kth Smallest Element in a BSTGiven a binary search tree, write a function kthSmallest to find the kth smallest element in it. Note: You may assume k is always valid, 1 ? k ? BST’s total elements. Fol">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -36,6 +29,8 @@ Fol">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -205,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kthSmallest</span><span class="params">(root *TreeNode, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kthSmallest</span><span class="params">(root *TreeNode, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>如果有一棵二元搜尋樹要找出第k個大的元素，基本上就只要透過中序遍歷就會得到一個由小排序至大的數列，此時再根據題目所需找出第k個大的目標，數列所對應到的第k個位置就會是我們要的結果。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>如思路所述，一開始便透過中序遍歷(由遞回函數實作，第一個參數為節點的位置，而第二個參數則是目前已排序的數列)來從二元搜尋樹取得所有節點值由小排序至大的數列，有了排序數列的話，最後再根據所需目標找出對應數列中的第k個位置就會是我們要的結果</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">kthSmallest</span><span class="params">(root *TreeNode, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	sortList := inOrderTravel(root, []<span class="keyword">int</span>&#123;&#125;)</div><div class="line">	<span class="keyword">return</span> sortList[k<span class="number">-1</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -220,7 +215,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/07/17/Kth-smallest-element-in-a-BST/" data-id="cj891nuwc00q14dtv5vckfrbs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/07/17/Kth-smallest-element-in-a-BST/" data-id="cj9mwqqac00fcr9tv9au8obvo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

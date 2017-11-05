@@ -9,29 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Flatten Binary Tree to Linked ListGiven a binary tree, flatten it to a linked list in-place.
-For example:Given
-12345    1   / \  2   5 / \   \3   4   6
-The flattened tree should look like:
-1234567891">
+    <meta name="description" content="Flatten Binary Tree to Linked ListGiven a binary tree, flatten it to a linked list in-place. For example:Given 12345    1   / \  2   5 / \   \3   4   6 The flattened tree should look like: 1234567891">
+<meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flatten Binary Tree to Linked List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/11/flatten-binary-tree-to-linked-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Flatten Binary Tree to Linked ListGiven a binary tree, flatten it to a linked list in-place.
-For example:Given
-12345    1   / \  2   5 / \   \3   4   6
-The flattened tree should look like:
-1234567891">
+<meta property="og:description" content="Flatten Binary Tree to Linked ListGiven a binary tree, flatten it to a linked list in-place. For example:Given 12345    1   / \  2   5 / \   \3   4   6 The flattened tree should look like: 1234567891">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-10T05:27:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flatten Binary Tree to Linked List">
-<meta name="twitter:description" content="Flatten Binary Tree to Linked ListGiven a binary tree, flatten it to a linked list in-place.
-For example:Given
-12345    1   / \  2   5 / \   \3   4   6
-The flattened tree should look like:
-1234567891">
+<meta name="twitter:description" content="Flatten Binary Tree to Linked ListGiven a binary tree, flatten it to a linked list in-place. For example:Given 12345    1   / \  2   5 / \   \3   4   6 The flattened tree should look like: 1234567891">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -39,6 +29,8 @@ The flattened tree should look like:
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -208,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">flatten</span><span class="params">(root *TreeNode)</span></span>  &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">flatten</span><span class="params">(root *TreeNode)</span></span>  &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>透過範例應該可以很明顯的發現二元樹的節點的順序是透過前序遍歷的方式來擺放，而且要將這棵二元樹轉成極端偏右的不平衡樹，既然此二元樹可以透過前序遍歷來取得節點順序，那麼只要先透過前序遍歷來將節點一一放入隊列之中，最後就可以透過隊列依序取出節點來構成極端偏右的不平衡樹。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>因為會使用隊列來儲存節點順序，所以開頭先定義好隊列的結構</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> QueneNode <span class="keyword">struct</span> &#123;</div><div class="line">	Node *TreeNode</div><div class="line">	Next *QueneNode</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -225,7 +217,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/11/flatten-binary-tree-to-linked-list/" data-id="cj891nuss00ny4dtvnz9nswnb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/11/flatten-binary-tree-to-linked-list/" data-id="cj9mwqq8k00cwr9tvgu5w3k0a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

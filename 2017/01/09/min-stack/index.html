@@ -9,29 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Stack,Design" />
     
-    <meta name="description" content="Min StackDesign a stack that supports push, pop, top, and retrieving the minimum element in constant time.
-
-push(x) – Push element x onto stack.
-pop() – Removes the element on top of the stack.
-top()">
+    <meta name="description" content="Min StackDesign a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top()">
+<meta name="keywords" content="LeetCode,Go,Stack,Design">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Min Stack">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/01/09/min-stack/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Min StackDesign a stack that supports push, pop, top, and retrieving the minimum element in constant time.
-
-push(x) – Push element x onto stack.
-pop() – Removes the element on top of the stack.
-top()">
+<meta property="og:description" content="Min StackDesign a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top()">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:09:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Min Stack">
-<meta name="twitter:description" content="Min StackDesign a stack that supports push, pop, top, and retrieving the minimum element in constant time.
-
-push(x) – Push element x onto stack.
-pop() – Removes the element on top of the stack.
-top()">
+<meta name="twitter:description" content="Min StackDesign a stack that supports push, pop, top, and retrieving the minimum element in constant time.  push(x) – Push element x onto stack. pop() – Removes the element on top of the stack. top()">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -39,6 +29,8 @@ top()">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -211,7 +203,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> MinStack <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** initialize your data structure here. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">MinStack</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Push</span><span class="params">(x <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Pop</span><span class="params">()</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Top</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">GetMin</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your MinStack object will be instantiated and called as such:</div><div class="line"> * obj := Constructor();</div><div class="line"> * obj.Push(x);</div><div class="line"> * obj.Pop();</div><div class="line"> * param_3 := obj.Top();</div><div class="line"> * param_4 := obj.GetMin();</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> MinStack <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** initialize your data structure here. */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span> <span class="title">MinStack</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Push</span><span class="params">(x <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Pop</span><span class="params">()</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">Top</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MinStack)</span> <span class="title">GetMin</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Your MinStack object will be instantiated and called as such:</span></div><div class="line"><span class="comment"> * obj := Constructor();</span></div><div class="line"><span class="comment"> * obj.Push(x);</span></div><div class="line"><span class="comment"> * obj.Pop();</span></div><div class="line"><span class="comment"> * param_3 := obj.Top();</span></div><div class="line"><span class="comment"> * param_4 := obj.GetMin();</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>如果前面需要用上stack的部分都是自己實作的話，那麼應該可以很輕易的完成，畢竟只是從頭來接個LinkedList的方式而已，或是用Array來實作，懂得基本概念的話應該很容易。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>如果是像我一樣用LinkedList來實作的話，就需要有節點的實作，所以就先建立一個節點的架構，包含了該節點要儲存的值與下一個節點的位置，因為stack不會有節點往回走的情況，只有新增與刪除才會造成位置移動</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Node <span class="keyword">struct</span> &#123;</div><div class="line">	Val  <span class="keyword">int</span></div><div class="line">	Next *Node</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -234,7 +226,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/01/09/min-stack/" data-id="cj891nuf900414dtv02du3m6q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/01/09/min-stack/" data-id="cj9mwqq25003wr9tv22kp9m5p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

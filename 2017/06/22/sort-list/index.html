@@ -9,74 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,Sort" />
     
-    <meta name="description" content="Sort ListSort a linked list in O(n log n) time using constant space complexity.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-Sort
-MergeSort
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * typ">
+    <meta name="description" content="Sort ListSort a linked list in O(n log n) time using constant space complexity.    提示 解題應用     LinkedList Pointer   Sort MergeSort    Default:12345678910/** * Definition for singly-linked list. * typ">
+<meta name="keywords" content="LeetCode,Go,LinkedList,Sort">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sort List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/22/sort-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Sort ListSort a linked list in O(n log n) time using constant space complexity.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-Sort
-MergeSort
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * typ">
+<meta property="og:description" content="Sort ListSort a linked list in O(n log n) time using constant space complexity.    提示 解題應用     LinkedList Pointer   Sort MergeSort    Default:12345678910/** * Definition for singly-linked list. * typ">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-22T07:33:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sort List">
-<meta name="twitter:description" content="Sort ListSort a linked list in O(n log n) time using constant space complexity.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-Sort
-MergeSort
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * typ">
+<meta name="twitter:description" content="Sort ListSort a linked list in O(n log n) time using constant space complexity.    提示 解題應用     LinkedList Pointer   Sort MergeSort    Default:12345678910/** * Definition for singly-linked list. * typ">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -84,6 +29,8 @@ Default:12345678910/** * Definition for singly-linked list. * typ">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -253,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sortList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sortList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>要將資料做排序並且要在時間複雜度O(nlogn)之內完成，一開始當然就馬上想到快速排序，不過仔細看題目所給的資料是用LinkedList表示，如果用LinkedList直接硬做快速排序而不使用一些奇淫技巧的話會反而會非常慢，與其要去用那些技巧(像是把LinkedList轉為陣列等等)，倒不如去選擇適合LinkedList的方式，最恰當的當然就是用合併排序的方式來實作，基本上合併排序的概念就是先將資料拆解成細項(每次都將資料拆成兩塊)分別做排序，最後才將已排序的細項兩兩合併回去並再次整理成單一的排序資料，如下圖:</p>
 <p>原始資料: [50,10,90,30,70,40,80,60,20]</p>
 <p><img src="https://i.imgur.com/g2EWNpG.png" alt=""></p>
@@ -277,7 +224,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/22/sort-list/" data-id="cj891nuto00oi4dtvrllv2iwt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/22/sort-list/" data-id="cj9mwqq9600dor9tv6cjf554a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

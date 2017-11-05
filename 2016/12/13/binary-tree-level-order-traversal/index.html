@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,BreadthFirstSearch" />
     
-    <meta name="description" content="Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).
-For example:Given binary tree [3,9,20,null,null,">
+    <meta name="description" content="Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary tree [3,9,20,null,null,">
+<meta name="keywords" content="LeetCode,Go,Tree,BreadthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Level Order Traversal">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/12/13/binary-tree-level-order-traversal/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).
-For example:Given binary tree [3,9,20,null,null,">
+<meta property="og:description" content="Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary tree [3,9,20,null,null,">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:08:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Level Order Traversal">
-<meta name="twitter:description" content="Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).
-For example:Given binary tree [3,9,20,null,null,">
+<meta name="twitter:description" content="Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary tree [3,9,20,null,null,">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:Given binary tree [3,9,20,null,null,">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -203,7 +204,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">levelOrder</span><span class="params">(root *TreeNode)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">levelOrder</span><span class="params">(root *TreeNode)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>很明顯的是要使用廣度優先遍歷的方式來遍歷整棵二元樹，只是因為不一定是完全二元樹，所以不能用計算的方式來記錄要存到第幾個陣列，那麼就只好將該列的位數與節點一起儲存，並且當其左右子節點要進入隊列時將列的位數+1就可以了，如此以來在取出的時候就可以知道要存入哪個陣列(其實就是結果的最後一個陣列)。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這邊我是用LinkedList的方式來實現隊列，當然也可以用陣列的方式來實現，作法因人而異</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> QueneNode <span class="keyword">struct</span> &#123;</div><div class="line">	Row  <span class="keyword">int</span></div><div class="line">	Node *TreeNode</div><div class="line">	Next *QueneNode</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -220,7 +221,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/12/13/binary-tree-level-order-traversal/" data-id="cj891nued003c4dtv5avmi16f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/12/13/binary-tree-level-order-traversal/" data-id="cj9mwqq1q003cr9tv6bitu6wg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

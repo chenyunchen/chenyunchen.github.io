@@ -9,26 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList" />
     
-    <meta name="description" content="Swap Nodes in PairsGiven a linked list, swap every two adjacent nodes and return its head.
-For example:
-1Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, you should return the list as 2-&amp;gt;1-&amp;gt;4-&amp;gt;3.
-Your algorithm s">
+    <meta name="description" content="Swap Nodes in PairsGiven a linked list, swap every two adjacent nodes and return its head. For example: 1Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, you should return the list as 2-&amp;gt;1-&amp;gt;4-&amp;gt;3. Your algorithm s">
+<meta name="keywords" content="LeetCode,Go,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swap Nodes in Pairs">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/11/05/swap-nodes-in-pairs/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Swap Nodes in PairsGiven a linked list, swap every two adjacent nodes and return its head.
-For example:
-1Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, you should return the list as 2-&amp;gt;1-&amp;gt;4-&amp;gt;3.
-Your algorithm s">
+<meta property="og:description" content="Swap Nodes in PairsGiven a linked list, swap every two adjacent nodes and return its head. For example: 1Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, you should return the list as 2-&amp;gt;1-&amp;gt;4-&amp;gt;3. Your algorithm s">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:05:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swap Nodes in Pairs">
-<meta name="twitter:description" content="Swap Nodes in PairsGiven a linked list, swap every two adjacent nodes and return its head.
-For example:
-1Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, you should return the list as 2-&amp;gt;1-&amp;gt;4-&amp;gt;3.
-Your algorithm s">
+<meta name="twitter:description" content="Swap Nodes in PairsGiven a linked list, swap every two adjacent nodes and return its head. For example: 1Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4, you should return the list as 2-&amp;gt;1-&amp;gt;4-&amp;gt;3. Your algorithm s">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -36,6 +29,8 @@ Your algorithm s">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -204,7 +199,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapPairs</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapPairs</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>由於不會太複雜，所以很快就想好了大概，在這邊會發現到一定是前後兩個一組湊一組交換，那麼其實只要設一個計數器只要是偶數就只與前交換，或者是只要是基數就只與後交換，如此一來就搞定了，不過這邊有一點要注意到就是每組之間的聯繫，如果下一組只有一個那當然只要接上就好，但如果是兩個勢必會做交換，這時前一組要接續的下一個節點就會是交換前原本在後面的節點，只要有注意到這回事應該沒有什麼大問題。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始簡單的判斷一下是不是有兩個以上，如果只有一個就只要回傳第一個位置就好，但如果有兩個以上就要傳第二個的位置，畢竟會交換跑至開頭的位置，這邊會發現這次沒有做頭節點，因為不會在第一個節點做刪除或在其之前做插入，所以就不須理會一致性的操作。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> top *ListNode</div><div class="line"><span class="keyword">if</span> head != <span class="literal">nil</span> &amp;&amp; head.Next != <span class="literal">nil</span> &#123;</div><div class="line">	top = head.Next</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	top = head</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -219,7 +214,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/11/05/swap-nodes-in-pairs/" data-id="cj891nudx002u4dtvh78bw2z5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/11/05/swap-nodes-in-pairs/" data-id="cj9mwqq15002qr9tv2yhkb4ep" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -356,20 +351,20 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/2016/11/05/remove-duplicates-from-sorted-array/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/11/06/remove-element/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            Remove Duplicates from Sorted Array
+            Remove Element
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2016/11/02/merge-two-sorted-lists/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/11/05/remove-duplicates-from-sorted-array/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Merge Two Sorted Lists</p>
+        <p class="article-nav-title">Remove Duplicates from Sorted Array</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     

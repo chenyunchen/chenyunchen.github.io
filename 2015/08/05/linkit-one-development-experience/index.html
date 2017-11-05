@@ -9,47 +9,19 @@
     
         <meta name="keywords" content="LinkitOne" />
     
-    <meta name="description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試
-這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~
-因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!
-希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~
-如果有任何問題或指教歡迎來信: yunchen@nisra.net
-本篇心得
-優點 
-
-定位 
-
-問題">
+    <meta name="description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試 這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~ 因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉! 希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~ 如果有任何問題或指教歡迎來信: yunchen@nisra.net 本篇心得 優點   定位   問題">
+<meta name="keywords" content="LinkitOne">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linkit One 開發心得">
 <meta property="og:url" content="https://blog.yunchen.tw/2015/08/05/linkit-one-development-experience/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試
-這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~
-因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!
-希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~
-如果有任何問題或指教歡迎來信: yunchen@nisra.net
-本篇心得
-優點 
-
-定位 
-
-問題">
+<meta property="og:description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試 這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~ 因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉! 希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~ 如果有任何問題或指教歡迎來信: yunchen@nisra.net 本篇心得 優點   定位   問題">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://user-image.logdown.io/user/6608/blog/6585/post/289221/kQ2OexxiSMa0kmtVs8BE_11402357_673406076122602_6614117976044936312_o.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:02:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linkit One 開發心得">
-<meta name="twitter:description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試
-這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~
-因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉!
-希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~
-如果有任何問題或指教歡迎來信: yunchen@nisra.net
-本篇心得
-優點 
-
-定位 
-
-問題">
+<meta name="twitter:description" content="前言感謝MTK聯發科提供機會讓我有幸能參予Linkit One的測試 這是我在這一段時間的體驗，其中包含了很多我自己的看法，若有不足之處還請多包涵~ 因為已經有相當多的開箱文及介紹 所以我大多只紀錄一些比較印象深刻的地方囉! 希望能藉由這篇心得快速的來帶大家認識Linkit One及上手開發~ 如果有任何問題或指教歡迎來信: yunchen@nisra.net 本篇心得 優點   定位   問題">
 <meta name="twitter:image" content="http://user-image.logdown.io/user/6608/blog/6585/post/289221/kQ2OexxiSMa0kmtVs8BE_11402357_673406076122602_6614117976044936312_o.jpg">
     
 
@@ -57,6 +29,8 @@
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -308,7 +282,7 @@ ga('send', 'pageview');
 <p>這邊<strong>Casear Chu</strong>已經fork了原Arduino-Websocket的專案，並已經修改成LinkitOne-Websocket</p>
 <p>可以讓我們直接使用! 以OSX為例，只要到 ~/Documents/Arduino/libraries</p>
 <p>用git將專案複製下來就搞定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git clone git@github.com:Casear/LinkitOne-Websocket.git</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git clone git@github.com:Casear/LinkitOne-Websocket.git</div></pre></td></tr></table></figure>
 <p>如果是Windows的用戶 直進點選右邊的Download ZIP 解壓縮到你的library資料夾就ok</p>
 <p><a href="">https://github.com/Casear/LinkitOne-Websocket</a></p>
 <p>不過範例code還尚未修改，其實只要將WiFly的library換成Linkit One的就可以了</p>
@@ -322,7 +296,7 @@ ga('send', 'pageview');
 <p>ws: <a href="">https://github.com/websockets/ws</a></p>
 <p>WebSocket-Node: <a href="">https://github.com/theturtle32/WebSocket-Node</a></p>
 <p>上述兩種module或framework已經自帶websocket 就隨你處理囉</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server</div><div class="line"></div><div class="line">  , wss = <span class="keyword">new</span> WebSocketServer(&#123; port: <span class="number">8124</span> &#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> <span class="title">connection</span>(<span class="params">ws</span>) </span>&#123;</div><div class="line"></div><div class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> <span class="title">incoming</span>(<span class="params">message</span>) </span>&#123;</div><div class="line"></div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'received: %s'</span>, message);</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> WebSocketServer = <span class="built_in">require</span>(<span class="string">'ws'</span>).Server</div><div class="line"></div><div class="line">  , wss = <span class="keyword">new</span> WebSocketServer(&#123; <span class="attr">port</span>: <span class="number">8124</span> &#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> <span class="title">connection</span>(<span class="params">ws</span>) </span>&#123;</div><div class="line"></div><div class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> <span class="title">incoming</span>(<span class="params">message</span>) </span>&#123;</div><div class="line"></div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'received: %s'</span>, message);</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>結果大概會長的像這樣~</p>
 <p><img src="http://user-image.logdown.io/user/6608/blog/6585/post/289221/VdwTpK8SmeD5RKXRcygb_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%20%E4%B8%8B%E5%8D%889.37.07.png" alt="螢幕快照 2015-08-05 下午9.37.07.png"></p>
 <p>而接收到的資料看是要存到mongodb，或像是rethinkdb這類的real time db也都是不錯的選擇</p>
@@ -346,7 +320,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2015/08/05/linkit-one-development-experience/" data-id="cj891nucu00254dtvufsina66" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2015/08/05/linkit-one-development-experience/" data-id="cj9mwqq0o0023r9tv2yc0l5d6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

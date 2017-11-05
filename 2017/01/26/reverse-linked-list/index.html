@@ -9,62 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList" />
     
-    <meta name="description" content="Reverse Linked ListReverse a singly linked list.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * type ListNode struct &amp;#123; *     Val int *     Nex">
+    <meta name="description" content="Reverse Linked ListReverse a singly linked list.    提示 解題應用     LinkedList Pointer    Default:12345678910/** * Definition for singly-linked list. * type ListNode struct &amp;#123; *     Val int *     Nex">
+<meta name="keywords" content="LeetCode,Go,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reverse Linked List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/01/26/reverse-linked-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Reverse Linked ListReverse a singly linked list.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * type ListNode struct &amp;#123; *     Val int *     Nex">
+<meta property="og:description" content="Reverse Linked ListReverse a singly linked list.    提示 解題應用     LinkedList Pointer    Default:12345678910/** * Definition for singly-linked list. * type ListNode struct &amp;#123; *     Val int *     Nex">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:11:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reverse Linked List">
-<meta name="twitter:description" content="Reverse Linked ListReverse a singly linked list.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * type ListNode struct &amp;#123; *     Val int *     Nex">
+<meta name="twitter:description" content="Reverse Linked ListReverse a singly linked list.    提示 解題應用     LinkedList Pointer    Default:12345678910/** * Definition for singly-linked list. * type ListNode struct &amp;#123; *     Val int *     Nex">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -72,6 +29,8 @@ Default:12345678910/** * Definition for singly-linked list. * type ListNode stru
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -237,7 +196,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>僅需要一次的遍歷就可以同時反轉整個LinkedList，想好每一個操作的流程就可以很輕易的完成，只是要記得在將節點的位置移動到下一個之前，要先記錄前一個節點的位置，以繼續將其目標再指向更前方。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這邊我以flag來記錄目前正在處理的節點，以方便我們將整個節點移動到下一個時，能繼續將前一個節點的目標再往前指向，而preNode就是其所指向的位置，既然是反轉LinkedList，那麼原本第一個節點會成為最後一個，而最後一個節點的下一個自然就是空節點nil，而flag指定完畢往下移動後，自然preNode也就跟著往下移變到flag的位置，最後處理完最後一個節點時，回傳當下處理的節點位置，也就是原本最後一個的節點變成第一個節點且處理完畢的flag</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> flag *ListNode</div><div class="line"><span class="keyword">var</span> preNode *ListNode</div><div class="line"><span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</div><div class="line">	flag = head</div><div class="line">	head = head.Next</div><div class="line">	flag.Next = preNode</div><div class="line">	preNode = flag</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> flag</div></pre></td></tr></table></figure>
@@ -250,7 +209,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/01/26/reverse-linked-list/" data-id="cj891nufw004n4dtvs8vutblz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/01/26/reverse-linked-list/" data-id="cj9mwqq2o004qr9tvdf7x3eb5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

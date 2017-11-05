@@ -9,35 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Modify,Tree,DepthFirstSearch,BreadthFirstSearch" />
     
-    <meta name="description" content="Minimum Depth of Binary TreeGiven a binary tree, find its minimum depth.
-The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
-
-
-
-提示
-解題應用">
+    <meta name="description" content="Minimum Depth of Binary TreeGiven a binary tree, find its minimum depth. The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.    提示 解題應用">
+<meta name="keywords" content="LeetCode,Go,Modify,Tree,DepthFirstSearch,BreadthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minimum Depth of Binary Tree">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/12/27/minimum-depth-of-binary-tree/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Minimum Depth of Binary TreeGiven a binary tree, find its minimum depth.
-The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
-
-
-
-提示
-解題應用">
+<meta property="og:description" content="Minimum Depth of Binary TreeGiven a binary tree, find its minimum depth. The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.    提示 解題應用">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:09:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Minimum Depth of Binary Tree">
-<meta name="twitter:description" content="Minimum Depth of Binary TreeGiven a binary tree, find its minimum depth.
-The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
-
-
-
-提示
-解題應用">
+<meta name="twitter:description" content="Minimum Depth of Binary TreeGiven a binary tree, find its minimum depth. The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.    提示 解題應用">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -45,6 +29,8 @@ The minimum depth is the number of nodes along the shortest path from the root n
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -215,7 +201,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">minDepth</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">minDepth</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>一般來說題目所給的通常是要你找出二元樹的最大深度，不過此題卻你要找的是最小深度，而最小深度要注意的是如果是從最大深度來做修改，那麼對於左右子節點若其一為nil，並不表示這就是最小深度，因為最小深度要找的是從存在的樹根中尋找最短的，所以在做遞回後序遍歷時，原本碰上nil節點回傳該節點的深度-1改為一個32位元int的最大值，如此一來就可以直接拿來做比較，也不會受到nil節點的影響了(因為一定不是最小)。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>(此題思路有修正，建議看完直接拉到最底下參考修正的部分)</p>
 <p>除了在最一開始root根節點為nil時要回傳0之外，其餘的nil值一律回傳最大值方便後續比較，而存在節點的左右子節點就一樣分別做遞回，如果其中一個子樹最小深度不是最大值(該子樹存在)，就只要直接與另一個子樹做比較，就算比較的子樹不存在也會因為回傳的值是極大值而傳回原本比較小且存在的子樹深度，而如果是兩個子樹都存在的情況也不需要再加判斷式，因為原本就是在做最小值的比較，而最後如果兩左右子節點都不存在，才回傳該節點的深度。</p>
@@ -230,7 +216,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/12/27/minimum-depth-of-binary-tree/" data-id="cj891nuee003d4dtv9sz1oks6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/12/27/minimum-depth-of-binary-tree/" data-id="cj9mwqq1v003ir9tvk19ylj5d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

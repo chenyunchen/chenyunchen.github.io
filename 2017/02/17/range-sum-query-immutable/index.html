@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,DynamicProgramming" />
     
-    <meta name="description" content="Range Sum Query - ImmutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
+    <meta name="description" content="Range Sum Query - ImmutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive. For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
+<meta name="keywords" content="LeetCode,Go,DynamicProgramming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Range Sum Query - Immutable">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/02/17/range-sum-query-immutable/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Range Sum Query - ImmutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
+<meta property="og:description" content="Range Sum Query - ImmutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive. For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:14:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Range Sum Query - Immutable">
-<meta name="twitter:description" content="Range Sum Query - ImmutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
+<meta name="twitter:description" content="Range Sum Query - ImmutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive. For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For Example:12345Given nums = [-2, 0, 3, -5, 2, -1]sumRange(0, 2) -&amp;gt">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -201,7 +202,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumArray <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">NumArray</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">SumRange</span><span class="params">(i <span class="keyword">int</span>, j <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your NumArray object will be instantiated and called as such:</div><div class="line"> * obj := Constructor(nums);</div><div class="line"> * param_1 := obj.SumRange(i,j);</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumArray <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">NumArray</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">SumRange</span><span class="params">(i <span class="keyword">int</span>, j <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Your NumArray object will be instantiated and called as such:</span></div><div class="line"><span class="comment"> * obj := Constructor(nums);</span></div><div class="line"><span class="comment"> * param_1 := obj.SumRange(i,j);</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這題沒有什麼技巧，單純測試最基本的物件概念實作，而物件的function是要算出該陣列中index範圍間的總合，基本上就是初始化時將值存入物件，最後在function去呼叫儲存在物件的陣列，用迴圈遍歷範圍值總合回傳就結束了。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>首先先定義好要存在物件裡值的型別，接著當建構function被呼叫時將值帶入一個初始化的物件並回傳，最後在SumRange被呼叫時利用this來存取初始化帶入的陣列，並用迴圈遍歷範圍的index值做總合回傳</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumArray <span class="keyword">struct</span> &#123;</div><div class="line">	Nums []<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">NumArray</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> NumArray&#123;nums&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">SumRange</span><span class="params">(i <span class="keyword">int</span>, j <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> sum <span class="keyword">int</span></div><div class="line">	<span class="keyword">for</span> i &lt;= j &#123;</div><div class="line">		sum += this.Nums[i]</div><div class="line">		i++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> sum</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -214,7 +215,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/02/17/range-sum-query-immutable/" data-id="cj891nugn005p4dtv293b4v12" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/02/17/range-sum-query-immutable/" data-id="cj9mwqq3l005ur9tvypwlfz31" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

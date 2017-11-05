@@ -9,32 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,HashTable,Stack,Tree" />
     
-    <meta name="description" content="Binary Tree Inorder TraversalGiven a binary tree, return the inorder traversal of its nodes’ values.
-For example:Given binary tree [1,null,2,3],
-123451 \  2 /3
-return [1,3,2].
-Note:
-Recursive solutio">
+    <meta name="description" content="Binary Tree Inorder TraversalGiven a binary tree, return the inorder traversal of its nodes’ values. For example:Given binary tree [1,null,2,3], 123451 \  2 /3 return [1,3,2]. Note: Recursive solutio">
+<meta name="keywords" content="LeetCode,Go,HashTable,Stack,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Inorder Traversal">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/01/binary-tree-inorder-traversal/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Binary Tree Inorder TraversalGiven a binary tree, return the inorder traversal of its nodes’ values.
-For example:Given binary tree [1,null,2,3],
-123451 \  2 /3
-return [1,3,2].
-Note:
-Recursive solutio">
+<meta property="og:description" content="Binary Tree Inorder TraversalGiven a binary tree, return the inorder traversal of its nodes’ values. For example:Given binary tree [1,null,2,3], 123451 \  2 /3 return [1,3,2]. Note: Recursive solutio">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-01T01:07:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Inorder Traversal">
-<meta name="twitter:description" content="Binary Tree Inorder TraversalGiven a binary tree, return the inorder traversal of its nodes’ values.
-For example:Given binary tree [1,null,2,3],
-123451 \  2 /3
-return [1,3,2].
-Note:
-Recursive solutio">
+<meta name="twitter:description" content="Binary Tree Inorder TraversalGiven a binary tree, return the inorder traversal of its nodes’ values. For example:Given binary tree [1,null,2,3], 123451 \  2 /3 return [1,3,2]. Note: Recursive solutio">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -42,6 +29,8 @@ Recursive solutio">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -216,7 +205,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>樹的遍歷一直都是很基本綀習，一般來說都會直接用遞回的方式來實作，中序遍歷的話大致如下:</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">inorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> travel(root, []<span class="keyword">int</span>&#123;&#125;)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">travel</span><span class="params">(node *TreeNode, inOrderList []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> node == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> inOrderList</div><div class="line">	&#125;</div><div class="line">	inOrderList = travel(node.Left, inOrderList)</div><div class="line">	inOrderList = <span class="built_in">append</span>(inOrderList, node.Val)</div><div class="line">	inOrderList = travel(node.Right, inOrderList)</div><div class="line">	<span class="keyword">return</span> inOrderList</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>但是這次還希望你可以嘗試不用遞回的方式來實作，這時就需要用上stack的方式來協助處理，概念上大致就是一開始不斷的遍歷左子節點並放入stack之中，待左側全數放入後才從stack取出最新的節點往右子節點移動一次，再重覆覆上述動作(遍歷左子節點)直到stack中的節點完全取出為止，而前序遍歷與中序遍歷只是差在對節點處理的時機而已，至於後序遍歷則稍為複雜點，處理節點的時機與前序遍歷相同但一開始是不斷的遍歷”右子節點”並放入stack之中，待右側全數放入後才從stack取出最新的節點往”左子節點”移動一次，也就是說後序遍歷與前序遍歷的差別是左右顛倒罷了，不過不管是遞回的方式來實作還是stack的方式來實作本質上其實是一樣的，遞回實作其實底層也是用上stack，何況兩者的時間、空間複雜度都一樣，所以說如果想要有更好的遍歷方式可以參考<a href="http://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html" target="_blank" rel="external">Morris Traversal</a>，不用遞回也不用stack且空間複雜度只有O(1)。</p>
@@ -233,7 +222,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/01/binary-tree-inorder-traversal/" data-id="cj891nus800nm4dtvdf33t1o2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/01/binary-tree-inorder-traversal/" data-id="cj9mwqq8600c8r9tvyx8sc27s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

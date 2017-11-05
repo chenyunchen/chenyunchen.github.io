@@ -9,35 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Array,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Construct Binary Tree from Preorder and Inorder TraversalGiven preorder and inorder traversal of a tree, construct the binary tree.
-Note:
-You may assume that duplicates do not exist in the tree.
-
-
-
-提">
+    <meta name="description" content="Construct Binary Tree from Preorder and Inorder TraversalGiven preorder and inorder traversal of a tree, construct the binary tree. Note: You may assume that duplicates do not exist in the tree.    提">
+<meta name="keywords" content="LeetCode,Go,Array,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Construct Binary Tree from Preorder and Inorder Traversal">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/06/construct-binary-tree-from-preorder-and-inorder-traversal/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Construct Binary Tree from Preorder and Inorder TraversalGiven preorder and inorder traversal of a tree, construct the binary tree.
-Note:
-You may assume that duplicates do not exist in the tree.
-
-
-
-提">
+<meta property="og:description" content="Construct Binary Tree from Preorder and Inorder TraversalGiven preorder and inorder traversal of a tree, construct the binary tree. Note: You may assume that duplicates do not exist in the tree.    提">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-06T15:43:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Construct Binary Tree from Preorder and Inorder Traversal">
-<meta name="twitter:description" content="Construct Binary Tree from Preorder and Inorder TraversalGiven preorder and inorder traversal of a tree, construct the binary tree.
-Note:
-You may assume that duplicates do not exist in the tree.
-
-
-
-提">
+<meta name="twitter:description" content="Construct Binary Tree from Preorder and Inorder TraversalGiven preorder and inorder traversal of a tree, construct the binary tree. Note: You may assume that duplicates do not exist in the tree.    提">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -45,6 +29,8 @@ You may assume that duplicates do not exist in the tree.
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -212,7 +198,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">buildTree</span><span class="params">(preorder []<span class="keyword">int</span>, inorder []<span class="keyword">int</span>)</span> *<span class="title">TreeNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">buildTree</span><span class="params">(preorder []<span class="keyword">int</span>, inorder []<span class="keyword">int</span>)</span> *<span class="title">TreeNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這次要透過前序遍歷與中序遍歷的結果來還原成一棵二元樹，但是要注意到是還原成二元樹並不是二元搜尋樹，也就是說沒有經過排序，所以中序遍歷的參數才不是由小至大排序的結果，至於要如何透過這兩個線索來還原，前序遍歷的陣列值最主要就是能依序取得樹的根節點，而中序遍歷則是能藉由根節點的值來知道左右子樹有哪些節點值(根節點值左邊全部的值就是左子樹的節點值，反之右邊全部的值就是右子樹的節點值)，如下(因數字無關排序，以英文表示):</p>
 <ul>
 <li><p>前序遍歷: “G” DAFEMHZ</p>
@@ -245,7 +231,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/06/construct-binary-tree-from-preorder-and-inorder-traversal/" data-id="cj891nus300ni4dtvc6vsufc6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/06/construct-binary-tree-from-preorder-and-inorder-traversal/" data-id="cj9mwqq8d00ckr9tvrhdnfpxd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

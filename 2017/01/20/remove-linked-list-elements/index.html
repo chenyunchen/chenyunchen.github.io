@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList" />
     
-    <meta name="description" content="Remove Linked List ElementsRemove all elements from a linked list of integers that have value val.
-Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6Return: 1 --&amp;gt; 2">
+    <meta name="description" content="Remove Linked List ElementsRemove all elements from a linked list of integers that have value val. Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6Return: 1 --&amp;gt; 2">
+<meta name="keywords" content="LeetCode,Go,LinkedList">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remove Linked List Elements">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/01/20/remove-linked-list-elements/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Remove Linked List ElementsRemove all elements from a linked list of integers that have value val.
-Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6Return: 1 --&amp;gt; 2">
+<meta property="og:description" content="Remove Linked List ElementsRemove all elements from a linked list of integers that have value val. Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6Return: 1 --&amp;gt; 2">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:11:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Remove Linked List Elements">
-<meta name="twitter:description" content="Remove Linked List ElementsRemove all elements from a linked list of integers that have value val.
-Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6Return: 1 --&amp;gt; 2">
+<meta name="twitter:description" content="Remove Linked List ElementsRemove all elements from a linked list of integers that have value val. Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt; 5 --&amp;gt; 6, val = 6Return: 1 --&amp;gt; 2">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ Example:12Given: 1 --&amp;gt; 2 --&amp;gt; 6 --&amp;gt; 3 --&amp;gt; 4 --&amp;gt
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -196,7 +197,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeElements</span><span class="params">(head *ListNode, val <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeElements</span><span class="params">(head *ListNode, val <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>總覺得類似的題目非常的多，而一樣為了要確保操作上的一致性，所以在第一個節點前再加上一個頭節點，接著就是找到目標節點然後對其做嫁接，至於要不要再多寫一行去釋放其記憶體就看個人，只是要記得再往下一個節點尋找時要記錄前一個節點的位置，畢竟節點設計的遍歷是不可逆，記錄後便能直接進行嫁接而不需再去尋找前一個節點的位置。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>正如前述為了要確保一致性，所以就先初始化一個節點然後指向原本第一個節點的位置，而且最後仍須回傳整個LinkedList的第一個節點，只管回傳頭節點的所指向的下一個位置，不需要擔心如果是前面節點被砍掉還要判斷回傳後頭節點的問題，不過這次我們就直接從第一個節點開始，而不是從我們新增的頭節點開始，因為檢查自己加頭節點的值根本沒有意義，同時也要記得要記錄前一個節點的位置，方便在迴圈進行節點遍歷而找到目標節點時進行的嫁接，在嫁接時可能會出現連續要跳過好幾個目標節點，這時前一個節點的位置就不需要改變，一直到沒有再嫁接的狀況出現，當前節點開始繼續往下移動，紀錄前一個節點的位置才需要隨著改變</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">header := &amp;ListNode&#123;&#125;</div><div class="line"><span class="keyword">var</span> preNode *ListNode</div><div class="line">header.Next = head</div><div class="line">preNode = header</div><div class="line"><span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">if</span> head.Val == val &#123;</div><div class="line">		preNode.Next = head.Next</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		preNode = head</div><div class="line">	&#125;</div><div class="line">	head = head.Next</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> header.Next</div></pre></td></tr></table></figure>
@@ -209,7 +210,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/01/20/remove-linked-list-elements/" data-id="cj891nufn004e4dtvkd4gbgo3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/01/20/remove-linked-list-elements/" data-id="cj9mwqq2k004jr9tvdhzcftjg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

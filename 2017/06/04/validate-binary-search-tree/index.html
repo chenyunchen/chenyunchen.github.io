@@ -9,26 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Validate Binary Search TreeGiven a binary tree, determine if it is a valid binary search tree (BST).
-Assume a BST is defined as follows:
-
-The left subtree of a node contains only nodes with keys less">
+    <meta name="description" content="Validate Binary Search TreeGiven a binary tree, determine if it is a valid binary search tree (BST). Assume a BST is defined as follows:  The left subtree of a node contains only nodes with keys less">
+<meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Validate Binary Search Tree">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/04/validate-binary-search-tree/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Validate Binary Search TreeGiven a binary tree, determine if it is a valid binary search tree (BST).
-Assume a BST is defined as follows:
-
-The left subtree of a node contains only nodes with keys less">
+<meta property="og:description" content="Validate Binary Search TreeGiven a binary tree, determine if it is a valid binary search tree (BST). Assume a BST is defined as follows:  The left subtree of a node contains only nodes with keys less">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-04T15:03:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Validate Binary Search Tree">
-<meta name="twitter:description" content="Validate Binary Search TreeGiven a binary tree, determine if it is a valid binary search tree (BST).
-Assume a BST is defined as follows:
-
-The left subtree of a node contains only nodes with keys less">
+<meta name="twitter:description" content="Validate Binary Search TreeGiven a binary tree, determine if it is a valid binary search tree (BST). Assume a BST is defined as follows:  The left subtree of a node contains only nodes with keys less">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -36,6 +29,8 @@ The left subtree of a node contains only nodes with keys less">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -211,7 +206,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValidBST</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValidBST</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>要檢查一個二元樹是否有排序其實非常簡單，如果是一個二元搜尋樹的話，那麼只要中序遍歷其結果就會很神奇的由小排至大，所以利用這個特性只要一邊用中序遍歷一邊檢查此節點值是否比前一個大，直到全數遍歷完畢就可以確認是否為合法的二元搜尋樹。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>因為要一邊用中序遍歷一邊檢查此節點值是否比前一個大，所以參數多一個變數用來儲存前一個節點的值以方便遍歷時能一邊比較，而因為比較的方式是檢查節點值是否比前一個大，所以一開始用0或是Int32位元的極小值做為初始值來讓根節點的值(第1個節點)能與暫存值比較，然而因為題目的測資都有設想到用這些值做為根節點的值，所以最後乾脆就直接用boolean值來判斷是否為初始值</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValidBST</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> pre <span class="keyword">int</span></div><div class="line">	init := <span class="literal">true</span></div><div class="line">	<span class="keyword">return</span> inOrderTravel(root, &amp;pre, &amp;init)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -226,7 +221,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/04/validate-binary-search-tree/" data-id="cj891nusd00no4dtvsqiwcv3x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/04/validate-binary-search-tree/" data-id="cj9mwqq8a00cfr9tvtg57qejr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

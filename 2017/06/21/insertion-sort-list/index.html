@@ -9,74 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,Sort" />
     
-    <meta name="description" content="Insertion Sort ListSort a linked list using insertion sort.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-Sort
-Insertion Sort
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * type ListNode stru">
+    <meta name="description" content="Insertion Sort ListSort a linked list using insertion sort.    提示 解題應用     LinkedList Pointer   Sort Insertion Sort    Default:12345678910/** * Definition for singly-linked list. * type ListNode stru">
+<meta name="keywords" content="LeetCode,Go,LinkedList,Sort">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Insertion Sort List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/21/insertion-sort-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Insertion Sort ListSort a linked list using insertion sort.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-Sort
-Insertion Sort
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * type ListNode stru">
+<meta property="og:description" content="Insertion Sort ListSort a linked list using insertion sort.    提示 解題應用     LinkedList Pointer   Sort Insertion Sort    Default:12345678910/** * Definition for singly-linked list. * type ListNode stru">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-20T15:57:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Insertion Sort List">
-<meta name="twitter:description" content="Insertion Sort ListSort a linked list using insertion sort.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-Sort
-Insertion Sort
-
-
-
-Default:12345678910/** * Definition for singly-linked list. * type ListNode stru">
+<meta name="twitter:description" content="Insertion Sort ListSort a linked list using insertion sort.    提示 解題應用     LinkedList Pointer   Sort Insertion Sort    Default:12345678910/** * Definition for singly-linked list. * type ListNode stru">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -84,6 +29,8 @@ Default:12345678910/** * Definition for singly-linked list. * type ListNode stru
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -253,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertionSortList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertionSortList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這題要你實作LinkedList的插入排序，只要有玩過撲克牌的人都應該有整理排的經驗，如果卡片比前面的牌小就抽出該張卡往前面找，直到發現前面已排序的卡片有大小範圍最接近該張卡片的位置才做插入，不過因為是單向的LinkedList，所以在抽出節點之後是從最開頭向後找直到發現比該值大的節點才插在前面。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>為了確保能一直指向LinkedList最新的開頭節點(也能讓開頭節點與其它節點一樣有操作上的一致性)，一開始便自行製做一個頭節點並將LinkedList接在頭節點後頭才開始遍歷，每次比較就像是整理撲克牌一樣，如果節點值比前面的小就抽出該節點，而因為前面經整理後都會是由小排序至大的LinkedList，所以其實前一個節點都會是到該節點為止的最大值，如果目前遍歷到的節點值比最大值大，便將該節點值取代最大值並繼續往下遍歷(也要記得記錄前一個節點的位置以利後續發生要嫁接的情況)，如果遍歷到的節點值比最大值小，這時就需要將節點抽出(這邊是將抽出節點的前一個與下一個節點做嫁接)，並找出前面已排序LinkedList的適當位置做插入(這邊帶入頭節點與該節點的位置至其它函數處理)，待LinkedList排序完畢之後便回傳自製頭節點的下一個位址(也就是排序LinkedList最新的開頭節點)</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertionSortList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> next *ListNode</div><div class="line">	header := &amp;ListNode&#123;<span class="number">0</span>, head&#125;</div><div class="line">	pre := header</div><div class="line">	max := math.MinInt32</div><div class="line">	<span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</div><div class="line">		next = head.Next</div><div class="line">		<span class="keyword">if</span> head.Val &gt;= max &#123;</div><div class="line">			max = head.Val</div><div class="line">			pre = head</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			pre.Next = head.Next</div><div class="line">			insert(header, head)</div><div class="line">		&#125;</div><div class="line">		head = next</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> header.Next</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -268,7 +215,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/21/insertion-sort-list/" data-id="cj891nutl00og4dtvsnem3sqo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/21/insertion-sort-list/" data-id="cj9mwqq9400dlr9tvrbtkn88g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

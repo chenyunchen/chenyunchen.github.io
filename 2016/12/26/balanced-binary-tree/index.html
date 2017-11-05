@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Balanced Binary TreeGiven a binary tree, determine if it is height-balanced.
-For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of ever">
+    <meta name="description" content="Balanced Binary TreeGiven a binary tree, determine if it is height-balanced. For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of ever">
+<meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Balanced Binary Tree">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/12/26/balanced-binary-tree/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Balanced Binary TreeGiven a binary tree, determine if it is height-balanced.
-For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of ever">
+<meta property="og:description" content="Balanced Binary TreeGiven a binary tree, determine if it is height-balanced. For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of ever">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:09:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Balanced Binary Tree">
-<meta name="twitter:description" content="Balanced Binary TreeGiven a binary tree, determine if it is height-balanced.
-For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of ever">
+<meta name="twitter:description" content="Balanced Binary TreeGiven a binary tree, determine if it is height-balanced. For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of ever">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -200,7 +201,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isBalanced</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isBalanced</span><span class="params">(root *TreeNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這題單純的只是要判斷樹是否平衡而已，所幸不是要做複雜的樹平衡AVL，而既然要判斷是否平衡就需要知道左右子節點的最大深度，理所當然就先將判斷樹最大深度的部分寫出來，接著利用在判斷該節點的最大深度時必會先拿到左右子節點最大深度的特性，藉此將左右子節點最大深度做相減來判斷是否平衡，如果確定平衡才將該節點的最大深度向上回傳繼續做比較。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>基本上與樹最大深度判斷所做的遞回後序遍歷非常相似，只是多了需要判斷平衡的部分，而在一開始如果節點為nil或已經到了樹的末端就回傳最大深度-1(因為該節點不存在)，既然是空節點就肯定沒有平衡問題就回傳true，而節點不為nil就繼續分成左右兩子節點做遞回，當左右子節點的值回來時，先判斷左右子樹是否已經平衡，接著才將左右子樹的最大深度相減是否超過1以此判斷該樹是否平衡，這邊要注意的是因為不曉得左右子樹誰的深度比較大，所以相減有負的情況也要考量進去。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> maxRowL <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> maxRowR <span class="keyword">int</span></div><div class="line"><span class="keyword">if</span> node == <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">return</span> maxRow - <span class="number">1</span>, <span class="literal">true</span></div><div class="line">&#125;</div><div class="line">maxRowL, balanceL := postOrderTravel(node.Left, maxRow+<span class="number">1</span>)</div><div class="line">maxRowR, balanceR := postOrderTravel(node.Right, maxRow+<span class="number">1</span>)</div><div class="line"><span class="keyword">if</span> balanceL &amp;&amp; balanceR &#123;</div><div class="line">	<span class="keyword">if</span> maxRowL-maxRowR &gt;= <span class="number">0</span> &amp;&amp; maxRowL-maxRowR &lt;= <span class="number">1</span> &#123;</div><div class="line">		<span class="keyword">return</span> maxRowL, <span class="literal">true</span></div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> maxRowR-maxRowL &gt;= <span class="number">0</span> &amp;&amp; maxRowR-maxRowL &lt;= <span class="number">1</span> &#123;</div><div class="line">		<span class="keyword">return</span> maxRowR, <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>, <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>, <span class="literal">false</span></div></pre></td></tr></table></figure>
@@ -213,7 +214,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/12/26/balanced-binary-tree/" data-id="cj891nuem003g4dtv3pnee98j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/12/26/balanced-binary-tree/" data-id="cj9mwqq1u003gr9tvz1c1dh6y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

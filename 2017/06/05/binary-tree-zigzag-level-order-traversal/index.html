@@ -10,11 +10,13 @@
         <meta name="keywords" content="LeetCode,Go,Stack,Tree,BreadthFirstSearch" />
     
     <meta name="description" content="Binary Tree Zigzag Level Order TraversalGiven a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate">
+<meta name="keywords" content="LeetCode,Go,Stack,Tree,BreadthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Zigzag Level Order Traversal">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/05/binary-tree-zigzag-level-order-traversal/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
 <meta property="og:description" content="Binary Tree Zigzag Level Order TraversalGiven a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-05T01:49:42.000Z">
 <meta name="twitter:card" content="summary">
@@ -27,6 +29,8 @@
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -196,7 +200,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">zigzagLevelOrder</span><span class="params">(root *TreeNode)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">zigzagLevelOrder</span><span class="params">(root *TreeNode)</span> [][]<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>原本的想法是在做廣度優先遍歷時，在將節點放入隊列時原本是先放左節點再放右節點，到了下一列改成先放右節點再放左節點，但最後出來的節點順序會發現不太對，其實根本就不需要這麼麻煩，換一個角度來想只要照常做原本的廣度優先遍歷就好，最後只要在做儲存結果時改變儲存的順序就搞定了，從原本依序放入結果陣列後頭，到下一列就改為依序放入結果陣列的開頭，至於放入隊列後要如何知道每個節點原本是位在哪一列，只要隊列的結構再多儲存一個列數的參數就好，如此一來不但能知道哪幾列要將值依序放入結果陣列的後頭還前頭，也能透過列數來確定要放的結果陣列是二元陣列中的哪一列。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>既然要做廣度優先遍歷，一開始當然就先定義好隊列儲存LinkedList的結構，而為了要在節點放入後也能知道該節點的列數，隊列的結構還要再多儲存一個列數的參數</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> QueneNode <span class="keyword">struct</span> &#123;</div><div class="line">	Row  <span class="keyword">int</span></div><div class="line">	Node *TreeNode</div><div class="line">	Next *QueneNode</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -211,7 +215,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/05/binary-tree-zigzag-level-order-traversal/" data-id="cj891nusk00ns4dtvle3crtm2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/05/binary-tree-zigzag-level-order-traversal/" data-id="cj9mwqq8c00cir9tvie29u3lb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

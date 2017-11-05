@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,SegmentTree,BinaryIndexedTree" />
     
-    <meta name="description" content="Range Sum Query - MutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-The update(i, val) function modifies nums by updating the element at ind">
+    <meta name="description" content="Range Sum Query - MutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive. The update(i, val) function modifies nums by updating the element at ind">
+<meta name="keywords" content="LeetCode,Go,SegmentTree,BinaryIndexedTree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Range Sum Query - Mutable">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/08/06/range-sum-query-mutable/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Range Sum Query - MutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-The update(i, val) function modifies nums by updating the element at ind">
+<meta property="og:description" content="Range Sum Query - MutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive. The update(i, val) function modifies nums by updating the element at ind">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-08-06T13:11:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Range Sum Query - Mutable">
-<meta name="twitter:description" content="Range Sum Query - MutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-The update(i, val) function modifies nums by updating the element at ind">
+<meta name="twitter:description" content="Range Sum Query - MutableGiven an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive. The update(i, val) function modifies nums by updating the element at ind">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ The update(i, val) function modifies nums by updating the element at ind">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -188,7 +189,7 @@ ga('send', 'pageview');
 <li>The array is only modifiable by the update function.</li>
 <li>You may assume the number of calls to update and sumRange function is distributed evenly.</li>
 </ol>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumArray <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">NumArray</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">Update</span><span class="params">(i <span class="keyword">int</span>, val <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">SumRange</span><span class="params">(i <span class="keyword">int</span>, j <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your NumArray object will be instantiated and called as such:</div><div class="line"> * obj := Constructor(nums);</div><div class="line"> * obj.Update(i,val);</div><div class="line"> * param_2 := obj.SumRange(i,j);</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumArray <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">NumArray</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">Update</span><span class="params">(i <span class="keyword">int</span>, val <span class="keyword">int</span>)</span></span>  &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumArray)</span> <span class="title">SumRange</span><span class="params">(i <span class="keyword">int</span>, j <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Your NumArray object will be instantiated and called as such:</span></div><div class="line"><span class="comment"> * obj := Constructor(nums);</span></div><div class="line"><span class="comment"> * obj.Update(i,val);</span></div><div class="line"><span class="comment"> * param_2 := obj.SumRange(i,j);</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>這題有點出乎意料之外，因為被歸類在中等難度本以為又會用上什麼技巧，沒想到就單純只是要實作物件的方法，包含初始化物件結構、更新物件資料(陣列)特定index的值與加總資料陣列上兩個index範圍內的值。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>題目要求以物件的方式來完成，所以一開始先定義好物件的結構(僅包含數字陣列的資料)與初始化的函數(將帶入的數字陣列做物件的初始化並回傳)</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumArray <span class="keyword">struct</span> &#123;</div><div class="line">	array []<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">NumArray</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> NumArray&#123;nums&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -205,7 +206,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/08/06/range-sum-query-mutable/" data-id="cj891nuxp00qt4dtve1982vxt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/08/06/range-sum-query-mutable/" data-id="cj9mwqqaz00gdr9tvmntytx27" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

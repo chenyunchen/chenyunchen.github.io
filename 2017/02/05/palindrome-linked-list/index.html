@@ -9,68 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,TwoPointers" />
     
-    <meta name="description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome.
-Follow up:
-Could you do it in O(n) time and O(1) space?
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-
-Default:12345678910/**">
+    <meta name="description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome. Follow up: Could you do it in O(n) time and O(1) space?    提示 解題應用     LinkedList Pointer    Default:12345678910/**">
+<meta name="keywords" content="LeetCode,Go,LinkedList,TwoPointers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Palindrome Linked List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/02/05/palindrome-linked-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome.
-Follow up:
-Could you do it in O(n) time and O(1) space?
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-
-Default:12345678910/**">
+<meta property="og:description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome. Follow up: Could you do it in O(n) time and O(1) space?    提示 解題應用     LinkedList Pointer    Default:12345678910/**">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:12:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Palindrome Linked List">
-<meta name="twitter:description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome.
-Follow up:
-Could you do it in O(n) time and O(1) space?
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer
-
-
-
-Default:12345678910/**">
+<meta name="twitter:description" content="Palindrome Linked ListGiven a singly linked list, determine if it is a palindrome. Follow up: Could you do it in O(n) time and O(1) space?    提示 解題應用     LinkedList Pointer    Default:12345678910/**">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -78,6 +29,8 @@ Default:12345678910/**">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -245,7 +198,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isPalindrome</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isPalindrome</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>在寫之前會發現到Follow up希望你能達到的條件，不過我認為要嚴格達到是非常具有爭議性的，因為要做回文的判斷，偏偏此題LinkedList的節點又是不可逆，此外用字串來強制儲存正反兩面做比較(可以參考:<a href="/2017/01/08/valid-palindrome/">Valid Palindrome</a>)，畢竟存的值不是字串會有正負數上處理的麻煩及負號會導致不對稱，所以最後的結論就是先找到中間節間為開始倒著回去的部分，接著就是將原本中間到最後的部分反轉，便同時與前面的部分開始遍歷比較是否相同，而爭議點在於反轉所花費的空間與時間，總之就先以此方式來當作目前最佳的解決方案。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先判斷LinkedList是否為nil，接著就是要來找出中間節點的位置，同時兩個指標以1:2的速度來遍歷整個LinkedList，當速度比較快的指標到底時，此時比較慢的指標會位在前半部最後一個節點的位置上，正如先前所說，這時就可以將後半部的部分給反轉，而在那之前要先將比較慢的指標位置往後移一格，變成後半LinkedList的開頭，最後與前半部開始同時遍歷一一檢查值是否相同，直到後半部的節點到達底部都沒有問題才回傳true</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isPalindrome</span><span class="params">(head *ListNode)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> head == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	fast := head.Next</div><div class="line">	slow := head</div><div class="line">	<span class="keyword">for</span> fast != <span class="literal">nil</span> &amp;&amp; fast.Next != <span class="literal">nil</span> &#123;</div><div class="line">		fast = fast.Next.Next</div><div class="line">		slow = slow.Next</div><div class="line">	&#125;</div><div class="line">	slow = reverse(slow.Next)</div><div class="line">	<span class="keyword">for</span> slow != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">if</span> head.Val != slow.Val &#123;</div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">		&#125;</div><div class="line">		head = head.Next</div><div class="line">		slow = slow.Next</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -260,7 +213,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/02/05/palindrome-linked-list/" data-id="cj891nug4004x4dtvjwgwkf7t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/02/05/palindrome-linked-list/" data-id="cj9mwqq390058r9tv3zt8fpha" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

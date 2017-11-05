@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch,BreadthFirstSearch" />
     
-    <meta name="description" content="Binary Tree Right Side ViewGiven a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
-For example:Given the followi">
+    <meta name="description" content="Binary Tree Right Side ViewGiven a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. For example:Given the followi">
+<meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch,BreadthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Right Side View">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/30/binary-tree-right-side-view/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Binary Tree Right Side ViewGiven a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
-For example:Given the followi">
+<meta property="og:description" content="Binary Tree Right Side ViewGiven a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. For example:Given the followi">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-30T07:55:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Right Side View">
-<meta name="twitter:description" content="Binary Tree Right Side ViewGiven a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
-For example:Given the followi">
+<meta name="twitter:description" content="Binary Tree Right Side ViewGiven a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. For example:Given the followi">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:Given the followi">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -198,7 +199,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rightSideView</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rightSideView</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>題目主要的意思就是要輸出每層最右側的節點，所以可以用廣度優先搜尋的方式將每層的最後一個節點給放入結果之中，或者是像這次的解法一樣採用前序遍歷的方式，每次再往下遍歷之前先檢查該節點右側是否有子節點存在，如果存在且該層尚未有節點放入結果之中(結果陣列的長度小於目前樹的深度)就將右側子節點值放入，而如果右側子節點不存在但左側存在，且該層一樣尚未有節點放入就將左側子節點值放入，最後待操作完畢要向下遞回遍歷時，記得要先遍歷完右子樹才遍歷左子樹(因為是以輸出最右側的節點為主)。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>因為對於根節點來說不屬於左右兩側，所以為了確保操作上的一致性，就自行製做頭節點將根節點接於頭節點的右側並帶入前序遍歷的函數之中，其中第一個參數是遍歷的節點，第二個則是目前該節點在整個二元樹的深度，第三個才是目前已放入結果陣列的值</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rightSideView</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	head := &amp;TreeNode&#123;<span class="number">0</span>, <span class="literal">nil</span>, root&#125;</div><div class="line">	<span class="keyword">return</span> preorderTravel(head, <span class="number">0</span>, []<span class="keyword">int</span>&#123;&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -214,7 +215,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/30/binary-tree-right-side-view/" data-id="cj891nuv200pa4dtvpld70i7t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/30/binary-tree-right-side-view/" data-id="cj9mwqq9m00e8r9tvuvp8knyx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

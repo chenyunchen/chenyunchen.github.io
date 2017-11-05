@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,DynamicProgramming,Tree" />
     
-    <meta name="description" content="Unique Binary Search Trees IIGiven an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n.
-For example:Given n = 3, your program should return all 5 unique B">
+    <meta name="description" content="Unique Binary Search Trees IIGiven an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n. For example:Given n = 3, your program should return all 5 unique B">
+<meta name="keywords" content="LeetCode,Go,DynamicProgramming,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unique Binary Search Trees II">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/03/unique-binary-search-trees-II/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Unique Binary Search Trees IIGiven an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n.
-For example:Given n = 3, your program should return all 5 unique B">
+<meta property="og:description" content="Unique Binary Search Trees IIGiven an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n. For example:Given n = 3, your program should return all 5 unique B">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-02T15:30:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unique Binary Search Trees II">
-<meta name="twitter:description" content="Unique Binary Search Trees IIGiven an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n.
-For example:Given n = 3, your program should return all 5 unique B">
+<meta name="twitter:description" content="Unique Binary Search Trees IIGiven an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n. For example:Given n = 3, your program should return all 5 unique B">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:Given n = 3, your program should return all 5 unique B">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -201,7 +202,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">generateTrees</span><span class="params">(n <span class="keyword">int</span>)</span> []*<span class="title">TreeNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">generateTrees</span><span class="params">(n <span class="keyword">int</span>)</span> []*<span class="title">TreeNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>先前有一篇<a href="/2017/06/02/unique-binary-search-trees/">Unique Binary Search Trees</a>是在計算n個節點的情況下能組出幾種不同的BST，但是這次是要回傳所有不同的組合而非單單個數而已，所以沒有辦法用上公式來處理，透過先前題目可以知道二元樹經過排序的情況下，隨著根節點的值不同，底下的對應組合就是左右子樹的問題，只是這次我們在乎的就不僅僅只是左右子樹的節點數有多少個，而是要實作出所有組合，要實作出所有組合就會用上遞回的方式處理，再想一想對於那些左右子數來說不也是一樣是一棵二元樹，也是先決定根節點再次分成左右子樹，所以對於遞回來說1~n的節點如果取k作為根節點，1~k-1及k+1~n就會是左右子樹的範圍，剩下就是不斷重覆上述行為直到取的根節點是nil為止便能找出所有組合。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先將節點數為0的情況篩選掉，而因為接下來要透過遞回的方式不斷的在範圍之間取值來作為根節點，所以便以迴圈生成包含1~n的陣列，接著才將該陣列帶入遞回函數之中以取得所有組成的BST</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">generateTrees</span><span class="params">(n <span class="keyword">int</span>)</span> []*<span class="title">TreeNode</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> n == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> []*TreeNode&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	candidates := <span class="built_in">make</span>([]<span class="keyword">int</span>, n)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= n; i++ &#123;</div><div class="line">		candidates[i<span class="number">-1</span>] = i</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> combine(candidates)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -216,7 +217,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/03/unique-binary-search-trees-II/" data-id="cj891nury00ng4dtvd4t9ydj8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/03/unique-binary-search-trees-II/" data-id="cj9mwqq8900cdr9tvntxixu4d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

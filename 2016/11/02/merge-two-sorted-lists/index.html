@@ -9,50 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,Modify" />
     
-    <meta name="description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer">
+    <meta name="description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.    提示 解題應用     LinkedList Pointer">
+<meta name="keywords" content="LeetCode,Go,LinkedList,Modify">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Merge Two Sorted Lists">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/11/02/merge-two-sorted-lists/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer">
+<meta property="og:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.    提示 解題應用     LinkedList Pointer">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-21T15:45:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Merge Two Sorted Lists">
-<meta name="twitter:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
-
-
-
-提示
-解題應用
-
-
-
-
-LinkedList
-Pointer">
+<meta name="twitter:description" content="Merge Two Sorted ListsMerge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.    提示 解題應用     LinkedList Pointer">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -60,6 +29,8 @@ Pointer">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -225,7 +196,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mergeTwoLists</span><span class="params">(l1 *ListNode, l2 *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mergeTwoLists</span><span class="params">(l1 *ListNode, l2 *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>(此題思路有修正，建議看完直接拉到最底下參考修正的部分)</p>
 <p>一開始想的是以第一個LinkedList為主(主)，另一個LinkedList(副)就只要將節點依照大小插入主要的LinkedList之中，不過這邊的插入和原先有些出入，原先是真的打算將LinkedList(副)的節點一個一個插入，這樣一來每一個插入LinkedList(主)之後，原先在節點(主)後續銜接的節點又要重新接到新插入節點的後面，而萬一在LinkedList(副)剛好有一長串的節點是要插入同一個節點(主)的後面，就變的相當不自然，因為明明只要將該串(副)的頭、尾節點位置插入節點(主)的前後就可以一口氣塞入整串節點，所以原先的思路上就要以串來想而非單一點。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這邊我們主要操作的是第一個LinkedList(主)所以只有這個需要一個頭節點來確保操作上的一致性，另外空節點的情況下預設值是0，因為我們要擺最前面當頭節點要最小，所以要考量到有負數的情況，雖然題目所給的參數不會那麼刁專，其實設個-99就足夠了，不過我這邊還是加了math的package來取得32位元整數的最小值。</p>
@@ -242,7 +213,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/11/02/merge-two-sorted-lists/" data-id="cj891nudm002m4dtvkb4225b8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/11/02/merge-two-sorted-lists/" data-id="cj9mwqq14002pr9tvfdr2oglv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -379,11 +350,11 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/2016/11/05/swap-nodes-in-pairs/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/11/05/remove-duplicates-from-sorted-array/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            Swap Nodes in Pairs
+            Remove Duplicates from Sorted Array
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>

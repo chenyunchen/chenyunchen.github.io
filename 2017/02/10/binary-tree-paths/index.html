@@ -9,29 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Binary Tree PathsGiven a binary tree, return all root-to-leaf paths.
-For example, given the following binary tree:
-12345   1 /   \2     3 \  5
-All root-to-leaf paths are:
-1[&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;,">
+    <meta name="description" content="Binary Tree PathsGiven a binary tree, return all root-to-leaf paths. For example, given the following binary tree: 12345   1 /   \2     3 \  5 All root-to-leaf paths are: 1[&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;,">
+<meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Paths">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/02/10/binary-tree-paths/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Binary Tree PathsGiven a binary tree, return all root-to-leaf paths.
-For example, given the following binary tree:
-12345   1 /   \2     3 \  5
-All root-to-leaf paths are:
-1[&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;,">
+<meta property="og:description" content="Binary Tree PathsGiven a binary tree, return all root-to-leaf paths. For example, given the following binary tree: 12345   1 /   \2     3 \  5 All root-to-leaf paths are: 1[&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;,">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:13:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Paths">
-<meta name="twitter:description" content="Binary Tree PathsGiven a binary tree, return all root-to-leaf paths.
-For example, given the following binary tree:
-12345   1 /   \2     3 \  5
-All root-to-leaf paths are:
-1[&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;,">
+<meta name="twitter:description" content="Binary Tree PathsGiven a binary tree, return all root-to-leaf paths. For example, given the following binary tree: 12345   1 /   \2     3 \  5 All root-to-leaf paths are: 1[&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;,">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -39,6 +29,8 @@ All root-to-leaf paths are:
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -212,7 +204,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">binaryTreePaths</span><span class="params">(root *TreeNode)</span> []<span class="title">string</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">binaryTreePaths</span><span class="params">(root *TreeNode)</span> []<span class="title">string</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>列出一二元樹的特定路徑時，正如尋找最大深度所會碰上的問題一樣，在做前序遍歷時需要對那些左右子節點是否存在做處理，尤其是左或右子節點僅其中一點存在的情況下，容易將另一不存在的子節點當作終點作為其路徑，以上述例子來說存在著”1-&gt;2-&gt;5”，然而2的左子節點不存在，但”1-&gt;2”並非是能到達的最大路徑(深度)，這邊僅需要藉由其子節點存在的判斷來決定是否遍歷，便能輕易回避此問題取得所需的結果。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>一開始先確定根節點是否為nil，如果是就回傳空的字串陣列，否則才開始前序遍歷遞回每一個節點</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">binaryTreePaths</span><span class="params">(root *TreeNode)</span> []<span class="title">string</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> []<span class="keyword">string</span>&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> preOrderTravel(root, <span class="string">""</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -227,7 +219,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/02/10/binary-tree-paths/" data-id="cj891nugf005c4dtv7mky20ay" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/02/10/binary-tree-paths/" data-id="cj9mwqq3c005dr9tvuccwt8ua" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

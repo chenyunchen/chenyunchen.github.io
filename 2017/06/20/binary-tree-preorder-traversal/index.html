@@ -9,32 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Stack,Tree" />
     
-    <meta name="description" content="Binary Tree Preorder TraversalGiven a binary tree, return the preorder traversal of its nodes’ values.
-For example:Given binary tree {1,#,2,3},
-123451 \  2 /3
-return [1,2,3].
-Note:
-Recursive solution">
+    <meta name="description" content="Binary Tree Preorder TraversalGiven a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3}, 123451 \  2 /3 return [1,2,3]. Note: Recursive solution">
+<meta name="keywords" content="LeetCode,Go,Stack,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Preorder Traversal">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/06/20/binary-tree-preorder-traversal/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Binary Tree Preorder TraversalGiven a binary tree, return the preorder traversal of its nodes’ values.
-For example:Given binary tree {1,#,2,3},
-123451 \  2 /3
-return [1,2,3].
-Note:
-Recursive solution">
+<meta property="og:description" content="Binary Tree Preorder TraversalGiven a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3}, 123451 \  2 /3 return [1,2,3]. Note: Recursive solution">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-06-20T01:35:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Preorder Traversal">
-<meta name="twitter:description" content="Binary Tree Preorder TraversalGiven a binary tree, return the preorder traversal of its nodes’ values.
-For example:Given binary tree {1,#,2,3},
-123451 \  2 /3
-return [1,2,3].
-Note:
-Recursive solution">
+<meta name="twitter:description" content="Binary Tree Preorder TraversalGiven a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3}, 123451 \  2 /3 return [1,2,3]. Note: Recursive solution">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -42,6 +29,8 @@ Recursive solution">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -216,7 +205,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">preorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">preorderTraversal</span><span class="params">(root *TreeNode)</span> []<span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>建議可以先參考先前<a href="/2017/06/01/binary-tree-inorder-traversal/">Binary Tree Inorder Traversal</a>的解法，解說較為詳細，基本上概念完全一樣，中序遍歷與前序遍歷的差別其實就只是對節點操作的時間不同而已，所以本題與先前的差異就只是節點值放入結果陣列的時機，差別僅此就不再多加著墨，一樣也是不透過遞回而由stack來完成實作。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這邊只解說與先前題目程式碼的相異之處，因為中序遍歷與前序遍歷的差別其實就只是對節點操作的時間不同，所以原本中序遍歷對節點操作的時間是在從stack取頭節點出來之後，前序遍歷的時機則改為在節點放入stack之前就對節點進行操作，說操作其實就只是節點值放入結果陣列而已</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> tmp != <span class="literal">nil</span> || top != <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">if</span> tmp != <span class="literal">nil</span> &#123;</div><div class="line">		top = &amp;StackNode&#123;tmp, top&#125;</div><div class="line">		result = <span class="built_in">append</span>(result, tmp.Val)</div><div class="line">		tmp = tmp.Left</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		tmp = top.Node</div><div class="line">		top = top.Next</div><div class="line">		tmp = tmp.Right</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -229,7 +218,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/06/20/binary-tree-preorder-traversal/" data-id="cj891nutr00ok4dtvxwyu7cnh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/06/20/binary-tree-preorder-traversal/" data-id="cj9mwqq9200djr9tvot4ddob4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

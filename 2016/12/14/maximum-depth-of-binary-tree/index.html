@@ -9,35 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Modify,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth.
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
-
-
-
-提示
-解題應用">
+    <meta name="description" content="Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.    提示 解題應用">
+<meta name="keywords" content="LeetCode,Go,Modify,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maximum Depth of Binary Tree">
 <meta property="og:url" content="https://blog.yunchen.tw/2016/12/14/maximum-depth-of-binary-tree/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth.
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
-
-
-
-提示
-解題應用">
+<meta property="og:description" content="Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.    提示 解題應用">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:08:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maximum Depth of Binary Tree">
-<meta name="twitter:description" content="Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth.
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
-
-
-
-提示
-解題應用">
+<meta name="twitter:description" content="Maximum Depth of Binary TreeGiven a binary tree, find its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.    提示 解題應用">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -45,6 +29,8 @@ The maximum depth is the number of nodes along the longest path from the root no
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -215,7 +201,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxDepth</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxDepth</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>(此題思路有修正，建議看完直接拉到最底下參考修正的部分)</p>
 <p>決定一棵樹的深度，用深度優先遍歷是最好不過了，而就一節點來說其子節點有分左子節點與右子節點，要知道該節點的最大深度就必需要先比較左右兩子節點的深度，換句話說就是要等到左右節點都深度遍歷完了才有辦法做判斷，所以我們就要用後序遍歷來實作深度優先遍歷，當然用遞回的方式來做便再簡單不過了。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>接下來就是用遞回的方式做處理，在一開始因為進來的節點有可能是nil該層的深度就不算數，所以需要回傳的是最大深度再-1，而如果節點存在當然就是繼續去做遞回，而因為要等左右節點的最大深度回來才能做比較，此為後序遍歷的方式判斷式都要在後頭</p>
@@ -230,7 +216,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2016/12/14/maximum-depth-of-binary-tree/" data-id="cj891nuef003f4dtv2jc8l8m0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2016/12/14/maximum-depth-of-binary-tree/" data-id="cj9mwqq1r003dr9tvegce5a29" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

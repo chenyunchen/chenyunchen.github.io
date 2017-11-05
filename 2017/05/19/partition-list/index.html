@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,LinkedList,TwoPointers" />
     
-    <meta name="description" content="Partition ListGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the node">
+    <meta name="description" content="Partition ListGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x. You should preserve the original relative order of the node">
+<meta name="keywords" content="LeetCode,Go,LinkedList,TwoPointers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Partition List">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/05/19/partition-list/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Partition ListGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the node">
+<meta property="og:description" content="Partition ListGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x. You should preserve the original relative order of the node">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-05-18T05:32:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Partition List">
-<meta name="twitter:description" content="Partition ListGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
-You should preserve the original relative order of the node">
+<meta name="twitter:description" content="Partition ListGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x. You should preserve the original relative order of the node">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ You should preserve the original relative order of the node">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -201,7 +202,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * type ListNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Next *ListNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">partition</span><span class="params">(head *ListNode, x <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * type ListNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Next *ListNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">partition</span><span class="params">(head *ListNode, x <span class="keyword">int</span>)</span> *<span class="title">ListNode</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>如果能搞懂題目意思，那麼只需要幾秒的時間就可以想出解法了，最主要就是要將LinkedList分類，如果值比x小就將該節點分一類，如果比x大或相等就分另一類，重點是當節點被歸納至某一類時並不需要做排序，因為只是要相對位置而已，所以被分配到該類時只要接在後頭即可，最後就只要將相對較小的那串LinkedList與相對較較大的另一串LinkedList相接就搞定了。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>要將LinkedList分配為相對較小的一類與相對較大(或相同)的一類就需要兩個新的LinkedList來分別儲存，所以這邊就初始化一個small與一個big的頭節點來分別儲存(頭節點也能確保之後第一個新加入節點與其它節點一樣有操作上的一致性)，並分別用header來暫存之後兩個LinkedList的第一個節點位置(也就是先前剛新增的頭節點)，接下來就是開始遍歷原本題目給的LinkedList，如果節點的值比目標值小就將該節點接到small那串LinkedList的後頭，反之如果值比較大或相等則接到big那串LinkedList的後頭，待遍歷結束後，最後只要將兩個分配好的LinkedList嫁接(small的下一個節點位置接到big頭節點的下一個位置)，接著再將big的下一個位置改為nil就可以回傳新重組完LinkList的位置了(也就是small頭節點的下一個位置)</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">small := &amp;ListNode&#123;&#125;</div><div class="line">smallHeader := small</div><div class="line">big := &amp;ListNode&#123;&#125;</div><div class="line">bigHeader := big</div><div class="line"><span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</div><div class="line">	<span class="keyword">if</span> head.Val &lt; x &#123;</div><div class="line">		small.Next = head</div><div class="line">		small = head</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		big.Next = head</div><div class="line">		big = head</div><div class="line">	&#125;</div><div class="line">	head = head.Next</div><div class="line">&#125;</div><div class="line">small.Next = bigHeader.Next</div><div class="line">big.Next = <span class="literal">nil</span></div><div class="line"><span class="keyword">return</span> smallHeader.Next</div></pre></td></tr></table></figure>
@@ -214,7 +215,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/05/19/partition-list/" data-id="cj891nurg00n64dtv1ju3v1zw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/05/19/partition-list/" data-id="cj9mwqq7x00bvr9tv6q1iij1s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

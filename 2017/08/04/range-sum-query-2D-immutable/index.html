@@ -9,26 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,DynamicProgramming" />
     
-    <meta name="description" content="Range Sum Query 2D - ImmutableGiven a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
-
-
-The abov">
+    <meta name="description" content="Range Sum Query 2D - ImmutableGiven a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).   The abov">
+<meta name="keywords" content="LeetCode,Go,DynamicProgramming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Range Sum Query 2D - Immutable">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/08/04/range-sum-query-2D-immutable/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Range Sum Query 2D - ImmutableGiven a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
-
-
-The abov">
+<meta property="og:description" content="Range Sum Query 2D - ImmutableGiven a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).   The abov">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-08-04T15:39:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Range Sum Query 2D - Immutable">
-<meta name="twitter:description" content="Range Sum Query 2D - ImmutableGiven a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
-
-
-The abov">
+<meta name="twitter:description" content="Range Sum Query 2D - ImmutableGiven a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).   The abov">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -36,6 +29,8 @@ The abov">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -198,7 +193,7 @@ ga('send', 'pageview');
 <li>There are many calls to sumRegion function.</li>
 <li>You may assume that row1 ≤ row2 and col1 ≤ col2.</li>
 </ol>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumMatrix <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(matrix [][]<span class="keyword">int</span>)</span> <span class="title">NumMatrix</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumMatrix)</span> <span class="title">SumRegion</span><span class="params">(row1 <span class="keyword">int</span>, col1 <span class="keyword">int</span>, row2 <span class="keyword">int</span>, col2 <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your NumMatrix object will be instantiated and called as such:</div><div class="line"> * obj := Constructor(matrix);</div><div class="line"> * param_1 := obj.SumRegion(row1,col1,row2,col2);</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumMatrix <span class="keyword">struct</span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(matrix [][]<span class="keyword">int</span>)</span> <span class="title">NumMatrix</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *NumMatrix)</span> <span class="title">SumRegion</span><span class="params">(row1 <span class="keyword">int</span>, col1 <span class="keyword">int</span>, row2 <span class="keyword">int</span>, col2 <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Your NumMatrix object will be instantiated and called as such:</span></div><div class="line"><span class="comment"> * obj := Constructor(matrix);</span></div><div class="line"><span class="comment"> * param_1 := obj.SumRegion(row1,col1,row2,col2);</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>要找出一平面上矩形範圍內所有值的總合，既然有給該矩形的最左上角與最右下角座標，那麼就只要用巢狀迴圈便能遍歷該範圍內的所有值，唯一要注意的就是每次都需要檢查取值的座標是否仍落在平面上，最後雖然題目要求以物件的方式來完成，不過因為資料與行為都非常單純，所以就沒有什麼大問題。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>題目要求以物件的方式來完成，所以一開始先定義好平面的結構(僅包含二元陣列的資料)與初始化的函數(將帶入的二元陣列做物件的初始化並回傳)</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> NumMatrix <span class="keyword">struct</span> &#123;</div><div class="line">	matrix [][]<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(matrix [][]<span class="keyword">int</span>)</span> <span class="title">NumMatrix</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> NumMatrix&#123;matrix&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -213,7 +208,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/08/04/range-sum-query-2D-immutable/" data-id="cj891nuxx00qy4dtvvp4ico7d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/08/04/range-sum-query-2D-immutable/" data-id="cj9mwqqaw00g8r9tvssh4f2k7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

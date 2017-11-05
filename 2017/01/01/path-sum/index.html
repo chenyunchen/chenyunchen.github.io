@@ -9,20 +9,19 @@
     
         <meta name="keywords" content="LeetCode,Go,Modify,Tree,DepthFirstSearch" />
     
-    <meta name="description" content="Path SumGiven a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
-For example:Given the below binary tree an">
+    <meta name="description" content="Path SumGiven a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. For example:Given the below binary tree an">
+<meta name="keywords" content="LeetCode,Go,Modify,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Path Sum">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/01/01/path-sum/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
-<meta property="og:description" content="Path SumGiven a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
-For example:Given the below binary tree an">
+<meta property="og:description" content="Path SumGiven a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. For example:Given the below binary tree an">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-04-05T15:09:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Path Sum">
-<meta name="twitter:description" content="Path SumGiven a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
-For example:Given the below binary tree an">
+<meta name="twitter:description" content="Path SumGiven a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. For example:Given the below binary tree an">
 <meta name="twitter:image" content="https://i.imgur.com/0rW38gs.jpg">
     
 
@@ -30,6 +29,8 @@ For example:Given the below binary tree an">
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -202,7 +203,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasPathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasPathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>(此題思路有修正，建議看完直接拉到最底下參考修正的部分)</p>
 <p>與尋找二元樹的最小深度一樣，要注意的是一定要從存在的樹根到樹末(樹葉)來尋找，所以會發生只到中間的節點符合條件，反而往其子節點走就不符合條件，對於那些nil節點一樣要做些處理以免誤判，nil節點我回傳了一個32位元int的極大值，如果其一節點的兩個左右子節點都回傳極大值，如此一來便知道已經到達了樹葉節點，此時在判斷節點總合是否符合目標值，其餘的節點若有任一左右子節點就繼續遞回做後序遍歷，而不符合目標值的路徑則回傳一個極小值，與符合條件的任一值以此區分空節點、不符合的路徑、符合的路徑。</p>
 <h4 id="程式碼解說"><a href="#程式碼解說" class="headerlink" title="程式碼解說:"></a>程式碼解說:</h4><p>這邊一開始先判斷節點是否存在，不存在就回傳一個極大值，接著便分左右子節點來做遞回，而至於是否於目標值相符，這邊我將目標值與路徑上的節點做相減，當結果為0且回傳的左右子節點皆為極大值，表示存在著符合條件的路徑以回傳0來表示，不過因為在向上回傳的過程中，節點會碰上像是左子樹的路徑符合，而另一右子樹則無，此時只要其一路徑符合就繼續向上回傳0，最後不符合的路徑就回傳極小值來區別</p>
@@ -226,7 +227,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/01/01/path-sum/" data-id="cj891nuey003p4dtvjjes3b0r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/01/01/path-sum/" data-id="cj9mwqq1y003nr9tvh14bfyef" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

@@ -10,11 +10,13 @@
         <meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch" />
     
     <meta name="description" content="House Robber IIIThe thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the root, each house has one and only one parent ho">
+<meta name="keywords" content="LeetCode,Go,Tree,DepthFirstSearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="House Robber III">
 <meta property="og:url" content="https://blog.yunchen.tw/2017/08/29/house-robber-III/index.html">
 <meta property="og:site_name" content="Yun Chen Blog">
 <meta property="og:description" content="House Robber IIIThe thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the root, each house has one and only one parent ho">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="https://i.imgur.com/0rW38gs.jpg">
 <meta property="og:updated_time" content="2017-08-29T14:39:21.000Z">
 <meta name="twitter:card" content="summary">
@@ -27,6 +29,8 @@
         <link rel="alternate" href="/atom.xml" title="Yun Chen Blog" type="application/atom+xml" />
     
 
+    
+        <link rel="icon" href="/favicon.ico" />
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -197,7 +201,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * type TreeNode struct &#123;</div><div class="line"> *     Val int</div><div class="line"> *     Left *TreeNode</div><div class="line"> *     Right *TreeNode</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rob</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default"><a href="#Default" class="headerlink" title="Default:"></a>Default:</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * type TreeNode struct &#123;</span></div><div class="line"><span class="comment"> *     Val int</span></div><div class="line"><span class="comment"> *     Left *TreeNode</span></div><div class="line"><span class="comment"> *     Right *TreeNode</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rob</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="解答思路"><a href="#解答思路" class="headerlink" title="解答思路:"></a>解答思路:</h4><p>剛看到題目時很容易因為範例而被誤導使用廣度優先遍歷，求出每列的總合再做組合找最大值，然而仔細看題目的話只要不是連偷兩間屋子，也就是節點跟子節點連續就不會有問題，所以節點的左子樹與右子樹間是互相獨立的，因此在做樹的遞回遍歷時，只要比較”該節點+左子節點的子樹(左右子樹)遞回結果+右子節點的子樹(左右子樹)遞回結果”與”左子樹的遞回結果+右子樹的遞回結果”兩個值誰大再向上回傳即可，如下:</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rob</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> tmp <span class="keyword">int</span></div><div class="line">	<span class="keyword">if</span> root.Left != <span class="literal">nil</span> &#123;</div><div class="line">		tmp += rob(root.Left.Left) + rob(root.Left.Right)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> root.Right != <span class="literal">nil</span> &#123;</div><div class="line">		tmp += rob(root.Right.Left) + rob(root.Right.Right)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> max(tmp+root.Val, rob(root.Left)+rob(root.Right))</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a <span class="keyword">int</span>, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> a &gt; b &#123;</div><div class="line">		<span class="keyword">return</span> a</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>不難發現到在遞回節點子樹的最大結果時，與另一個遞回節點子樹的子樹似乎有重覆遞回的情況，這將導致花費時間大幅度的上升，因此針對這種情況只要把遞回修改成每次都回傳兩個值，包含該節點的最大結果與不包含該節點的最大結果，剩下的工作交由上一層去組合並比較大小，就能只經由遞回遍歷各節點一次找出最終的最大竊取金額。</p>
@@ -216,7 +220,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://blog.yunchen.tw/2017/08/29/house-robber-III/" data-id="cj891nuzh00rs4dtvv0vl87vh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://blog.yunchen.tw/2017/08/29/house-robber-III/" data-id="cj9mwqqbl00h4r9tvxoe3w9qm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -364,9 +368,9 @@ ga('send', 'pageview');
     </a>
     
     
-        <a href="/2017/08/27/reconstruct-itinerary/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/08/27/increasing-triplet-subsequence/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Reconstruct Itinerary</p>
+        <p class="article-nav-title">Increasing Triplet Subsequence</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
