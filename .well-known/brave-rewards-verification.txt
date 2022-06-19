@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: yunchen.tw
+Token: 3c249638edd77e0eadaaf9282e0f4b87b59a3c279cdbc1546e979bb27625142f
